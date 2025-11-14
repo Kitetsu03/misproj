@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Antonio:wght@100..700&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Bowlby+One+SC&family=Chicle&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Luckiest+Guy&family=Madimi+One&family=Marko+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  --primary-font: "Marko One", serif;
+  --secondary-font: "roboto", sans-serif;
+  --primary-color: #16745a;
+  --secondary-color: #00b0f0;
+  --tertiary-color: #0e4d3c;
+  --complementary-color: #bbdce5;
+  --gradient-color--: linear-gradient(
+    134deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 41%,
+    var(--tertiary-color) 95%
+  );
+}
+body {
+  font-family: var(--primary-font);
+  background: var(--gradient-color--) fixed;
+  font-size: 16px;
+}
+/* Login and Register */
+/* body .form-label,
+.form-control {
+  font-family: var(--secondary-font);
+}
+.logo {
+  display: flex;
+  margin-top: -1em;
+}
+h2 {
+  padding-top: 0.2em;
+}
+.card,
+.form-control {
+  background-color: var(--complementary-color);
+}
+.card {
+  border-radius: 40px;
+}
+.card-header {
+  border-bottom: solid #fff 20px;
+  margin-bottom: 5px;
+}
+.form-group {
+  position: relative;
+  width: 100%;
+}
+
+.form-group label {
+  position: absolute;
+  z-index: 10;
+  background-color: var(--complementary-color);
+  left: 10px;
+  top: 10px;
+  font-family: var(--secondary-font);
+  font-size: 1em;
+  color: #000;
+  transition: 0.5s;
+}
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label {
+  border-radius: 0%;
+  top: -10px;
+  left: 15;
+  font-size: 0.75em;
+  background-color: var(--complementary-color);
+  padding: 0 5px;
+  transition: all 0.3s ease;
+}
+.form-group input:focus {
+  border-color: var(--primary-color);
+  background: transparent;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border-radius: 12px;
+  border: solid #000 1px;
+  outline: none;
+}
+.form-control:hover {
+  box-shadow: #000 0px 0px 3px;
+}
+.confirm {
+  z-index: 3;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.confirm::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--secondary-color);
+  transition: 0.5s;
+  z-index: -1;
+}
+.confirm:hover::before {
+  opacity: 0.2;
+  left: 0;
+}
+.login {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  color: #000;
+  opacity: 0.6;
+}
+.login:hover {
+  color: var(--tertiary-color);
+} */
+
+/* Admin Nav*/
+/* NavContainer */
