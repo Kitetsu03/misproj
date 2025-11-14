@@ -3,9 +3,9 @@ import AdminNav from "../../components/AdminNav";
 function UserAccess() {
   return (
     <>
-      <div className="flex">
+      <div className="min-h-dvh flex grid-cols-[auto_1fr]">
         <AdminNav />
-        <header className="p-5">
+        <header className="">
           <h1 className="text-3xl text-white">USER & ACCESS MANAGEMENT</h1>
           <p className="pt-3 text-white">
             Manage user accoutes, roles, and permissions for your church
@@ -19,7 +19,7 @@ function UserAccess() {
           <div className="grid grid-cols-2 grid-rows-6 gap-4">
             <div className="col-span-2">
               1<h1>Search & Filter</h1>
-              <form className ="max-w-md mx-auto">
+              <form className="max-w-md mx-auto">
                 <label
                   for="search"
                   className="block mb-2.5 text-sm font-medium text-heading sr-only "
@@ -45,14 +45,17 @@ function UserAccess() {
                       />
                     </svg>
                   </div>
-                  <input className="hover:2xl:"
+                  <input
+                    className="hover:2xl:"
                     type="search"
                     id="search"
                     class="block w-full p-3 ps-9 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
                     placeholder="Search by name and email..."
-                    required/>
-                    <button className="bg-black hover:bg-blue-500 text-white font-bold py-[0.3rem] px-2 rounded-full">All Rules </button>
-                  
+                    required
+                  />
+                  <button className="bg-black hover:bg-blue-500 text-white font-bold py-[0.3rem] px-2 rounded-full">
+                    All Rules
+                  </button>
                 </div>
               </form>
             </div>
