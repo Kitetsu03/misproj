@@ -4,11 +4,11 @@ function Dropdown() {
       {/* change popover-1 and --anchor-1 names. Use unique names for each dropdown */}
       {/* For TSX uncomment the commented types below */}
       <button
-        className="btn"
+        className="btn border-black border bg-white/20 backdrop-blur-lg w-30 h-10 rounded-2xl hover:bg-green-500"
         popoverTarget="popover-1"
         style={{ anchorName: "--anchor-1" } /* as React.CSSProperties */}
       >
-        Button
+        Roles
       </button>
 
       <ul
