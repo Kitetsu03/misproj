@@ -7,8 +7,10 @@ function UserAccess() {
     <>
       <div className="flex">
         <AdminNav />
-        <BlackButton />
-        <Dropdown />
+        <div className="">
+          <BlackButton className="flex justify-end" />
+          <Dropdown className="flex justify-end" />
+        </div>
       </div>
     </>
   );

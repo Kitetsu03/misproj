@@ -14,9 +14,9 @@ function AdminNav() {
       <div className="">
         <nav
           ref={navRef}
-          className={`bg-white/10 backdrop-blur-[2px] text-white border-white/90 flex flex-col fixed sm:sticky left-0 top-0 h-dvh w-64 transition-transform duration-200 z-40 ${
-            isOpen ? "translate-x-0" : "-translate-x-full"
-          } sm:relative sm:translate-x-0 sm:w-60`}
+          className={`bg-blue-400 backdrop-blur-[2px] text-white border-white/90 flex flex-col fixed sm:sticky left-0 top-0 h-dvh w-64 transition-transform duration-200 z-40 ${
+            isOpen ? "translate-x-0 " : "-translate-x-full"
+          } sm:relative sm:translate-x-0 sm:w-60 sm:bg-white/10`}
         >
           <div className="p-6 flex flex-col items-center justify-center w-full">
             <IoPersonOutline className="text-5xl" />
@@ -42,19 +42,19 @@ function AdminNav() {
               </li>
             </ul>
 
-            <button
+            {/* <button
               className="nav-btn close-btn sm:hidden"
               onClick={showNavbar}
             >
               <FaTimes />
-            </button>
+            </button> */}
           </div>
         </nav>
       </div>
 
       {/* hamburger - visible only on small screens */}
       <button
-        className="nav-btn sm:hidden fixed top-4 left-4 z-50 p-2 bg-white/10 backdrop-blur-[2px] rounded"
+        className="nav-btn sm:hidden fixed top-4 left-4 z-50 p-2 bg-blue-400 backdrop-blur-[2px] rounded"
         onClick={showNavbar}
       >
         <FaBars />

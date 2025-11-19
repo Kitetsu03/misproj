@@ -1,6 +1,7 @@
 import { Chart as ChartJS } from "chart.js/auto";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
 import AdminNav from "../../components/AdminNav";
+import Card from "../../components/card";
 
 function AdminDashboard() {
   return (
@@ -15,37 +16,25 @@ function AdminDashboard() {
               recent activity.
             </p>
           </header>
-          <div className="grid grid-cols-4 grid-rows-5 gap-4 p-5">
+          <div className="grid grid-cols-2 grid-rows-1 gap-2 p-5 md:grid md:grid-cols-4 md:grid-rows-5 md:gap-4 md:p-5">
             <div className="card p-5 row-start-1 rounded-2xl">
               <div className="text-black">
-                Lorem ipsum dolor sit amet consecstetur adipisicing elit. Ullam
-                quo labore et excepturi eos, dolores veniam est? Ducimus ut
-                molestiae sapiente nesciunt facilis similique voluptatem,
-                mollitia expedita? Ex, explicabo ut.
+                <Card />
               </div>
             </div>
             <div className="card p-5 row-start-1 rounded-2xl">
               <div className="text-black ">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-                quo labore et excepturi eos, dolores veniam est? Ducimus ut
-                molestiae sapiente nesciunt facilis similique voluptatem,
-                mollitia expedita? Ex, explicabo ut.
+                <Card />
               </div>
             </div>
             <div className="card p-5 row-start-1 rounded-2xl">
               <div className="text-black ">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-                quo labore et excepturi eos, dolores veniam est? Ducimus ut
-                molestiae sapiente nesciunt facilis similique voluptatem,
-                mollitia expedita? Ex, explicabo ut.
+                <Card />
               </div>
             </div>
             <div className="card p-5 row-start-1 rounded-2xl">
               <div className="text-black ">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-                quo labore et excepturi eos, dolores veniam est? Ducimus ut
-                molestiae sapiente nesciunt facilis similique voluptatem,
-                mollitia expedita? Ex, explicabo ut.
+                <Card />
               </div>
               {/* chart1 */}
             </div>

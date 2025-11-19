@@ -59,7 +59,7 @@ function RegForm() {
               <label htmlFor="confirm-password">Confirm password</label>
             </div>
             <div className="card-footer flex-col justify-center items-center">
-              <Link to="/login">
+              <Link to="/">
                 <button
                   className="submit cursor-pointer bg-blue-500 text-white p-1 mt-2"
                   name="submit"
