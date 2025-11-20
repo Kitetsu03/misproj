@@ -6,7 +6,7 @@ import Card from "../../components/card";
 function AdminDashboard() {
   return (
     <>
-      <div className="min-h-dvh flex grid-cols-[auto_1fr]">
+      <div className="min-h-dvh grid grid-cols-[auto_1fr]">
         <AdminNav />
         <div className="body">
           <header className="p-5">
@@ -16,7 +16,7 @@ function AdminDashboard() {
               recent activity.
             </p>
           </header>
-          <div className="grid grid-cols-2 grid-rows-1 gap-2 p-5 md:grid md:grid-cols-4 md:grid-rows-5 md:gap-4 md:p-5">
+          <div className="flex flex-col gap-2 p-2 sm:grid md:grid-cols-4 sm:grid-rows-5 sm:gap-4 sm:p-5">
             <div className="card p-5 row-start-1 rounded-2xl">
               <div className="text-black">
                 <Card />
