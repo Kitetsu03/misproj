@@ -1,7 +1,9 @@
 import { Chart as ChartJS } from "chart.js/auto";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
-import AdminNav from "../../components/AdminNav";
-import Card from "../../components/card";
+import AdminNav from "../../components/AdminNav.jsx";
+import Card from "../../components/Card.jsx";
+import QuickActions from "../../components/QuickActions.jsx";
+import RecentActivities from "../../components/RecentActivities.jsx";
 
 function AdminDashboard() {
   return (
@@ -9,35 +11,17 @@ function AdminDashboard() {
       <div className="min-h-dvh grid grid-cols-[auto_1fr]">
         <AdminNav />
         <div className="body">
-          <header className="p-5">
-            <h1 className="text-3xl text-white">CHURCH MANAGEMENT DASHBOARD</h1>
+          <header className="p-5 font-secondary font-extrabold">
+            <h1 className="text-5xl text-white">CHURCH MANAGEMENT DASHBOARD</h1>
             <p className="pt-3 text-white">
               Welcome back! Here's an overview of your church's key metrics and
               recent activity.
             </p>
           </header>
-          <div className="flex flex-col gap-2 p-2 sm:grid md:grid-cols-4 sm:grid-rows-5 sm:gap-4 sm:p-5">
-            <div className="card p-5 row-start-1 rounded-2xl">
-              <div className="text-black">
-                <Card />
-              </div>
-            </div>
-            <div className="card p-5 row-start-1 rounded-2xl">
-              <div className="text-black ">
-                <Card />
-              </div>
-            </div>
-            <div className="card p-5 row-start-1 rounded-2xl">
-              <div className="text-black ">
-                <Card />
-              </div>
-            </div>
-            <div className="card p-5 row-start-1 rounded-2xl">
-              <div className="text-black ">
-                <Card />
-              </div>
-              {/* chart1 */}
-            </div>
+          <div className="flex flex-col gap-2 p-2 shrink sm:grid md:grid-cols-4 sm:shrink-0 sm:grid-rows-5 sm:gap-4 sm:p-5 font-secondary">
+            <Card />
+
+            {/* chart1 */}
             <div className="card p-5 col-span-2 row-span-2 rounded-2xl">
               <div className="">
                 <Bar
@@ -90,21 +74,11 @@ function AdminDashboard() {
                 />
               </div>
             </div>
-            <div className="card p-5 row-span-2 col-start-1 row-start-4 rounded-2xl">
-              <div className="text-black ">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-                quo labore et excepturi eos, dolores veniam est? Ducimus ut
-                molestiae sapiente nesciunt facilis similique voluptatem,
-                mollitia expedita? Ex, explicabo ut.
-              </div>
+            <div className="card p-5 row-span-2 col-start-1 row-start-4 rounded-2xl font-secondary">
+              <QuickActions />
             </div>
             <div className="card p-5 col-span-3 row-span-2 col-start-2 row-start-4 rounded-2xl">
-              <div className="text-black">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-                quo labore et excepturi eos, dolores veniam est? Ducimus ut
-                molestiae sapiente nesciunt facilis similique voluptatem,
-                mollitia expedita? Ex, explicabo ut.
-              </div>
+              <RecentActivities />
             </div>
           </div>
         </div>

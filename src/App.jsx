@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import RegForm from "./pages/RegForm";
-import LogForm from "./pages/LogForm";
+import RegForm from "./pages/auth/RegForm";
+import LogForm from "./pages/auth/LogForm";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import MemberPortal from "./pages/member/MembersPortal";
 import GatekeeperDashboard from "./pages/gatekeeper/GatekeeperDashboard";
