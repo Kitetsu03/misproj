@@ -21,28 +21,20 @@ function UserAccess() {
             </p>
           </div>
 
-          <button className="bg-black text-white px-5 py-2 rounded-lg shadow-md">
-            + Add User
-          </button>
+          <BlackButton />
         </div>
 
         {/* Search & Filter */}
-        <div className="bg-[#d0ebf6] p-5 rounded-xl shadow-md space-y-3">
+        <div className="card p-5 rounded-xl shadow-md space-y-3">
           <h2 className="font-semibold text-lg">Search & Filter</h2>
 
-          <div className="flex gap-3">
+          <div className="flex gap-2 ">
             <input
               type="text"
               placeholder="Search by name or email..."
-              className="flex-1 px-4 py-2 rounded-lg border border-gray-300"
+              className="flex-1 px-4 py-2 rounded-lg border border-black"
             />
-
-            <select className="px-4 py-2 rounded-lg border border-gray-300 bg-white">
-              <option>All Roles</option>
-              <option>Admin</option>
-              <option>Leader</option>
-              <option>Volunteer</option>
-            </select>
+              <Dropdown />
           </div>
         </div>
 
