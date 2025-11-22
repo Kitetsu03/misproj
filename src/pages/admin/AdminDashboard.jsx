@@ -11,18 +11,20 @@ function AdminDashboard() {
       <div className="min-h-dvh grid grid-cols-[auto_1fr]">
         <AdminNav />
         <div className="body">
-          <header className="p-5 font-secondary font-extrabold">
-            <h1 className="text-5xl text-white">CHURCH MANAGEMENT DASHBOARD</h1>
+          <header className="p-5 font-secondary">
+            <h1 className="text-2xl sm:text-5xl text-white font-extrabold">
+              CHURCH MANAGEMENT DASHBOARD
+            </h1>
             <p className="pt-3 text-white">
               Welcome back! Here's an overview of your church's key metrics and
               recent activity.
             </p>
           </header>
-          <div className="flex flex-col gap-2 p-2 shrink sm:grid md:grid-cols-4 sm:shrink-0 sm:grid-rows-5 sm:gap-4 sm:p-5 font-secondary">
+          <div className="flex flex-col gap-2 p-2 sm:grid md:grid-cols-4 sm:grid-rows-1 sm:gap-4 sm:p-5 font-secondary">
             <Card />
 
             {/* chart1 */}
-            <div className="card p-5 col-span-2 row-span-2 rounded-2xl">
+            <div className="card p-5 col-span-2 row-span-1 rounded-2xl">
               <div className="">
                 <Bar
                   data={{
@@ -53,7 +55,7 @@ function AdminDashboard() {
                 />
               </div>
             </div>
-            <div className="card p-5 col-span-2 row-span-2 rounded-2xl">
+            <div className="card p-5 col-span-2 row-span-1 rounded-2xl">
               <div className="">
                 <Doughnut
                   data={{
