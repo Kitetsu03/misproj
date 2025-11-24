@@ -27,14 +27,9 @@ function UserAccess() {
         {/* Search & Filter */}
         <div className="card p-5 rounded-xl shadow-md space-y-3">
           <h2 className="font-semibold text-lg">Search & Filter</h2>
-
           <div className="flex gap-2 ">
-            <input
-              type="text"
-              placeholder="Search by name or email..."
-              className="flex-1 px-4 py-2 rounded-lg border border-black"
-            />
-              <Dropdown />
+            <SearchBar />
+            <Dropdown />
           </div>
         </div>
 
