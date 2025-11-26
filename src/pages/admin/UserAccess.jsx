@@ -2,7 +2,6 @@ import AdminNav from "../../components/AdminNav";
 import BlackButton from "../../components/BlackButton";
 import Dropdown from "../../components/Dropdown";
 import SearchBar from "../../components/SearchBar";
-// import ActionButton from "../../components/ActionButton";
 import { useState, useMemo } from "react";
 
 function UserAccess() {
@@ -82,7 +81,7 @@ function UserAccess() {
         </div>
 
         {/* Users Table */}
-        <div className="bg-[#c7e7f4] p-5 rounded-xl shadow-md">
+        <div className="bg-[#A7E6FF] p-5 rounded-xl shadow-md">
           <h2 className="font-semibold text-xl mb-1">
             Users ({filteredUsers.length})
           </h2>
@@ -107,7 +106,6 @@ function UserAccess() {
                 <tr key={u.email} className="border-b border-black/20 text-sm">
                   <td className="py-2">{u.name}</td>
                   <td>{u.email}</td>
-                  {/* <td><ActionButton/></td> */}
 
                   {/* Roles */}
                   <td>
@@ -195,7 +193,7 @@ function UserAccess() {
         </div>
 
         {/* Role Definitions */}
-        <div className="bg-[#c7e7f4] p-6 rounded-xl shadow-md">
+        <div className="bg-[#A7E6FF] p-6 rounded-xl shadow-md">
           <h2 className="text-xl font-semibold mb-2">Role Definitions</h2>
           <p className="text-gray-700 text-sm mb-6">
             Configure role permissions to access levels.
@@ -226,12 +224,12 @@ function UserAccess() {
             ].map((r) => (
               <div
                 key={r.title}
-                className="bg-[#d2eef9] p-5 rounded-xl border shadow-sm"
+                className="bg-[#82CDEB] p-5 rounded-xl border shadow-sm"
               >
                 <h3 className="font-bold text-lg">{r.title}</h3>
                 <p className="text-sm text-gray-700 mb-4">{r.desc}</p>
 
-                <button className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border shadow">
+                <button className="flex items-center gap-2 bg-[#A7E6FF] px-4 py-2 rounded-full border shadow">
                   ⚙ Configure Permissions
                 </button>
               </div>
