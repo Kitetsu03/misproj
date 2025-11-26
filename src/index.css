@@ -8,7 +8,7 @@
   --color-primary: #16745a;
   --color-secondary: #00b0f0;
   --color-tertiary: #0e4d3c;
-  --color-complementary: #bbdce5;
+  --color-complementary: #a7e6ff;
   --color-gradient---: linear-gradient(
     134deg,
     var(--primary-color) 0%,
@@ -23,7 +23,7 @@
   --primary-color: #16745a;
   --secondary-color: #00b0f0;
   --tertiary-color: #0e4d3c;
-  --complementary-color: #bbdce5;
+  --complementary-color: #a7e6ff;
   --gradient-color--: linear-gradient(
     134deg,
     var(--primary-color) 0%,

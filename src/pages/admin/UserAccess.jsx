@@ -2,7 +2,7 @@ import AdminNav from "../../components/AdminNav";
 import BlackButton from "../../components/BlackButton";
 import Dropdown from "../../components/Dropdown";
 import SearchBar from "../../components/SearchBar";
-import ActionButton from "../../components/ActionButton";
+// import ActionButton from "../../components/ActionButton";
 import { useState, useMemo } from "react";
 
 function UserAccess() {
@@ -107,7 +107,7 @@ function UserAccess() {
                 <tr key={u.email} className="border-b border-black/20 text-sm">
                   <td className="py-2">{u.name}</td>
                   <td>{u.email}</td>
-                  <td><ActionButton/></td>
+                  {/* <td><ActionButton/></td> */}
 
                   {/* Roles */}
                   <td>
@@ -121,9 +121,24 @@ function UserAccess() {
                   <td>2025-01-15</td>
 
                   <td className="flex gap-2 py-3">
-                    <button aria-label={`Edit ${u.name}`} className="text-blue-600">✏️</button>
-                    <button aria-label={`Link ${u.name}`} className="text-green-600">🔗</button>
-                    <button aria-label={`Delete ${u.name}`} className="text-red-600">🗑️</button>
+                    <button
+                      aria-label={`Edit ${u.name}`}
+                      className="text-blue-600"
+                    >
+                      ✏️
+                    </button>
+                    <button
+                      aria-label={`Link ${u.name}`}
+                      className="text-green-600"
+                    >
+                      🔗
+                    </button>
+                    <button
+                      aria-label={`Delete ${u.name}`}
+                      className="text-red-600"
+                    >
+                      🗑️
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -141,18 +156,37 @@ function UserAccess() {
                   </div>
 
                   <div className="ml-3">
-                    <span className={`${u.color} text-white text-xs px-3 py-1 rounded-full`}>
+                    <span
+                      className={`${u.color} text-white text-xs px-3 py-1 rounded-full`}
+                    >
                       {u.role}
                     </span>
                   </div>
                 </div>
 
                 <div className="mt-3 flex justify-between items-center text-sm">
-                  <div className="text-gray-600">Last Login: <span className="text-black">2025-01-15</span></div>
+                  <div className="text-gray-600">
+                    Last Login: <span className="text-black">2025-01-15</span>
+                  </div>
                   <div className="flex gap-2">
-                    <button aria-label={`Edit ${u.name}`} className="text-blue-600">✏️</button>
-                    <button aria-label={`Link ${u.name}`} className="text-green-600">🔗</button>
-                    <button aria-label={`Delete ${u.name}`} className="text-red-600">🗑️</button>
+                    <button
+                      aria-label={`Edit ${u.name}`}
+                      className="text-blue-600"
+                    >
+                      ✏️
+                    </button>
+                    <button
+                      aria-label={`Link ${u.name}`}
+                      className="text-green-600"
+                    >
+                      🔗
+                    </button>
+                    <button
+                      aria-label={`Delete ${u.name}`}
+                      className="text-red-600"
+                    >
+                      🗑️
+                    </button>
                   </div>
                 </div>
               </div>
