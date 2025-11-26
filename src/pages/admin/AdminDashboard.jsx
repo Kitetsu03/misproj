@@ -6,10 +6,10 @@ import RecentActivities from "../../components/RecentActivities.jsx";
 import { useEffect, useState } from "react";
 
 function AdminDashboard() {
-  const [, setResize] = useState(0);
+  const [resize, setResize] = useState(0);
 
   useEffect(() => {
-    const handleResize = () => setResize(Math.random());
+    const handleResize = () => setResize((r) => r + 1);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -19,7 +19,7 @@ function AdminDashboard() {
         <AdminNav />
         <div className="body">
           <header className="p-5 font-secondary">
-            <h1 className="text-2xl sm:text-5xl text-white font-extrabold">
+            <h1 className="text-2xl md:text-5xl text-white font-extrabold">
               CHURCH MANAGEMENT DASHBOARD
             </h1>
             <p className="pt-3 text-white">
@@ -27,12 +27,13 @@ function AdminDashboard() {
               recent activity.
             </p>
           </header>
-          <div className="flex flex-col gap-2 p-2 sm:grid md:grid-cols-4 sm:grid-rows-1 sm:gap-4 sm:p-5 font-secondary">
+          <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-4 md:p-5 font-secondary">
             <Card />
 
             {/* chart1 */}
-            <div className="card p-5 col-span-2 row-span-1 rounded-2xl h-full flex justify-center items-center w-full">
+            <div className="card p-5 col-span-2 row-span-1 rounded-2xl h-72 sm:h-80 md:h-96 flex justify-center items-center w-full">
               <Line
+                key={resize}
                 options={{
                   responsive: true,
                   maintainAspectRatio: false,
@@ -65,9 +66,11 @@ function AdminDashboard() {
                 }}
               />
             </div>
-            <div className="card p-5 col-span-2 row-span-1 rounded-2xl flex justify-center items-center">
+            <div className="card p-5 col-span-2 row-span-1 rounded-2xl flex justify-center items-center h-72 sm:h-80 md:h-96">
               <Doughnut
-                className=""
+                key={resize}
+                className="w-full h-full max-w-[520px] max-h-[520px]"
+                style={{ maxWidth: "520px", maxHeight: "520px" }}
                 options={{
                   responsive: true,
                   maintainAspectRatio: false,

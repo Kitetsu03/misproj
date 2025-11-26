@@ -1,3 +1,4 @@
+import { Chart as Chartjs } from "chart.js/auto";
 import { useRef, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -29,7 +30,7 @@ function AdminNav() {
                 <Link to="/useraccess">Users & Access</Link>
               </li>
               <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem]">
-                <Link to="/MembersData">Members Data</Link>
+                <Link to="/membersdata">Members Data</Link>
               </li>
               <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem]">
                 <Link to="/overview">Reports</Link>
