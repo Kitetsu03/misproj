@@ -2,8 +2,51 @@ import AdminNav from "../../components/AdminNav";
 import BlackButton from "../../components/BlackButton";
 import Dropdown from "../../components/Dropdown";
 import SearchBar from "../../components/SearchBar";
+import { useState, useMemo } from "react";
 
 function UserAccess() {
+  const [searchValue, setSearchValue] = useState("");
+  const [query, setQuery] = useState("");
+
+  const users = useMemo(
+    () => [
+      {
+        name: "John Smith",
+        email: "john.smith@church.org",
+        role: "Admin",
+        color: "bg-red-500",
+      },
+      {
+        name: "Sarah Johnson",
+        email: "sarah.johnson@church.org",
+        role: "Gatekeeper",
+        color: "bg-green-500",
+      },
+      {
+        name: "Mike Peters",
+        email: "mike.peters@church.org",
+        role: "Leader",
+        color: "bg-yellow-500",
+      },
+      {
+        name: "Lisa Chen",
+        email: "lisa.chen@church.org",
+        role: "Volunteer",
+        color: "bg-purple-500",
+      },
+    ],
+    []
+  );
+
+  const filteredUsers = useMemo(() => {
+    if (!query) return users;
+    const q = query.toLowerCase();
+    return users.filter(
+      (u) =>
+        u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q)
+    );
+  }, [users, query]);
+
   return (
     <div className="flex min-h-screen">
       <AdminNav />
@@ -28,14 +71,20 @@ function UserAccess() {
         <div className="card p-5 rounded-xl shadow-md space-y-3">
           <h2 className="font-semibold text-lg">Search & Filter</h2>
           <div className="flex gap-2 ">
-            <SearchBar />
+            <SearchBar
+              value={searchValue}
+              onChange={(v) => setSearchValue(v)}
+              onSearch={() => setQuery(searchValue)}
+            />
             <Dropdown />
           </div>
         </div>
 
         {/* Users Table */}
         <div className="bg-[#c7e7f4] p-5 rounded-xl shadow-md">
-          <h2 className="font-semibold text-xl mb-1">Users (4)</h2>
+          <h2 className="font-semibold text-xl mb-1">
+            Users ({filteredUsers.length})
+          </h2>
           <p className="text-sm text-gray-700 mb-4">
             Manage user accounts and their access levels.
           </p>
@@ -52,32 +101,7 @@ function UserAccess() {
             </thead>
 
             <tbody className="space-y-4">
-              {[
-                {
-                  name: "John Smith",
-                  email: "john.smith@church.org",
-                  role: "Admin",
-                  color: "bg-red-500",
-                },
-                {
-                  name: "Sarah Johnson",
-                  email: "sarah.johnson@church.org",
-                  role: "Gatekeeper",
-                  color: "bg-green-500",
-                },
-                {
-                  name: "Mike Peters",
-                  email: "mike.peters@church.org",
-                  role: "Leader",
-                  color: "bg-yellow-500",
-                },
-                {
-                  name: "Lisa Chen",
-                  email: "lisa.chen@church.org",
-                  role: "Volunteer",
-                  color: "bg-purple-500",
-                },
-              ].map((u) => (
+              {filteredUsers.map((u) => (
                 <tr key={u.email} className="border-b border-gray-200 text-sm">
                   <td className="py-2">{u.name}</td>
                   <td>{u.email}</td>
