@@ -2,6 +2,7 @@ import AdminNav from "../../components/AdminNav";
 import BlackButton from "../../components/BlackButton";
 import Dropdown from "../../components/Dropdown";
 import SearchBar from "../../components/SearchBar";
+import ActionButton from "../../components/ActionButton";
 import { useState, useMemo } from "react";
 
 function UserAccess() {
@@ -89,9 +90,10 @@ function UserAccess() {
             Manage user accounts and their access levels.
           </p>
 
-          <table className="w-full border-collapse">
+          {/* Desktop table (hidden on small screens) */}
+          <table className="hidden md:table w-full border-collapse">
             <thead>
-              <tr className="text-left border-b border-gray-300">
+              <tr className="text-left border-b border-black/20">
                 <th className="pb-2">Name</th>
                 <th className="pb-2">Email</th>
                 <th className="pb-2">Role</th>
@@ -102,9 +104,10 @@ function UserAccess() {
 
             <tbody className="space-y-4">
               {filteredUsers.map((u) => (
-                <tr key={u.email} className="border-b border-gray-200 text-sm">
+                <tr key={u.email} className="border-b border-black/20 text-sm">
                   <td className="py-2">{u.name}</td>
                   <td>{u.email}</td>
+                  <td><ActionButton/></td>
 
                   {/* Roles */}
                   <td>
@@ -118,14 +121,43 @@ function UserAccess() {
                   <td>2025-01-15</td>
 
                   <td className="flex gap-2 py-3">
-                    <button className="text-blue-600">✏️</button>
-                    <button className="text-green-600">🔗</button>
-                    <button className="text-red-600">🗑️</button>
+                    <button aria-label={`Edit ${u.name}`} className="text-blue-600">✏️</button>
+                    <button aria-label={`Link ${u.name}`} className="text-green-600">🔗</button>
+                    <button aria-label={`Delete ${u.name}`} className="text-red-600">🗑️</button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+
+          {/* Mobile stacked cards (visible on small screens) */}
+          <div className="md:hidden space-y-3">
+            {filteredUsers.map((u) => (
+              <div key={u.email} className=" p-4 rounded-lg shadow-sm border">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <div className="font-semibold text-sm">{u.name}</div>
+                    <div className="text-xs text-gray-600">{u.email}</div>
+                  </div>
+
+                  <div className="ml-3">
+                    <span className={`${u.color} text-white text-xs px-3 py-1 rounded-full`}>
+                      {u.role}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-3 flex justify-between items-center text-sm">
+                  <div className="text-gray-600">Last Login: <span className="text-black">2025-01-15</span></div>
+                  <div className="flex gap-2">
+                    <button aria-label={`Edit ${u.name}`} className="text-blue-600">✏️</button>
+                    <button aria-label={`Link ${u.name}`} className="text-green-600">🔗</button>
+                    <button aria-label={`Delete ${u.name}`} className="text-red-600">🗑️</button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Role Definitions */}
