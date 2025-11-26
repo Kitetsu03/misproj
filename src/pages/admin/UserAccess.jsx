@@ -2,6 +2,9 @@ import AdminNav from "../../components/AdminNav";
 import BlackButton from "../../components/BlackButton";
 import Dropdown from "../../components/Dropdown";
 import SearchBar from "../../components/SearchBar";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { FiKey } from "react-icons/fi";
+import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useState, useMemo } from "react";
 
 function UserAccess() {
@@ -121,21 +124,21 @@ function UserAccess() {
                   <td className="flex gap-2 py-3">
                     <button
                       aria-label={`Edit ${u.name}`}
-                      className="text-blue-600"
+                      className="text-green-900"
                     >
-                      ✏️
+                      <HiOutlinePencilSquare size={26} />
                     </button>
                     <button
                       aria-label={`Link ${u.name}`}
-                      className="text-green-600"
+                      className="text-green-900"
                     >
-                      🔗
+                      <FiKey size={26} />
                     </button>
                     <button
                       aria-label={`Delete ${u.name}`}
-                      className="text-red-600"
+                      className="text-green-900"
                     >
-                      🗑️
+                      <FaRegTrashAlt size={26} />
                     </button>
                   </td>
                 </tr>
@@ -169,21 +172,21 @@ function UserAccess() {
                   <div className="flex gap-2">
                     <button
                       aria-label={`Edit ${u.name}`}
-                      className="text-blue-600"
+                      className="text-green-900"
                     >
-                      ✏️
+                      <HiOutlinePencilSquare size={26} />
                     </button>
                     <button
                       aria-label={`Link ${u.name}`}
-                      className="text-green-600"
+                      className="text-green-900"
                     >
-                      🔗
+                      <FiKey size={26} />
                     </button>
                     <button
                       aria-label={`Delete ${u.name}`}
-                      className="text-red-600"
+                      className="text-green-900"
                     >
-                      🗑️
+                      <FaRegTrashAlt size={26} />
                     </button>
                   </div>
                 </div>
