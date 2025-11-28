@@ -66,8 +66,7 @@ function UserAccess() {
               Manage user accounts, roles, and permissions for your system.
             </p>
           </div>
-
-          <BlackButton />
+          <BlackButton val="+ Add User" />
         </div>
 
         {/* Search & Filter */}
