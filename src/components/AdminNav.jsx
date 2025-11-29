@@ -19,9 +19,9 @@ function AdminNav() {
             isOpen ? "translate-x-100 " : "-translate-x-[-100]"
           } sm:relative sm:translate-x-0 sm:w-60 sm:bg-white/10`}
         >
-          <div className="p-6 flex flex-col items-center justify-center w-full">
+          <div className="p-6 flex flex-col items-center justify-center w-full font-secondary">
             <IoPersonOutline className="text-5xl" />
-            <h3 className="text-2xl border-b-2 px-6">Admin</h3>
+            <h3 className="text-2xl border-b-2 px-6 font-primary">Admin</h3>
             <ul className="w-full">
               <li className="p-4 pt-10 text-[1.2rem]">
                 <Link to="/admin">Dashboard</Link>

@@ -1,9 +1,13 @@
-import { Chart } from "chart.js/auto";
+import { Chart as ChartJS } from "chart.js/auto";
 import { Doughnut, Line } from "react-chartjs-2";
 import AdminNav from "../../components/AdminNav.jsx";
 import Card from "../../components/Card.jsx";
 import QuickActions from "../../components/QuickActions.jsx";
 import RecentActivities from "../../components/RecentActivities.jsx";
+import { SlPeople } from "react-icons/sl";
+import { ImStack } from "react-icons/im";
+import { BsWindowSidebar } from "react-icons/bs";
+import { FaRegHeart } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 function AdminDashboard() {
@@ -14,6 +18,36 @@ function AdminDashboard() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+  const infos = [
+    {
+      id: 1,
+      title: "Category 1",
+      icon: <SlPeople size={36} />,
+      value: 150,
+      desc: "+ 6 from last month",
+    },
+    {
+      id: 2,
+      title: "Category 2",
+      icon: <ImStack size={36} />,
+      value: 90,
+      desc: "+ 3 from last month",
+    },
+    {
+      id: 3,
+      title: "TITHES & OFFERINGS",
+      icon: <BsWindowSidebar size={36} />,
+      value: "₱10K",
+      desc: "+ 8.2% from last month",
+    },
+    {
+      id: 4,
+      title: "ACTIVE LIFEGROUPS",
+      icon: <FaRegHeart size={36} />,
+      value: 4,
+      desc: "+ 1 new group this month",
+    },
+  ];
   return (
     <>
       <div className="min-h-dvh grid grid-cols-[auto_1fr]">
@@ -29,8 +63,15 @@ function AdminDashboard() {
             </p>
           </header>
           <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-4 md:p-5 font-secondary">
-            <Card />
-
+            {infos.map((info) => (
+              <Card
+                key={info.id}
+                title={info.title}
+                icon={info.icon}
+                value={info.value}
+                desc={info.desc}
+              />
+            ))}
             {/* chart1 */}
             <div className="card p-5 col-span-2 row-span-1 rounded-2xl h-72 sm:h-80 md:h-96 flex justify-center items-center w-full">
               <Line
@@ -71,7 +112,6 @@ function AdminDashboard() {
               <Doughnut
                 key={resize}
                 className="w-full h-full max-w-[520px] max-h-[520px]"
-                style={{ maxWidth: "520px", maxHeight: "520px" }}
                 options={{
                   responsive: true,
                   maintainAspectRatio: false,
