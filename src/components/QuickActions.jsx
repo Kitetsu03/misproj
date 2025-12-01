@@ -3,27 +3,13 @@ import { HiOutlinePencilAlt } from "react-icons/hi";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
 
-function QuickActions() {
+function QuickActions({ icon, title }) {
   return (
     <>
-      <h2 className="text-2xl">QUICK ACTIONS</h2>
-      <p className="pb-5">Common tasks</p>
-      <div className="grid gap-3 h-1/6">
+      <div className="flex flex-col gap-3 h-1/6">
         <button className="bg-white flex w-full p-1">
-          <IoPersonAddOutline />
-          Add new member
-        </button>
-        <button className="bg-white flex w-full p-1">
-          <HiOutlinePencilAlt />
-          Generate attendance report
-        </button>
-        <button className="bg-white flex w-full p-1">
-          <IoMdAdd />
-          Generate financial report
-        </button>
-        <button className="bg-white flex w-full p-1">
-          <RiSendPlaneFill />
-          Send announcement
+          <span className="p-1">{icon}</span>
+          {title}
         </button>
       </div>
     </>

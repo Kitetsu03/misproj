@@ -1,6 +1,4 @@
-// ...existing code...
-import React, { useState } from "react";
-// ...existing code...
+import { useState } from "react";
 import CreateNewUser from "./CreateNewUser";
 
 function BlackButton({ val }) {
@@ -44,4 +42,3 @@ function BlackButton({ val }) {
   );
 }
 export default BlackButton;
-// ...existing code...

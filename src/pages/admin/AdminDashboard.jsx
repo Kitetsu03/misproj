@@ -8,6 +8,10 @@ import { SlPeople } from "react-icons/sl";
 import { ImStack } from "react-icons/im";
 import { BsWindowSidebar } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
+import { IoPersonAddOutline } from "react-icons/io5";
+import { HiOutlinePencilAlt } from "react-icons/hi";
+import { RiSendPlaneFill } from "react-icons/ri";
+import { IoMdAdd } from "react-icons/io";
 import { useEffect, useState } from "react";
 
 function AdminDashboard() {
@@ -48,6 +52,28 @@ function AdminDashboard() {
       desc: "+ 1 new group this month",
     },
   ];
+  const quickActionButtons = [
+    {
+      id: 1,
+      icon: <IoPersonAddOutline />,
+      title: "Add new member",
+    },
+    {
+      id: 2,
+      icon: <HiOutlinePencilAlt />,
+      title: "Generate attendance report",
+    },
+    {
+      id: 3,
+      icon: <IoMdAdd />,
+      title: "Generate financial report",
+    },
+    {
+      id: 4,
+      icon: <RiSendPlaneFill />,
+      title: "Send announcement",
+    },
+  ];
   return (
     <>
       <div className="min-h-dvh grid grid-cols-[auto_1fr]">
@@ -62,7 +88,7 @@ function AdminDashboard() {
               recent activity.
             </p>
           </header>
-          <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-4 md:p-5 font-secondary">
+          <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-3 md:p-5 font-secondary">
             {infos.map((info) => (
               <Card
                 key={info.id}
@@ -134,7 +160,15 @@ function AdminDashboard() {
               />
             </div>
             <div className="card p-5 row-span-2 col-start-1 row-start-4 rounded-2xl font-secondary">
-              <QuickActions />
+              <h2 className="text-2xl">QUICK ACTIONS</h2>
+              <p className="pb-3">Common tasks</p>
+              {quickActionButtons.map((buttons) => (
+                <QuickActions
+                  key={buttons.id}
+                  icon={buttons.icon}
+                  title={buttons.title}
+                />
+              ))}
             </div>
             <div className="card p-5 col-span-3 row-span-2 col-start-2 row-start-4 rounded-2xl">
               <RecentActivities />

@@ -52,7 +52,7 @@ function MembersData() {
             </p>
           </header>
 
-          <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-4 md:p-5 font-secondary">
+          <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-3 md:p-5 font-secondary">
             {infos.map((info) => (
               <Card
                 key={info.id}
