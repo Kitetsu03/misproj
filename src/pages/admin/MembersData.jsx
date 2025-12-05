@@ -42,17 +42,17 @@ function MembersData() {
     <>
       <div className="min-h-dvh grid grid-cols-[auto_1fr]">
         <AdminNav />
-        <div className="p-4 md:p-6 font-secondary">
+        <div className="p-4 md:p-5 font-secondary">
           <header className="mb-6 text-2xl md:text-5xl text-white">
             <h1 className="text-2xl md:text-5xl font-extrabold">
               Members Data
             </h1>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-sm text-muted-foreground">
               Overview & statistics
             </p>
           </header>
 
-          <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-3 md:p-5 font-secondary">
+          <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-3 md:p-3 font-secondary">
             {infos.map((info) => (
               <Card
                 key={info.id}

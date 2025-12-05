@@ -1,4 +1,4 @@
-import GatekeeperNav from "../../components/GatekeerperNav";
+import GatekeeperNav from "../../components/GatekeeperNav";
 
 function GatekeeperDashboard() {
   return <GatekeeperNav />;

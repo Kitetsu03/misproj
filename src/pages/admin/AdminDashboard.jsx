@@ -83,12 +83,12 @@ function AdminDashboard() {
             <h1 className="text-2xl md:text-5xl text-white font-extrabold">
               CHURCH MANAGEMENT DASHBOARD
             </h1>
-            <p className="pt-3 text-white">
+            <p className="pt-1 text-white">
               Welcome back! Here's an overview of your church's key metrics and
               recent activity.
             </p>
           </header>
-          <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-3 md:p-5 font-secondary">
+          <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-3 md:p-3 font-secondary">
             {infos.map((info) => (
               <Card
                 key={info.id}
@@ -160,7 +160,7 @@ function AdminDashboard() {
               />
             </div>
             <div className="card p-5 row-span-2 col-start-1 row-start-4 rounded-2xl font-secondary">
-              <h2 className="text-2xl">QUICK ACTIONS</h2>
+              <h2 className="text-2xl font-semibold">QUICK ACTIONS</h2>
               <p className="pb-3">Common tasks</p>
               {quickActionButtons.map((buttons) => (
                 <QuickActions

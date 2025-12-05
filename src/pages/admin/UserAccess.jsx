@@ -51,7 +51,7 @@ function UserAccess() {
   }, [users, query]);
 
   return (
-    <div className="flex min-h-screen">
+    <div className="min-h-dvh grid grid-cols-[auto_1fr]">
       <AdminNav />
 
       <main className="flex-1 p-6 space-y-6 font-secondary">

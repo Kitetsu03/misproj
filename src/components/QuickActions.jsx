@@ -6,8 +6,8 @@ import { IoMdAdd } from "react-icons/io";
 function QuickActions({ icon, title }) {
   return (
     <>
-      <div className="flex flex-col gap-3 h-1/6">
-        <button className="bg-white flex w-full p-1">
+      <div className="grid pt-1 pb-1 h-1/6">
+        <button className="bg-white flex w-full p-1 rounded-lg">
           <span className="p-1">{icon}</span>
           {title}
         </button>
