@@ -58,8 +58,7 @@ function UserAccess() {
         {/* Header */}
         <div className="flex justify-between items-center">
           <div>
-            <p className="text-white text-sm">Welcome back!</p>
-            <h1 className="text-5xl font-bold text-white">
+            <h1 className="text-2xl md:text-5xl font-bold text-white">
               USER & ACCESS MANAGEMENT
             </h1>
             <p className="text-white/90 text-sm">
@@ -87,7 +86,7 @@ function UserAccess() {
           <h2 className="font-semibold text-xl mb-1">
             Users ({filteredUsers.length})
           </h2>
-          <p className="text-sm text-gray-700 mb-4">
+          <p className="text-sm mb-4">
             Manage user accounts and their access levels.
           </p>
 
