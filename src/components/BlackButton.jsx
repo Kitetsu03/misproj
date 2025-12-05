@@ -28,12 +28,17 @@ function BlackButton({ val }) {
           <div className="relative bg-white rounded-lg shadow-lg max-w-lg w-full mx-4 p-6">
             <CreateNewUser onClose={handleClose} />
             <div className="mt-4 text-right">
-              <button
-                className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
-                onClick={handleClose}
-              >
-                Close
-              </button>
+              <div className="flex justify-end gap-4 mt-8">
+                <button
+                  className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+                  onClick={handleClose}
+                >
+                  Cancel
+                </button>
+                <button className="px-5 py-2 bg-black text-white rounded-lg">
+                  Create User
+                </button>
+              </div>
             </div>
           </div>
         </div>
