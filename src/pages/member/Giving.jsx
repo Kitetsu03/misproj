@@ -103,8 +103,8 @@ function Giving() {
         </main>
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t shadow-md">
-        <div className="max-w-4xl mx-auto flex">
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-complementary border-t shadow-md">
+        <div className="max-w-4xl mx-auto flex bg-complementary">
           {navitem.map((item) => (
             <MembersNav
               key={item.id}
