@@ -40,7 +40,7 @@ function AdminNav() {
                 <Link to="/overview">Reports</Link>
               </li>
               <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20">
-                <Link to="/churchinfo">System Settings</Link>
+                <Link to="/settings">Settings</Link>
               </li>
               <li className="p-4 pb-5 text-[1.2rem] absolute bottom-0 hover:bg-white/20 w-full border-t-white/20 border-t-2">
                 <Link to="/">Logout</Link>
