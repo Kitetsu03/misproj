@@ -21,28 +21,31 @@ function AdminNav() {
         >
           <div className="p-6 flex flex-col items-center justify-center w-full font-secondary">
             <IoPersonOutline className="text-5xl" />
-            <h3 className="text-2xl border-b-2 px-6 font-primary">Admin</h3>
+            <h3 className="text-2xl px-6 font-primary border-b-2 mb-5">
+              Admin
+            </h3>
             <ul className="w-full">
-              <li className="p-4 pt-10 text-[1.2rem]">
+              <li className="p-4 text-[1.2rem] hover:bg-white/20">
                 <Link to="/admin">Dashboard</Link>
               </li>
-              <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem]">
+              <hr className="opacity-30" />
+              <li className="p-4 text-[1.2rem] hover:bg-white/20 border-t-white/20">
                 <Link to="/useraccess">Users & Access</Link>
               </li>
-              <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem]">
+              <hr className="opacity-30" />
+              <li className="p-4 text-[1.2rem] hover:bg-white/20">
                 <Link to="/membersdata">Members Data</Link>
               </li>
-              <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem]">
+              <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ">
                 <Link to="/overview">Reports</Link>
               </li>
-              <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem]">
+              <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20">
                 <Link to="/churchinfo">System Settings</Link>
               </li>
-              <li className="p-4 pb-5 text-[1.2rem] absolute bottom-0">
-                <Link to="/register">Logout</Link>
+              <li className="p-4 pb-5 text-[1.2rem] absolute bottom-0 hover:bg-white/20 w-full border-t-white/20 border-t-2">
+                <Link to="/">Logout</Link>
               </li>
             </ul>
-
             {/* <button
               className="nav-btn close-btn sm:hidden"
               onClick={showNavbar}

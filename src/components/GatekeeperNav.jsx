@@ -1,12 +1,74 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { BsPerson } from "react-icons/bs";
+import { FaBars } from "react-icons/fa";
+import { IoPersonOutline } from "react-icons/io5";
+import { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 
 function GatekeeperNav() {
   const navRef = useRef();
+  const [isOpen, setIsOpen] = useState(false);
+  const showNavbar = () => {
+    setIsOpen((s) => !s);
+  };
   return (
     <>
-      <nav id="sidebar" className="sticky w-80 flex-row " ref={navRef}>
+      <div className="">
+        <nav
+          ref={navRef}
+          className={`bg-blue-400 backdrop-blur-[2px] text-white border-white/90 flex flex-col fixed sm:sticky right-0 top-0 h-dvh w-64 transition-transform duration-200 z-40 ${
+            isOpen ? "translate-x-100 " : "-translate-x-[-100]"
+          } sm:relative sm:translate-x-0 sm:w-60 sm:bg-white/10`}
+        >
+          <div className="p-6 flex flex-col items-center justify-center w-full font-secondary">
+            <IoPersonOutline className="text-5xl" />
+            <h3 className="text-2xl px-6 font-primary border-b-2 mb-5">
+              Gatekeeper
+            </h3>
+            <ul className="w-full">
+              <li className="p-4 text-[1.2rem] hover:bg-white/20">
+                <Link to="/gatekeeper">Dashboard</Link>
+              </li>
+              <hr className="opacity-30" />
+              <li className="p-4 text-[1.2rem] hover:bg-white/20 border-t-white/20">
+                <Link to="/useraccessgate">Users & Access</Link>
+              </li>
+              <hr className="opacity-30" />
+              <li className="p-4 text-[1.2rem] hover:bg-white/20">
+                <Link to="/membersdatagate">Members Data</Link>
+              </li>
+              <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ">
+                <Link to="/attendance">Attendance</Link>
+              </li>
+              <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ">
+                <Link to="/finance">Finance</Link>
+              </li>
+              <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20">
+                <Link to="/overviewgate">Reports</Link>
+              </li>
+              <li className="p-4 pb-5 text-[1.2rem] absolute bottom-0 hover:bg-white/20 w-full border-t-white/20 border-t-2">
+                <Link to="/">Logout</Link>
+              </li>
+            </ul>
+            {/* <button
+                  className="nav-btn close-btn sm:hidden"
+                  onClick={showNavbar}
+                >
+                  <FaTimes />
+                </button> */}
+          </div>
+        </nav>
+      </div>
+
+      {/* hamburger - visible only on small screens */}
+      <button
+        className="nav-btn right-0 sm:hidden fixed top-4 mr-4 z-50 p-2 bg-blue-400 backdrop-blur-[2px] rounded"
+        onClick={showNavbar}
+      >
+        <FaBars />
+      </button>
+      {/* <nav id="sidebar" className="sticky w-80 flex-row " ref={navRef}>
         <ul class="nav flex-column navbar-expand-lg">
           <a class="toggle" onclick="toggleNav1()">
             <span class="hamburger text-white flex justify-end mt-1 me-3 fs-3">
@@ -111,7 +173,7 @@ function GatekeeperNav() {
             sunt error omnis et?
           </p>
         </div>
-      </main>
+      </main> */}
     </>
   );
 }

@@ -1,0 +1,122 @@
+import { MembersNav } from "../../components/MembersNav";
+import { FaHome } from "react-icons/fa";
+import { MdPerson } from "react-icons/md";
+import { FaWallet } from "react-icons/fa";
+import { Bar } from "react-chartjs-2";
+
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
+
+function Giving() {
+  const navitem = [
+    {
+      id: 1,
+      icon: <FaHome />,
+      text: "Home ",
+      path: "/member",
+    },
+    {
+      id: 2,
+      icon: <MdPerson />,
+      text: "Profile",
+      path: "/profile",
+    },
+    {
+      id: 3,
+      icon: <FaWallet />,
+      text: "Giving",
+      path: "/giving",
+    },
+  ];
+
+  const data = {
+    labels: ["General Fund", "Missions", "Building Fund"],
+    datasets: [
+      {
+        label: "Giving Amount (₱)",
+        data: [750, 150, 100],
+        backgroundColor: ["#22c55e", "#9ca3af", "#6b7280"],
+      },
+    ],
+  };
+
+  const options = {
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+    },
+  };
+
+  return (
+    <>
+      <div className="min-h-screen pb-20">
+        <div className="card w-full md:w-full pt-5">
+          <div className="card-header">
+            <div className="my-logo justify-center"></div>
+            <h2 className="cursor-default text-center pb-2 text-[min(5vw,20px)] md:text-[min(5vw,30px)]"></h2>
+            <hr className="p-1 border-white bg-white" />
+          </div>
+        </div>
+
+        <main className="main-content px-5 space-y-5">
+          <section className="welcome-section text-center p-4 ">
+            <h1 className="welcome-title font-bold text-3xl p-4">MY GIVING</h1>
+            <p className="welcome-subtext text-xl">
+              View your giving summary and fund allocation.
+            </p>
+          </section>
+
+          <section className="cards-container flex gap-4">
+            <section className="w-full flex justify-center px-5 py-5">
+              <div className="w-full max-w-4xl bg-white rounded-2xl shadow-lg border border-gray-300 p-10">
+                <h2 className="font-bold text-center">2025 Giving Summary</h2>
+
+                <p className="text-6xl font-extrabold text-center mt-5">
+                  ₱ 750.00
+                </p>
+
+                <p className="text-center text-gray-600 mt-2">
+                  Total given this year
+                </p>
+
+                <hr className="my-10" />
+                <h3 className="text-center font-bold text-lg mb-4">
+                  Giving Breakdown
+                </h3>
+
+                <div className="h-64">
+                  <Bar data={data} options={options} />
+                </div>
+              </div>
+            </section>
+          </section>
+        </main>
+      </div>
+
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t shadow-md">
+        <div className="max-w-4xl mx-auto flex">
+          {navitem.map((item) => (
+            <MembersNav
+              key={item.id}
+              icon={item.icon}
+              title={item.text}
+              to={item.path}
+            />
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Giving;

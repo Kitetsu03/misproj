@@ -1,17 +1,17 @@
-import AdminNav from "../../components/AdminNav";
+import GatekeeperNav from "../../components/GatekeeperNav.jsx";
 import Card from "../../components/Card.jsx";
 import { ImStack } from "react-icons/im";
 import { BsWindowSidebar } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
-import SearchBar from "../../components/SearchBar";
-import Dropdown from "../../components/Dropdown";
+import SearchBar from "../../components/SearchBar.jsx";
+import Dropdown from "../../components/Dropdown.jsx";
 import { motion } from "framer-motion";
 import { SlPeople } from "react-icons/sl";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useState, useMemo } from "react";
-function MembersData() {
+function MembersDataGate() {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
 
@@ -100,7 +100,7 @@ function MembersData() {
   return (
     <>
       <div className="min-h-dvh grid grid-cols-[auto_1fr]">
-        <AdminNav />
+        <GatekeeperNav />
         <div className="p-4 md:p-5 font-secondary">
           <header className="mb-6 text-2xl md:text-5xl text-white">
             <h1 className="text-2xl md:text-5xl font-extrabold">
@@ -255,4 +255,4 @@ function MembersData() {
     </>
   );
 }
-export default MembersData;
+export default MembersDataGate;

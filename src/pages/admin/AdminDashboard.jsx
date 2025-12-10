@@ -25,14 +25,14 @@ function AdminDashboard() {
   const infos = [
     {
       id: 1,
-      title: "Category 1",
+      title: "CATEGORY 1",
       icon: <SlPeople size={36} />,
       value: 150,
       desc: "+ 6 from last month",
     },
     {
       id: 2,
-      title: "Category 2",
+      title: "CATEGORY 2",
       icon: <ImStack size={36} />,
       value: 90,
       desc: "+ 3 from last month",
@@ -123,7 +123,7 @@ function AdminDashboard() {
                   ],
                   datasets: [
                     {
-                      label: "My First Dataset",
+                      label: "Member Growth",
                       data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56],
                       fill: false,
                       borderColor: "rgb(75, 192, 192)",
@@ -143,17 +143,20 @@ function AdminDashboard() {
                   maintainAspectRatio: false,
                 }}
                 data={{
-                  labels: ["Red", "Blue", "Yellow"],
+                  labels: ["MEN", "WOMEN", "YAN", "KKB", "CHILDREN"],
                   datasets: [
                     {
-                      label: "My First Dataset",
-                      data: [300, 50, 100],
+                      label: "Category Distribution",
+                      data: [40, 40, 25, 15, 30],
                       backgroundColor: [
-                        "rgb(255, 99, 132)",
-                        "rgb(54, 162, 235)",
-                        "rgb(255, 205, 86)",
+                        "#5AA3FF",
+                        "#000798",
+                        "#003F2E",
+                        "#16745A",
+                        "#00B0F0",
                       ],
                       hoverOffset: 4,
+                      hoverBackgroundColor: ["#3D82FF", "#000680"],
                     },
                   ],
                 }}

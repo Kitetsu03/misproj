@@ -1,4 +1,4 @@
-import AdminNav from "../../components/AdminNav";
+import GatekeeperNav from "../../components/GatekeeperNav";
 import BlackButton from "../../components/BlackButton";
 import Dropdown from "../../components/Dropdown";
 import SearchBar from "../../components/SearchBar";
@@ -7,7 +7,7 @@ import { FiKey } from "react-icons/fi";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useState, useMemo } from "react";
 
-function UserAccess() {
+function UserAccessGate() {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
 
@@ -56,7 +56,7 @@ function UserAccess() {
 
   return (
     <div className="min-h-dvh grid grid-cols-[auto_1fr]">
-      <AdminNav />
+      <GatekeeperNav />
 
       <main className="flex-1 p-6 space-y-6 font-secondary">
         {/* Header */}
@@ -246,4 +246,4 @@ function UserAccess() {
   );
 }
 
-export default UserAccess;
+export default UserAccessGate;
