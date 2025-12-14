@@ -11,12 +11,17 @@ export const CenteredTabs = () => {
   };
 
   return (
-    <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-      <Tabs value={value} onChange={handleChange} centered>
-        <Tab label="Item One" />
-        <Tab label="Item Two" />
-        <Tab label="Item Three" />
-      </Tabs>
-    </Box>
+    <div className="card w-full mx-2 rounded-2xl">
+      <Box>
+        <Tabs value={value} onChange={handleChange} centered>
+          <Tab label="Item One" />
+          <Tab label="Item Two" />
+          <Tab label="Item Three" />
+          <Tab label="Item One" />
+          <Tab label="Item Two" />
+          <Tab label="Item Three" />
+        </Tabs>
+      </Box>
+    </div>
   );
-}
+};

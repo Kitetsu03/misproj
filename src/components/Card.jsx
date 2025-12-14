@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-function Card({ title, icon, value, desc }) {
+function Card({ title, icon, value, desc, info }) {
   const cardSpring = { type: "spring", stiffness: 300, damping: 26 };
   const iconHover = { rotate: 12, scale: 1.05 };
   const cardAnim = {
@@ -22,6 +22,9 @@ function Card({ title, icon, value, desc }) {
           <motion.span whileHover={iconHover} transition={{ duration: 0.15 }}>
             {icon}
           </motion.span>
+        </div>
+        <div className="mb-2 md:mt-8">
+          <p>{info}</p>
         </div>
         <div className="text-green-950 flex flex-col justify-end md:absolute md:bottom-0 md:pb-4 ">
           <h3 className="text-3xl">{value}</h3>

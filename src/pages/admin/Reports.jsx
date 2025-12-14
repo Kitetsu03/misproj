@@ -1,7 +1,7 @@
 import { CenteredTabs } from "../../components/CenteredTabs.jsx";
 import AdminNav from "../../components/AdminNav.jsx";
 
-function Settings() {
+function Reports() {
   return (
     <>
       <div className="min-h-dvh grid grid-cols-[auto_1fr]">
@@ -22,4 +22,4 @@ function Settings() {
     </>
   );
 }
-export default Settings;
+export default Reports;

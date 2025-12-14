@@ -5,7 +5,6 @@ import { BsWindowSidebar } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import SearchBar from "../../components/SearchBar";
 import Dropdown from "../../components/Dropdown";
-import { motion } from "framer-motion";
 import { SlPeople } from "react-icons/sl";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";
@@ -62,6 +61,7 @@ function MembersData() {
       id: 1,
       title: "CATEGORY 1",
       icon: <SlPeople size={36} />,
+      info: "Total Members",
       value: 150,
       desc: "+ 6 from last month",
     },
@@ -69,6 +69,7 @@ function MembersData() {
       id: 2,
       title: "CATEGORY 2",
       icon: <ImStack size={36} />,
+      info: "Worship Attending Members",
       value: 90,
       desc: "+ 3 from last month",
     },
@@ -116,6 +117,7 @@ function MembersData() {
                 key={info.id}
                 title={info.title}
                 icon={info.icon}
+                info={info.info}
                 value={info.value}
                 desc={info.desc}
               />

@@ -37,7 +37,7 @@ function AdminNav() {
                 <Link to="/membersdata">Members Data</Link>
               </li>
               <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ">
-                <Link to="/overview">Reports</Link>
+                <Link to="/reports">Reports</Link>
               </li>
               <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20">
                 <Link to="/settings">Settings</Link>
