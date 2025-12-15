@@ -3,8 +3,23 @@ import { useRef, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoPersonOutline } from "react-icons/io5";
+import { RxDashboard } from "react-icons/rx";
+import { BsPersonCheck } from "react-icons/bs";
+import { BiData } from "react-icons/bi";
+import { FiPieChart } from "react-icons/fi";
+import { FiSettings } from "react-icons/fi";
+import { CiLogout } from "react-icons/ci";
 
-function AdminNav() {
+function AdminNav({ isOpen, activeComponent, setActiveComponent }) {
+  const navBarItems = [
+    { id: 1, icon: <RxDashboard />, text: "Dashboard" },
+    { id: 2, icon: <BsPersonCheck />, text: "Users & Access" },
+    { id: 3, icon: <BiData />, text: "Members Data" },
+    { id: 4, icon: <FiPieChart />, text: "Reports" },
+    { id: 5, icon: <FiSettings />, text: "Settings" },
+    { id: 1, icon: <CiLogout />, text: "Logout" },
+  ];
+
   const navRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
   const showNavbar = () => {
@@ -12,7 +27,49 @@ function AdminNav() {
   };
   return (
     <>
-      <div className="">
+      <div className="flex flex-col justify-between h-full m-2">
+        <div>
+          {navBarItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeComponent === item.id;
+
+            return (
+              <div
+                key={item.id}
+                className={`flex items-center cursor-pointer transition-colors duration-200 my-2 ${
+                  isOpen
+                    ? "justify-start gap-3 p-3 rounded-xl"
+                    : "justify-center w-12 h-12 rounded-xl"
+                } ${
+                  isActive
+                    ? "bg-active2 text-accent rounded-xl"
+                    : "hover:bg-secondary text-accent"
+                }`}
+                onClick={() => setActiveComponent(item.id)}
+              >
+                <Icon size={23} />
+                {isOpen && (
+                  <h2 className="overflow-hidden text-sm">{item.label}</h2>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Log Out */}
+        <div
+          className={`flex items-center text-red-400 hover:bg-secondary transition-colors duration-200 ${
+            isOpen
+              ? "justify-start gap-3 p-3 rounded-xl"
+              : "justify-center w-12 h-12 rounded-xl"
+          }`}
+        >
+          <CiLogout size={23} />
+          {isOpen && <h2 className="overflow-hidden text-sm">Log Out</h2>}
+        </div>
+      </div>
+
+      {/* <div className="">
         <nav
           ref={navRef}
           className={`bg-blue-400 backdrop-blur-[2px] text-white border-white/90 flex flex-col fixed sm:sticky right-0 top-0 h-dvh w-64 transition-transform duration-200 z-40 ${
@@ -46,23 +103,17 @@ function AdminNav() {
                 <Link to="/">Logout</Link>
               </li>
             </ul>
-            {/* <button
-              className="nav-btn close-btn sm:hidden"
-              onClick={showNavbar}
-            >
-              <FaTimes />
-            </button> */}
           </div>
         </nav>
-      </div>
+      </div> */}
 
       {/* hamburger - visible only on small screens */}
-      <button
+      {/* <button
         className="nav-btn right-0 sm:hidden fixed top-4 mr-4 z-50 p-2 bg-blue-400 backdrop-blur-[2px] rounded"
         onClick={showNavbar}
       >
         <FaBars />
-      </button>
+      </button> */}
     </>
   );
 }
