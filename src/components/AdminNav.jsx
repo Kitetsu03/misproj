@@ -1,5 +1,4 @@
 import { Chart as Chartjs } from "chart.js/auto";
-import { useRef, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoPersonOutline } from "react-icons/io5";
@@ -20,22 +19,17 @@ function AdminNav({ isOpen, activeComponent, setActiveComponent }) {
     { id: 1, icon: <CiLogout />, text: "Logout" },
   ];
 
-  const navRef = useRef();
-  const [isOpen, setIsOpen] = useState(false);
-  const showNavbar = () => {
-    setIsOpen((s) => !s);
-  };
   return (
     <>
       <div className="flex flex-col justify-between h-full m-2">
         <div>
           {navBarItems.map((item) => {
-            const Icon = item.icon;
             const isActive = activeComponent === item.id;
 
             return (
               <div
                 key={item.id}
+                icon={item.icon}
                 className={`flex items-center cursor-pointer transition-colors duration-200 my-2 ${
                   isOpen
                     ? "justify-start gap-3 p-3 rounded-xl"
@@ -47,9 +41,8 @@ function AdminNav({ isOpen, activeComponent, setActiveComponent }) {
                 }`}
                 onClick={() => setActiveComponent(item.id)}
               >
-                <Icon size={23} />
                 {isOpen && (
-                  <h2 className="overflow-hidden text-sm">{item.label}</h2>
+                  <h2 className="overflow-hidden text-sm">{item.text}</h2>
                 )}
               </div>
             );
