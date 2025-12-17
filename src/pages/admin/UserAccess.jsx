@@ -7,6 +7,7 @@ import { FiKey } from "react-icons/fi";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useState, useMemo } from "react";
 import CreateNewUser from "../../components/CreateNewUser";
+import ConfigureButton from "../../components/ConfigureButton";
 function UserAccess() {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
@@ -238,9 +239,11 @@ function UserAccess() {
                 <h3 className="font-bold text-lg">{r.title}</h3>
                 <p className="text-sm text-gray-700 mb-4">{r.desc}</p>
 
-                <button className="flex items-center gap-2 bg-[#A7E6FF] px-4 py-2 rounded-full border shadow">
-                  ⚙ Configure Permissions
-                </button>
+                <ConfigureButton
+                  val="Configure Permmision"
+                  exc="Configure"
+                  comp={<ConfigureButton />}
+                />
               </div>
             ))}
           </div>
