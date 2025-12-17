@@ -6,7 +6,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useState, useMemo } from "react";
-
+import CreateNewUser from "../../components/CreateNewUser";
 function UserAccess() {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
@@ -69,7 +69,11 @@ function UserAccess() {
               Manage user accounts, roles, and permissions for your system.
             </p>
           </div>
-          <BlackButton val="+ Add User" />
+          <BlackButton
+            val="+ Add User"
+            exc="Create User"
+            comp={<CreateNewUser />}
+          />
         </div>
 
         {/* Search & Filter */}

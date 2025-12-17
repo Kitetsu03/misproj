@@ -1,7 +1,7 @@
 import { useState } from "react";
-import CreateNewUser from "./CreateNewUser";
+import AddNewMember from "./AddNewMember";
 
-function BlackButton({ val }) {
+function BlackButton({ val, exc, comp }) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => setOpen(true);
@@ -26,7 +26,10 @@ function BlackButton({ val }) {
 
           {/* modal */}
           <div className="relative bg-white rounded-lg shadow-lg max-w-lg w-full mx-4 p-6">
-            <CreateNewUser onClose={handleClose} />
+            {/* <CreateNewUser onClose={handleClose} /> */}
+            {/* <AddNewMember onClose={handleClose}/> */}
+            {comp}
+
             <div className="mt-4 text-right">
               <div className="flex justify-end gap-4 mt-8">
                 <button
@@ -36,7 +39,7 @@ function BlackButton({ val }) {
                   Cancel
                 </button>
                 <button className="px-5 py-2 bg-black text-white rounded-lg">
-                  Create User
+                  {exc}
                 </button>
               </div>
             </div>
