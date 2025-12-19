@@ -8,6 +8,8 @@ import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useState, useMemo } from "react";
 import CreateNewUser from "../../components/CreateNewUser";
 import ConfigureButton from "../../components/ConfigureButton";
+import ConfigurePermission from "../../components/ConfigurePermission";
+
 function UserAccess() {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
@@ -242,7 +244,7 @@ function UserAccess() {
                 <ConfigureButton
                   val="Configure Permmision"
                   exc="Configure"
-                  comp={<ConfigureButton />}
+                  comp={<ConfigurePermission />}
                 />
               </div>
             ))}
