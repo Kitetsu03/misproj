@@ -5,7 +5,6 @@ import { BsWindowSidebar } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import SearchBar from "../../components/SearchBar.jsx";
 import Dropdown from "../../components/Dropdown.jsx";
-import { motion } from "framer-motion";
 import { SlPeople } from "react-icons/sl";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";

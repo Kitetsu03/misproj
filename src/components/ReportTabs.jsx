@@ -1,0 +1,266 @@
+import { SlPeople } from "react-icons/sl";
+import { ImStack } from "react-icons/im";
+import { BsWindowSidebar } from "react-icons/bs";
+import { FaRegHeart } from "react-icons/fa";
+import { LineChart } from "./LineChart.jsx";
+import { BarLineChart } from "./BarLineChart.jsx";
+import { DoughnutChart } from "./DoughnutChart.jsx";
+
+import {
+  categoryDistribution,
+  ageDemographics,
+  membersGrowth,
+  attendanceDemographics,
+} from "../data/chartData";
+import Card from "./Card.jsx";
+import PropTypes from "prop-types";
+import Box from "@mui/material/Box";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import { useState } from "react";
+
+export const ReportTabs = () => {
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  function CustomTabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      </div>
+    );
+  }
+
+  CustomTabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
+  };
+
+  function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      "aria-controls": `simple-tabpanel-${index}`,
+    };
+  }
+  const infoCard = [
+    {
+      id: 1,
+      title: "CATEGORY 1",
+      icon: <SlPeople size={36} />,
+      info: "Total Members",
+      value: 150,
+      desc: "+ 6 from last month",
+    },
+    {
+      id: 2,
+      title: "CATEGORY 2",
+      icon: <ImStack size={36} />,
+      info: "Worship Attending Members",
+      value: 90,
+      desc: "+ 3 from last month",
+    },
+    {
+      id: 3,
+      title: "TITHES & OFFERINGS",
+      icon: <BsWindowSidebar size={36} />,
+      value: "₱10K",
+      desc: "+ 8.2% from last month",
+    },
+    {
+      id: 4,
+      title: "ACTIVE LIFEGROUPS",
+      icon: <FaRegHeart size={36} />,
+      value: 4,
+      desc: "+ 1 new group this month",
+    },
+  ];
+  const ageCard = [
+    {
+      id: 1,
+      title: "MEN",
+      icon: <SlPeople size={36} />,
+      info: "30 years old and above",
+      value: "24.24%",
+      desc: "+8% growth from last month",
+    },
+    {
+      id: 2,
+      title: "WOMEN",
+      icon: <ImStack size={36} />,
+      info: "30 years old and above",
+      value: "24.24%",
+      desc: "+8% growth from last month",
+    },
+    {
+      id: 3,
+      title: "KKB",
+      icon: <BsWindowSidebar size={36} />,
+      info: "13 - 23 years old",
+      value: "18.18%",
+      desc: "+8% growth from last month",
+    },
+    {
+      id: 4,
+      title: "YAN",
+      icon: <BsWindowSidebar size={36} />,
+      info: "23 - 29 years old",
+      value: "15.15%",
+      desc: "+8% growth from last month",
+    },
+    {
+      id: 5,
+      title: "CHILDREN",
+      icon: <FaRegHeart size={36} />,
+      info: "4 - 12 years old",
+      value: "18.18%",
+      desc: "+8% growth from last month",
+    },
+  ];
+  const attendanceCard = [
+    {
+      id: 1,
+      title: "PEAK ATTENDANCE",
+      icon: <SlPeople size={34} />,
+      info: "Highest number of attendance recorded",
+      value: "94",
+      desc: "Recorded in October",
+    },
+    {
+      id: 2,
+      title: "GROWTH RATE",
+      icon: <ImStack size={36} />,
+      info: "Percentage increase in attendance",
+      value: "+8.5%",
+      desc: "From last year",
+    },
+    {
+      id: 3,
+      title: "AVG ATTENDANCE",
+      icon: <BsWindowSidebar size={36} />,
+      info: "Average number of attendees per service",
+      value: "80",
+      desc: "from 70 attendees last year",
+    },
+    {
+      id: 4,
+      title: "NUMBER OF FT",
+      icon: <BsWindowSidebar size={36} />,
+      info: "Number of first-time attendees",
+      value: "410",
+      desc: "total first-timers this year",
+    },
+  ];
+  return (
+    <>
+      <div className="card w-full rounded-2xl mx-2">
+        <Box>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            centered
+            indicatorColor="primary"
+            textColor="primary"
+          >
+            <Tab label="Overview" {...a11yProps(0)} />
+            <Tab label="Demographics" {...a11yProps(1)} />
+            <Tab label="Attendance" {...a11yProps(2)} />
+            <Tab label="LifeGroups" {...a11yProps(3)} />
+            <Tab label="Finance" {...a11yProps(4)} />
+            <Tab label="Ministries" {...a11yProps(5)} />
+            <Tab label="Saved Reports" {...a11yProps(6)} />
+          </Tabs>
+        </Box>
+      </div>
+      <CustomTabPanel value={value} index={0}>
+        <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-3 md:p-3 font-secondary">
+          {infoCard.map((info) => (
+            <Card
+              key={info.id}
+              title={info.title}
+              icon={info.icon}
+              info={info.info}
+              value={info.value}
+              desc={info.desc}
+            />
+          ))}
+          {/* LineChart */}
+          <LineChart
+            title="MEMBERSHIP GROWTH"
+            data={membersGrowth}
+            description="Total and active members over the last 6 months"
+          />
+          {/* doughnut chart */}
+          <DoughnutChart
+            title="MEMBERSHIP DISTRIBUTION BY NETWORK"
+            data={categoryDistribution}
+            description="Total members by age or network"
+          />
+        </div>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 p-2 md:p-3 font-secondary">
+          <div className="col-span-1 md:col-span-2">
+            <BarLineChart
+              title={"MEMBERSHIP DEMOGRAPHICS"}
+              data={ageDemographics}
+              description={
+                "Detailed breakdown of member characteristics and trends."
+              }
+            />
+          </div>
+          <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-3">
+            {ageCard.map((info) => (
+              <Card
+                key={info.id}
+                title={info.title}
+                icon={info.icon}
+                info={info.info}
+                value={info.value}
+                desc={info.desc}
+              />
+            ))}
+          </div>
+        </div>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+        <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-3 md:p-3 font-secondary">
+          {attendanceCard.map((info) => (
+            <Card
+              key={info.id}
+              title={info.title}
+              icon={info.icon}
+              info={info.info}
+              value={info.value}
+              desc={info.desc}
+            />
+          ))}
+          <div className="col-span-1 md:col-span-4 flex justify-center items-center">
+            <BarLineChart
+              title="FIRST-TIMER AND ATTENDANCE"
+              data={attendanceDemographics}
+              description="Detailed breakdown of first-timer and attendance trends."
+            />
+          </div>
+        </div>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={3}>
+        Item Two
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={4}>
+        Item Three
+      </CustomTabPanel>
+    </>
+  );
+};

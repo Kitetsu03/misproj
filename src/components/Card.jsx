@@ -18,7 +18,7 @@ function Card({ title, icon, value, desc, info }) {
         animate={cardAnim.animate}
       >
         <div className="text-green-950 flex justify-between md:absolute md:w-full md:pr-10">
-          <h2 className="font-semibold text-3xl">{title}</h2>
+          <h2 className="font-semibold text-2xl">{title}</h2>
           <motion.span whileHover={iconHover} transition={{ duration: 0.15 }}>
             {icon}
           </motion.span>

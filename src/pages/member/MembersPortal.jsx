@@ -11,24 +11,25 @@ import { FaUserCheck } from "react-icons/fa";
 import { MdAnnouncement } from "react-icons/md";
 
 function MemberPortal() {
-  const navitem = [{
-    id: 1,
-    icon: <FaHome />,
-    text: "Home ",
-    path: "/member"
-  },
-  {
-    id: 2,
-    icon: <MdPerson />,
-    text: "Profile",
-    path: "/profile"
-  },
-  {
-    id: 3,
-    icon: <FaWallet />,
-    text: "Giving",
-    path: "/giving"
-  }
+  const navitem = [
+    {
+      id: 1,
+      icon: <FaHome />,
+      text: "Home ",
+      path: "/member",
+    },
+    {
+      id: 2,
+      icon: <MdPerson />,
+      text: "Profile",
+      path: "/profile",
+    },
+    {
+      id: 3,
+      icon: <FaWallet />,
+      text: "Giving",
+      path: "/giving",
+    },
   ];
 
   return (
@@ -56,10 +57,13 @@ function MemberPortal() {
 
         <main className="main-content px-5 space-y-5">
           <section className="welcome-section text-center p-4  ">
-            <h1 className="welcome-title font-bold text-3xl p-4 ">WELCOME BACK, KIM!</h1>
-            <p className="welcome-subtext text-xl">Here's your church dashboard.</p>
+            <h1 className="welcome-title font-bold text-3xl p-4 ">
+              WELCOME BACK, KIM!
+            </h1>
+            <p className="welcome-subtext text-xl">
+              Here's your church dashboard.
+            </p>
           </section>
-
 
           <div className="font-secondary space-y-5">
             <section className="cards-container flex gap-4">
@@ -83,7 +87,9 @@ function MemberPortal() {
               </div>
 
               <div className="text-block space-y-2 mb-4">
-                <p className="meeting-group font-semibold text-lg">The Smith’s Family Lifegroup</p>
+                <p className="meeting-group font-semibold text-lg">
+                  The Smith’s Family Lifegroup
+                </p>
                 <p>Thursday, October 12 at 7:00 AM</p>
                 <p>Topic: "Walking in Faith - Hebrews 11"</p>
               </div>
@@ -100,7 +106,6 @@ function MemberPortal() {
                 </button>
               </div>
             </section>
-
 
             <section className="section-card bg-white w-full p-4 shadow rounded-xl">
               <div className="section-title flex items-center gap-4 mb-4">
@@ -132,7 +137,6 @@ function MemberPortal() {
                 </button>
               </div>
             </section>
-
 
             <section className="section-card bg-white w-full p-4 shadow rounded-xl">
               <div className="section-title flex items-center gap-4 mb-4">
@@ -194,7 +198,8 @@ function MemberPortal() {
                   Prayer Meeting Tonight
                 </p>
                 <p className="announcement-desc text-gray-700">
-                  Join us at 7 PM in the sanctuary for our weekly prayer gathering.
+                  Join us at 7 PM in the sanctuary for our weekly prayer
+                  gathering.
                 </p>
               </div>
 
@@ -208,11 +213,6 @@ function MemberPortal() {
           </div>
         </main>
       </div>
-
-
-
-
-      
     </>
   );
 }

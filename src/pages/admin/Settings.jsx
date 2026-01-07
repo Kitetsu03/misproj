@@ -1,4 +1,4 @@
-import { CenteredTabs } from "../../components/CenteredTabs.jsx";
+import { SettingsTabs } from "../../components/SettingsTabs.jsx";
 import AdminNav from "../../components/AdminNav.jsx";
 
 function Settings() {
@@ -16,7 +16,7 @@ function Settings() {
               recent activity.
             </p>
           </header>
-          <CenteredTabs />
+          <SettingsTabs />
         </div>
       </div>
     </>

@@ -1,4 +1,5 @@
 import AdminNav from "../../components/AdminNav.jsx";
+import { categoryDistribution, membersGrowth } from "../../data/chartData.js";
 import Card from "../../components/Card.jsx";
 import QuickActions from "../../components/QuickActions.jsx";
 import RecentActivities from "../../components/RecentActivities.jsx";
@@ -94,9 +95,17 @@ function AdminDashboard() {
               />
             ))}
             {/* LineChart */}
-            <LineChart />
+            <LineChart
+              title="MEMBERSHIP GROWTH"
+              data={membersGrowth}
+              description="Total and active members over the last 6 months"
+            />
             {/* doughnut chart */}
-            <DoughnutChart />
+            <DoughnutChart
+              title="MEMBERSHIP DISTRIBUTION BY NETWORK"
+              data={categoryDistribution}
+              description="Total members by age or network"
+            />
             <div className="card p-5 row-span-2 col-start-1 row-start-4 rounded-2xl font-secondary">
               <h2 className="text-2xl font-semibold">QUICK ACTIONS</h2>
               <p className="pb-3">Common tasks</p>

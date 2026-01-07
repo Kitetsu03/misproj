@@ -1,6 +1,7 @@
 import { Doughnut } from "react-chartjs-2";
 import { useEffect, useState } from "react";
-export function DoughnutChart() {
+
+export function DoughnutChart({ title, data, description }) {
   const [resize, setResize] = useState(0);
 
   useEffect(() => {
@@ -8,13 +9,12 @@ export function DoughnutChart() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
   return (
     <div className="card p-5 col-span-2 row-span-1 rounded-2xl h-82 sm:h-80 md:h-96 flex flex-col justify-start items-start w-full">
       <div className="w-full h-full max-w-4xl max-h-96 flex flex-col gap-2">
-        <h2 className="font-semibold text-2xl">
-          MEMBERSHIP DISTRIBUTION BY NETWORK
-        </h2>
-        <p>Total members by age or network</p>
+        <h2 className="font-semibold text-2xl">{title}</h2>
+        <p>{description}</p>
         <div className="w-full h-[180px] sm:h-[220px] md:h-64 lg:h-80 flex items-center justify-center">
           <Doughnut
             key={resize}
@@ -23,24 +23,7 @@ export function DoughnutChart() {
               responsive: true,
               maintainAspectRatio: false,
             }}
-            data={{
-              labels: ["MEN", "WOMEN", "YAN", "KKB", "CHILDREN"],
-              datasets: [
-                {
-                  label: "Category Distribution",
-                  data: [40, 40, 25, 15, 30],
-                  backgroundColor: [
-                    "#5AA3FF",
-                    "#000798",
-                    "#003F2E",
-                    "#16745A",
-                    "#00B0F0",
-                  ],
-                  hoverOffset: 4,
-                  hoverBackgroundColor: ["#3D82FF", "#000680"],
-                },
-              ],
-            }}
+            data={data}
           />
         </div>
       </div>
