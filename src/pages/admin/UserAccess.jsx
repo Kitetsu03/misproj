@@ -6,6 +6,9 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useState, useMemo } from "react";
+import CreateNewUser from "../../components/CreateNewUser";
+import ConfigureButton from "../../components/ConfigureButton";
+import ConfigurePermission from "../../components/ConfigurePermission";
 
 function UserAccess() {
   const [searchValue, setSearchValue] = useState("");
@@ -69,7 +72,11 @@ function UserAccess() {
               Manage user accounts, roles, and permissions for your system.
             </p>
           </div>
-          <BlackButton val="+ Add User" />
+          <BlackButton
+            val="+ Add User"
+            exc="Create User"
+            comp={<CreateNewUser />}
+          />
         </div>
 
         {/* Search & Filter */}
@@ -234,9 +241,11 @@ function UserAccess() {
                 <h3 className="font-bold text-lg">{r.title}</h3>
                 <p className="text-sm text-gray-700 mb-4">{r.desc}</p>
 
-                <button className="flex items-center gap-2 bg-[#A7E6FF] px-4 py-2 rounded-full border shadow">
-                  ⚙ Configure Permissions
-                </button>
+                <ConfigureButton
+                  val="Configure Permmision"
+                  exc="Configure"
+                  comp={<ConfigurePermission />}
+                />
               </div>
             ))}
           </div>

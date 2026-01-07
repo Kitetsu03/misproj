@@ -1,5 +1,4 @@
 import { useState } from "react";
-import AddNewMember from "./AddNewMember";
 
 function BlackButton({ val, exc, comp }) {
   const [open, setOpen] = useState(false);
@@ -10,7 +9,7 @@ function BlackButton({ val, exc, comp }) {
   return (
     <>
       <button
-        className="bg-black text-white px-5 py-2 rounded-lg shadow-md hover:bg-gray-800"
+        className="flex items-center gap-2 bg-[#A7E6FF] px-4 py-2 rounded-full border shadow"
         onClick={handleClick}
       >
         {val}
@@ -26,8 +25,8 @@ function BlackButton({ val, exc, comp }) {
 
           {/* modal */}
           <div className="relative bg-white rounded-lg shadow-lg max-w-lg w-full mx-4 p-6">
-            {/* <CreateNewUser onClose={handleClose} /> */}
-            {/* <AddNewMember onClose={handleClose}/> */}
+            {/* <UserAccess onClose={handleClose} /> */}
+
             {comp}
 
             <div className="mt-4 text-right">
