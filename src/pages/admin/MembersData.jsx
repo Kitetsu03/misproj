@@ -79,6 +79,7 @@ function MembersData() {
       id: 3,
       title: "TITHES & OFFERINGS",
       icon: <BsWindowSidebar size={36} />,
+      info: "Total Tithes & Offerings This Month",
       value: "₱10K",
       desc: "+ 8.2% from last month",
     },
@@ -86,6 +87,7 @@ function MembersData() {
       id: 4,
       title: "ACTIVE LIFEGROUPS",
       icon: <FaRegHeart size={36} />,
+      info: "Current Active Lifegroups",
       value: 4,
       desc: "+ 1 new group this month",
     },
@@ -128,8 +130,12 @@ function MembersData() {
               <div className="flex gap-2 ">
                 <h2 className="font-semibold text-lg p-2">Search & Filter</h2>
                 <div className="flex flex-1 gap-2 justify-end">
-                  <BlackButton val="Import" />
-                  <BlackButton val="Export" />
+                  <BlackButton
+                    val="Import"
+                    exc="Import Members"
+                    comp={<input type="file" id="file-input" />}
+                  />
+                  <BlackButton val="Export" exc="Export Members" />
                   <BlackButton
                     val="+ Add Member"
                     exc="Add Member"
@@ -246,12 +252,7 @@ function MembersData() {
                         >
                           <HiOutlinePencilSquare size={26} />
                         </button>
-                        <button
-                          aria-label={`Link ${u.name}`}
-                          className="text-green-900"
-                        >
-                          <FiKey size={26} />
-                        </button>
+
                         <button
                           aria-label={`Delete ${u.name}`}
                           className="text-green-900"

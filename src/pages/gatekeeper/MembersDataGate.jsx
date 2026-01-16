@@ -3,13 +3,15 @@ import Card from "../../components/Card.jsx";
 import { ImStack } from "react-icons/im";
 import { BsWindowSidebar } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
-import SearchBar from "../../components/SearchBar.jsx";
-import Dropdown from "../../components/Dropdown.jsx";
+import SearchBar from "../../components/SearchBar";
+import Dropdown from "../../components/Dropdown";
 import { SlPeople } from "react-icons/sl";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useState, useMemo } from "react";
+import BlackButton from "../../components/BlackButton.jsx";
+import AddNewMember from "../../components/AddNewMember.jsx";
 function MembersDataGate() {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
@@ -115,12 +117,28 @@ function MembersDataGate() {
                 key={info.id}
                 title={info.title}
                 icon={info.icon}
+                info={info.info}
                 value={info.value}
                 desc={info.desc}
               />
             ))}
             <div className="card p-5 rounded-xl shadow-md space-y-3 col-span-4">
-              <h2 className="font-semibold text-lg">Search & Filter</h2>
+              <div className="flex gap-2 ">
+                <h2 className="font-semibold text-lg p-2">Search & Filter</h2>
+                <div className="flex flex-1 gap-2 justify-end">
+                  <BlackButton
+                    val="Import"
+                    exc="Import Members"
+                    comp={<input type="file" id="file-input" />}
+                  />
+                  <BlackButton val="Export" exc="Export Members" />
+                  <BlackButton
+                    val="+ Add Member"
+                    exc="Add Member"
+                    comp={<AddNewMember />}
+                  />
+                </div>
+              </div>
               <div className="flex gap-2 flex-col md:flex-row">
                 <SearchBar
                   value={searchValue}

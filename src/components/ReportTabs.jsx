@@ -1,7 +1,9 @@
-import { SlPeople } from "react-icons/sl";
-import { ImStack } from "react-icons/im";
-import { BsWindowSidebar } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
+import { infoCard } from "../data/cardsInfo.jsx";
+import { ageCard } from "../data/cardsInfo.jsx";
+import { attendanceCard } from "../data/cardsInfo.jsx";
+import { lifeGroupCard } from "../data/cardsInfo.jsx";
+import { financeCard } from "../data/cardsInfo.jsx";
+import { ministryCard } from "../data/cardsInfo.jsx";
 import { LineChart } from "./LineChart.jsx";
 import { BarLineChart } from "./BarLineChart.jsx";
 import { DoughnutChart } from "./DoughnutChart.jsx";
@@ -11,6 +13,10 @@ import {
   ageDemographics,
   membersGrowth,
   attendanceDemographics,
+  lifeGroupDemographics,
+  tithesAndOfferings,
+  expenses,
+  offeringVsExpenses,
 } from "../data/chartData";
 import Card from "./Card.jsx";
 import PropTypes from "prop-types";
@@ -54,114 +60,7 @@ export const ReportTabs = () => {
       "aria-controls": `simple-tabpanel-${index}`,
     };
   }
-  const infoCard = [
-    {
-      id: 1,
-      title: "CATEGORY 1",
-      icon: <SlPeople size={36} />,
-      info: "Total Members",
-      value: 150,
-      desc: "+ 6 from last month",
-    },
-    {
-      id: 2,
-      title: "CATEGORY 2",
-      icon: <ImStack size={36} />,
-      info: "Worship Attending Members",
-      value: 90,
-      desc: "+ 3 from last month",
-    },
-    {
-      id: 3,
-      title: "TITHES & OFFERINGS",
-      icon: <BsWindowSidebar size={36} />,
-      value: "₱10K",
-      desc: "+ 8.2% from last month",
-    },
-    {
-      id: 4,
-      title: "ACTIVE LIFEGROUPS",
-      icon: <FaRegHeart size={36} />,
-      value: 4,
-      desc: "+ 1 new group this month",
-    },
-  ];
-  const ageCard = [
-    {
-      id: 1,
-      title: "MEN",
-      icon: <SlPeople size={36} />,
-      info: "30 years old and above",
-      value: "24.24%",
-      desc: "+8% growth from last month",
-    },
-    {
-      id: 2,
-      title: "WOMEN",
-      icon: <ImStack size={36} />,
-      info: "30 years old and above",
-      value: "24.24%",
-      desc: "+8% growth from last month",
-    },
-    {
-      id: 3,
-      title: "KKB",
-      icon: <BsWindowSidebar size={36} />,
-      info: "13 - 23 years old",
-      value: "18.18%",
-      desc: "+8% growth from last month",
-    },
-    {
-      id: 4,
-      title: "YAN",
-      icon: <BsWindowSidebar size={36} />,
-      info: "23 - 29 years old",
-      value: "15.15%",
-      desc: "+8% growth from last month",
-    },
-    {
-      id: 5,
-      title: "CHILDREN",
-      icon: <FaRegHeart size={36} />,
-      info: "4 - 12 years old",
-      value: "18.18%",
-      desc: "+8% growth from last month",
-    },
-  ];
-  const attendanceCard = [
-    {
-      id: 1,
-      title: "PEAK ATTENDANCE",
-      icon: <SlPeople size={34} />,
-      info: "Highest number of attendance recorded",
-      value: "94",
-      desc: "Recorded in October",
-    },
-    {
-      id: 2,
-      title: "GROWTH RATE",
-      icon: <ImStack size={36} />,
-      info: "Percentage increase in attendance",
-      value: "+8.5%",
-      desc: "From last year",
-    },
-    {
-      id: 3,
-      title: "AVG ATTENDANCE",
-      icon: <BsWindowSidebar size={36} />,
-      info: "Average number of attendees per service",
-      value: "80",
-      desc: "from 70 attendees last year",
-    },
-    {
-      id: 4,
-      title: "NUMBER OF FT",
-      icon: <BsWindowSidebar size={36} />,
-      info: "Number of first-time attendees",
-      value: "410",
-      desc: "total first-timers this year",
-    },
-  ];
+
   return (
     <>
       <div className="card w-full rounded-2xl mx-2">
@@ -256,10 +155,84 @@ export const ReportTabs = () => {
         </div>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
-        Item Two
+        <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-3 md:p-3 font-secondary">
+          {lifeGroupCard.map((info) => (
+            <Card
+              key={info.id}
+              title={info.title}
+              icon={info.icon}
+              info={info.info}
+              value={info.value}
+              desc={info.desc}
+            />
+          ))}
+          <BarLineChart
+            title="LIFE GROUP MEMBERSHIP"
+            data={lifeGroupDemographics}
+            description="Detailed breakdown of member characteristics and trends."
+          />
+          <DoughnutChart
+            title="LIFEGROUP MEMBERSHIP BY NETWORK"
+            data={lifeGroupDemographics}
+            description="Total members by age or network"
+          />
+        </div>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={4}>
-        Item Three
+        <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-3 md:p-3 font-secondary">
+          {financeCard.map((info) => (
+            <Card
+              key={info.id}
+              title={info.title}
+              icon={info.icon}
+              info={info.info}
+              value={info.value}
+              desc={info.desc}
+            />
+          ))}
+          <BarLineChart
+            title="TITHES AND OFFERINGS"
+            data={tithesAndOfferings}
+            description="Quarterly tithes and offerings trends per Quarter."
+          />
+          <BarLineChart
+            title="EXPENSES"
+            data={expenses}
+            description="Church expenses breakdown per Quarter."
+          />
+          <div className="col-span-1 md:col-span-4 flex justify-center items-center">
+            <BarLineChart
+              title="OFFERINGS VS EXPENSES"
+              data={offeringVsExpenses}
+              description="Comparison of offerings and expenses."
+            />
+          </div>
+        </div>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={5}>
+        <div className="flex flex-col gap-2 p-2 md:grid md:grid-cols-4 md:grid-rows-1 md:gap-3 md:p-3 font-secondary">
+          {ministryCard.map((info) => (
+            <Card
+              key={info.id}
+              title={info.title}
+              icon={info.icon}
+              info={info.info}
+              value={info.value}
+              desc={info.desc}
+            />
+          ))}
+        </div>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={6}>
+        <div className="font-secondary">
+          <div className="card p-5 rounded-xl shadow-md space-y-3 col-span-4">
+            <h2 className="font-semibold text-lg p-2">Saved Reports</h2>
+            <p className="px-2 text-sm text-gray-600">
+              You have no saved reports. Create and save reports for quick
+              access.
+            </p>
+          </div>
+        </div>
       </CustomTabPanel>
     </>
   );

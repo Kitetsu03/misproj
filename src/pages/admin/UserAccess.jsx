@@ -243,7 +243,7 @@ function UserAccess() {
 
                 <ConfigureButton
                   val="Configure Permmision"
-                  exc="Configure"
+                  exc="Save Changes"
                   comp={<ConfigurePermission />}
                 />
               </div>

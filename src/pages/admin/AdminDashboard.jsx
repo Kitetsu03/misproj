@@ -3,10 +3,9 @@ import { categoryDistribution, membersGrowth } from "../../data/chartData.js";
 import Card from "../../components/Card.jsx";
 import QuickActions from "../../components/QuickActions.jsx";
 import RecentActivities from "../../components/RecentActivities.jsx";
-import { SlPeople } from "react-icons/sl";
-import { ImStack } from "react-icons/im";
-import { BsWindowSidebar } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
+
+import { infoCard } from "../../data/cardsInfo.jsx";
+
 import { IoPersonAddOutline } from "react-icons/io5";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { RiSendPlaneFill } from "react-icons/ri";
@@ -15,38 +14,6 @@ import { LineChart } from "../../components/LineChart.jsx";
 import { DoughnutChart } from "../../components/DoughnutChart.jsx";
 
 function AdminDashboard() {
-  const infoCard = [
-    {
-      id: 1,
-      title: "CATEGORY 1",
-      icon: <SlPeople size={36} />,
-      info: "Total Members",
-      value: 150,
-      desc: "+ 6 from last month",
-    },
-    {
-      id: 2,
-      title: "CATEGORY 2",
-      icon: <ImStack size={36} />,
-      info: "Worship Attending Members",
-      value: 90,
-      desc: "+ 3 from last month",
-    },
-    {
-      id: 3,
-      title: "TITHES & OFFERINGS",
-      icon: <BsWindowSidebar size={36} />,
-      value: "₱10K",
-      desc: "+ 8.2% from last month",
-    },
-    {
-      id: 4,
-      title: "ACTIVE LIFEGROUPS",
-      icon: <FaRegHeart size={36} />,
-      value: 4,
-      desc: "+ 1 new group this month",
-    },
-  ];
   const quickActionButtons = [
     {
       id: 1,

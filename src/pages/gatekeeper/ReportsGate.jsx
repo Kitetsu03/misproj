@@ -1,12 +1,12 @@
 import { ReportTabs } from "../../components/ReportTabs.jsx";
 import BlackButton from "../../components/BlackButton.jsx";
-import AdminNav from "../../components/AdminNav.jsx";
+import GatekeeperNav from "../../components/GatekeeperNav.jsx";
 
 function Reports() {
   return (
     <>
       <div className="min-h-dvh grid grid-cols-[auto_1fr]">
-        <AdminNav />
+        <GatekeeperNav />
         <div className="body">
           <div className="flex justify-between items-center">
             <header className="p-5 font-secondary">

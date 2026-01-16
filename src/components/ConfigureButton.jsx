@@ -9,7 +9,7 @@ function BlackButton({ val, exc, comp }) {
   return (
     <>
       <button
-        className="flex items-center gap-2 bg-[#A7E6FF] px-4 py-2 rounded-full border shadow"
+        className="flex items-center gap-2 bg-[#A7E6FF] px-4 py-2 rounded-full border shadow hover:bg-tertiary hover:text-white font-secondary"
         onClick={handleClick}
       >
         {val}

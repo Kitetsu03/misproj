@@ -1,6 +1,6 @@
 import GatekeeperNav from "../../components/GatekeeperNav.jsx";
-import { FinanceTab } from "../../components/FinanceTab.jsx";
-export function Finance() {
+import { AttendanceTabs } from "../../components/AttendanceTabs.jsx";
+export function Attendance() {
   return (
     <>
       <div className="min-h-dvh grid grid-cols-[auto_1fr]">
@@ -17,7 +17,7 @@ export function Finance() {
               </p>
             </div>
           </div>
-          <FinanceTab />
+          <AttendanceTabs />
         </main>
       </div>
     </>

@@ -10,7 +10,7 @@ function BlackButton({ val, exc, comp }) {
   return (
     <>
       <button
-        className="bg-black text-white px-5 py-2 rounded-lg shadow-md hover:bg-gray-800"
+        className="bg-black text-white px-5 py-2 rounded-lg shadow-md hover:bg-gray-800 font-secondary"
         onClick={handleClick}
       >
         {val}
@@ -33,12 +33,12 @@ function BlackButton({ val, exc, comp }) {
             <div className="mt-4 text-right">
               <div className="flex justify-end gap-4 mt-8">
                 <button
-                  className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+                  className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 font-secondary"
                   onClick={handleClose}
                 >
                   Cancel
                 </button>
-                <button className="px-5 py-2 bg-black text-white rounded-lg">
+                <button className="px-5 py-2 bg-black text-white rounded-lg font-secondary">
                   {exc}
                 </button>
               </div>

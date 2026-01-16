@@ -31,10 +31,6 @@ function GatekeeperNav() {
                 <Link to="/gatekeeper">Dashboard</Link>
               </li>
               <hr className="opacity-30" />
-              <li className="p-4 text-[1.2rem] hover:bg-white/20 border-t-white/20">
-                <Link to="/useraccessgate">Users & Access</Link>
-              </li>
-              <hr className="opacity-30" />
               <li className="p-4 text-[1.2rem] hover:bg-white/20">
                 <Link to="/membersdatagate">Members Data</Link>
               </li>
@@ -45,7 +41,7 @@ function GatekeeperNav() {
                 <Link to="/finance">Finance</Link>
               </li>
               <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20">
-                <Link to="/overviewgate">Reports</Link>
+                <Link to="/reportsgate">Reports</Link>
               </li>
               <li className="p-4 pb-5 text-[1.2rem] absolute bottom-0 hover:bg-white/20 w-full border-t-white/20 border-t-2">
                 <Link to="/">Logout</Link>
