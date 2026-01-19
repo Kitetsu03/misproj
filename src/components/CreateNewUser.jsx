@@ -1,4 +1,4 @@
-import Input from "./Input.jsx";
+import { Input } from "./Input.jsx";
 
 function CreateNewUser() {
   return (
