@@ -38,12 +38,12 @@ function Giving() {
   ];
 
   const data = {
-    labels: ["General Fund", "Missions", "Building Fund"],
+    labels: ["Tithes", "Offerings", "Missions", "Pledges"],
     datasets: [
       {
         label: "Giving Amount (₱)",
-        data: [750, 150, 100],
-        backgroundColor: ["#22c55e", "#9ca3af", "#6b7280"],
+        data: [750, 150, 100, 200],
+        backgroundColor: ["#22c55e", "#9ca3af", "#6b7280", "#3b82f6"],
       },
     ],
   };
