@@ -10,8 +10,8 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useState, useMemo } from "react";
-import BlackButton from "../../components/BlackButton.jsx";
-import AddNewMember from "../../components/AddNewMember.jsx";
+import { BlackButton } from "../../components/BlackButton.jsx";
+import { AddNewMember } from "../../components/AddNewMember.jsx";
 function MembersData() {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");

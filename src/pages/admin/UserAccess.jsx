@@ -1,5 +1,5 @@
 import AdminNav from "../../components/AdminNav";
-import BlackButton from "../../components/BlackButton";
+import { BlackButton } from "../../components/BlackButton";
 import Dropdown from "../../components/Dropdown";
 import SearchBar from "../../components/SearchBar";
 import { FaRegTrashAlt } from "react-icons/fa";

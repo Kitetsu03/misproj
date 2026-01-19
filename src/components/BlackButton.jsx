@@ -1,7 +1,6 @@
 import { useState } from "react";
-import AddNewMember from "./AddNewMember";
 
-function BlackButton({ val, exc, comp }) {
+export function BlackButton({ val, exc, comp }) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => setOpen(true);
@@ -49,4 +48,3 @@ function BlackButton({ val, exc, comp }) {
     </>
   );
 }
-export default BlackButton;

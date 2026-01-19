@@ -7,7 +7,7 @@ import { useState } from "react";
 export const SettingsTabs = () => {
   const [value, setValue] = useState(0);
 
-  const handleChange = (newValue) => {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
@@ -60,9 +60,7 @@ export const SettingsTabs = () => {
         </Box>
       </div>
       <div className="card w-full mx-2 rounded-2xl gap-4 mt-4 p-4 flex flex-col">
-        <CustomTabPanel value={value} index={0}>
-          Item One
-        </CustomTabPanel>
+        <CustomTabPanel value={value} index={0}></CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           Item Two
         </CustomTabPanel>

@@ -1,6 +1,6 @@
 import { CenteredTabs } from "./CenteredTabs";
 
-function AddNewMember() {
+export function AddNewMember() {
   return (
     <>
       <div className="bg-white p-3 rounded-2xl  max-w-4xl mx-auto">
@@ -16,5 +16,3 @@ function AddNewMember() {
     </>
   );
 }
-
-export default AddNewMember;
