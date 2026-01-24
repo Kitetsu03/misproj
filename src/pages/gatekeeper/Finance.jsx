@@ -10,10 +10,10 @@ export function Finance() {
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-2xl md:text-5xl font-bold text-white">
-                ATTENDANCE MANAGEMENT
+                FINANCIAL MANAGEMENT
               </h1>
               <p className="text-white/90 text-sm">
-                Tracking attendance of church members and visitors.
+                Tithes, Offerings, and Expenses Tracker
               </p>
             </div>
           </div>

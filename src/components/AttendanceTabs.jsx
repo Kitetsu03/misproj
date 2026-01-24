@@ -23,6 +23,7 @@ export const AttendanceTabs = () => {
         timedate: "2025-01-15 | 8:20 AM",
         weeksAttended: 12,
         status: "Member",
+        lgname: "Daniel",
       },
       {
         id: 2,
@@ -32,6 +33,7 @@ export const AttendanceTabs = () => {
         timedate: "2025-01-15 | 8:10 AM",
         weeksAttended: 12,
         status: "Member",
+        lgname: "Moses",
       },
       {
         id: 3,
@@ -41,6 +43,7 @@ export const AttendanceTabs = () => {
         timedate: "2025-01-15 | 8:05 AM",
         weeksAttended: 12,
         status: "Member",
+        lgname: "Samuel",
       },
       {
         id: 4,
@@ -50,6 +53,7 @@ export const AttendanceTabs = () => {
         timedate: "2025-01-15 | 8:00 AM",
         weeksAttended: 12,
         status: "Member",
+        lgname: "Esther",
       },
     ],
     []
@@ -160,7 +164,7 @@ export const AttendanceTabs = () => {
                   <th className="pb-2">Network</th>
                   <th className="pb-2">Attendance</th>
                   <th className="pb-2">Time & Date</th>
-                  <th className="pb-2">Status</th>
+                  <th className="pb-2">Lifegroup Name</th>
                 </tr>
               </thead>
 
@@ -175,7 +179,122 @@ export const AttendanceTabs = () => {
 
                     <td>{u.timedate}</td>
 
-                    <td className="flex gap-2 py-3">✅ MEMBER</td>
+                    <td>{u.lgname}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            {/* Mobile stacked cards (visible on small screens) */}
+            <div className="md:hidden space-y-3">
+              {filteredUsers.map((u) => (
+                <div key={u.email} className=" p-4 rounded-lg shadow-sm border">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <div className="font-semibold text-sm">{u.name}</div>
+                      <div className="text-xs text-gray-600">{u.email}</div>
+                    </div>
+
+                    <div className="ml-3">
+                      <span
+                        className={`${u.color} text-white text-xs px-3 py-1 rounded-full`}
+                      >
+                        {u.role}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="mt-3 flex justify-between items-center text-sm">
+                    <div className="text-gray-600">
+                      Last Login: <span className="text-black">2025-01-15</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <button
+                        aria-label={`Edit ${u.name}`}
+                        className="text-green-900"
+                      >
+                        <HiOutlinePencilSquare size={26} />
+                      </button>
+                      <button
+                        aria-label={`Link ${u.name}`}
+                        className="text-green-900"
+                      >
+                        <FiKey size={26} />
+                      </button>
+                      <button
+                        aria-label={`Delete ${u.name}`}
+                        className="text-green-900"
+                      >
+                        <FaRegTrashAlt size={23} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </main>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+         <main className="flex-1 p-1 space-y-5 font-secondary">
+          {/* Search & Filter */}
+          <div className="card p-5 rounded-xl shadow-md space-y-3">
+            <h2 className="font-semibold text-lg">Search & Filter</h2>
+            <div className="flex gap-2 flex-col md:flex-row">
+              <SearchBar
+                value={searchValue}
+                onChange={(v) => setSearchValue(v)}
+                onSearch={() => setQuery(searchValue)}
+              />
+
+              <select className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black">
+                <option>Network</option>
+                <option>Men</option>
+                <option>Women</option>
+                <option>KKB</option>
+                <option>YAN</option>
+                <option>Children</option>
+              </select>
+              <input
+                type="date"
+                className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black"
+                placeholder="Select Date"
+              />
+            </div>
+            <BlackButton val={"Edit"} />
+          </div>
+
+          {/* Users Table */}
+          <div className="bg-[#A7E6FF] p-5 rounded-xl shadow-md">
+            <h2 className="font-semibold text-xl mb-1">
+              Users ({filteredUsers.length})
+            </h2>
+            <p className="text-sm mb-4">
+              Manage user accounts and their access levels.
+            </p>
+
+            {/* Desktop table (hidden on small screens) */}
+            <table className="hidden md:table w-full border-collapse">
+              <thead>
+                <tr className="text-left border-b border-black/20">
+                  <th className="pb-2">Name</th>
+                  <th className="pb-2">Network</th>
+                  <th className="pb-2">Attendance</th>
+                  <th className="pb-2">Time & Date</th>
+                </tr>
+              </thead>
+
+              <tbody className="space-y-4">
+                {filteredUsers.map((u) => (
+                  <tr key={u.id} className="border-b border-black/20 text-sm">
+                    <td className="py-2">{u.name}</td>
+                    <td>{u.network}</td>
+
+                    {/* Roles */}
+                    <td>{u.attendance}</td>
+
+                    <td>{u.timedate}</td>
+
                   </tr>
                 ))}
               </tbody>
