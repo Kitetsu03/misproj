@@ -23,6 +23,7 @@ export const FinanceTab = () => {
         offering: "20",
         mission: "10",
         pledge: "100",
+        timedate: "2025-01-15",
       },
       {
         id: 2,
@@ -32,6 +33,7 @@ export const FinanceTab = () => {
         offering: "15",
         mission: "5",
         pledge: "75",
+        timedate: "2025-01-14",
       },
       {
         id: 3,
@@ -41,6 +43,7 @@ export const FinanceTab = () => {
         offering: "10",
         mission: "8",
         pledge: "60",
+        timedate: "2025-01-13",
       },
       {
         id: 4,
@@ -50,6 +53,7 @@ export const FinanceTab = () => {
         offering: "25",
         mission: "15",
         pledge: "80",
+        timedate: "2025-01-12",
       },
     ],
     []
@@ -162,6 +166,8 @@ export const FinanceTab = () => {
                   <th className="pb-2">Offering</th>
                   <th className="pb-2">Mission</th>
                   <th className="pb-2">Pledge</th>
+                  <th className="pb-2">Time & Date</th>
+                  <th className="pb-2">Actions</th>
                 </tr>
               </thead>
 
@@ -177,6 +183,15 @@ export const FinanceTab = () => {
                     <td>{u.offering}</td>
                     <td>{u.mission}</td>
                     <td>{u.pledge}</td>
+                    <td>{u.timedate}</td>
+                    <td className="flex gap-2 py-3">
+                      <button
+                        aria-label={`Edit ${u.name}`}
+                        className="text-green-900"
+                      >
+                        <HiOutlinePencilSquare size={26} />
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -274,10 +289,11 @@ export const FinanceTab = () => {
             <table className="hidden md:table w-full border-collapse">
               <thead>
                 <tr className="text-left border-b border-black/20">
-                  <th className="pb-2">Name</th>
-                  <th className="pb-2">Network</th>
-                  <th className="pb-2">Attendance</th>
+                  <th className="pb-2">Ref.no</th>
+                  <th className="pb-2">Name of cost</th>
+                  <th className="pb-2">Amount</th>
                   <th className="pb-2">Time & Date</th>
+                  <th className="pb-2">Actions</th>
                 </tr>
               </thead>
 
@@ -327,18 +343,7 @@ export const FinanceTab = () => {
                       >
                         <HiOutlinePencilSquare size={26} />
                       </button>
-                      <button
-                        aria-label={`Link ${u.name}`}
-                        className="text-green-900"
-                      >
-                        <FiKey size={26} />
-                      </button>
-                      <button
-                        aria-label={`Delete ${u.name}`}
-                        className="text-green-900"
-                      >
-                        <FaRegTrashAlt size={23} />
-                      </button>
+                    
                     </div>
                   </div>
                 </div>
