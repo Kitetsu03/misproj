@@ -1,10 +1,17 @@
 import AdminNav from "../../components/AdminNav.jsx";
-import { categoryDistribution, membersGrowth } from "../../data/chartData.js";
+import { categoryDistribution, 
+  membersGrowth, 
+  ageDemographics,
+  attendanceDemographics,
+  lifeGroupDemographics,
+  tithesAndOfferings,
+  expenses,
+  offeringVsExpenses, } from "../../data/chartData.js";
 import Card from "../../components/Card.jsx";
 import QuickActions from "../../components/QuickActions.jsx";
 import RecentActivities from "../../components/RecentActivities.jsx";
 
-import { infoCard } from "../../data/cardsInfo.jsx";
+import { infoCard, financeCard } from "../../data/cardsInfo.jsx";
 
 import { IoPersonAddOutline } from "react-icons/io5";
 import { HiOutlinePencilAlt } from "react-icons/hi";
@@ -61,6 +68,16 @@ function AdminDashboard() {
                 desc={info.desc}
               />
             ))}
+             {financeCard.map((info) => (
+            <Card
+              key={info.id}
+              title={info.title}
+              icon={info.icon}
+              info={info.info}
+              value={info.value}
+              desc={info.desc}
+            />
+          ))}
             {/* LineChart */}
             <LineChart
               title="MEMBERSHIP GROWTH"

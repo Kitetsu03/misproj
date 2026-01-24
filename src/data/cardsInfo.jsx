@@ -20,15 +20,9 @@ export const infoCard = [
     value: 90,
     desc: "+ 3 from last month",
   },
+ 
   {
     id: 3,
-    title: "TITHES & OFFERINGS",
-    icon: <BsWindowSidebar size={36} />,
-    value: "₱10K",
-    desc: "+ 8.2% from last month",
-  },
-  {
-    id: 4,
     title: "ACTIVE LIFEGROUPS",
     icon: <FaRegHeart size={36} />,
     value: 4,
