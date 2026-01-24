@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import { BlackButton } from "./BlackButton";
+import { Input } from "./Input";
 import { useState } from "react";
 
 export const SettingsTabs = () => {
@@ -59,8 +61,24 @@ export const SettingsTabs = () => {
           </Tabs>
         </Box>
       </div>
-      <div className="card w-full mx-2 rounded-2xl gap-4 mt-4 p-4 flex flex-col">
-        <CustomTabPanel value={value} index={0}></CustomTabPanel>
+      <div className="card w-full mx-2 rounded-2xl gap-2 mt-2 p-2 flex flex-col font-secondary">
+        <CustomTabPanel value={value} index={0}>
+          <h2 className="font-semibold text-lg">Church Information</h2>
+          <p className="px-2 text-sm text-gray-600 mb-8">
+            Basic church details and contact information.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+
+            <Input label="Church Name" />
+            <Input label="Church Address" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Input label="Phone" />
+            <Input label="Email" />
+            <Input label="Website" />
+            <BlackButton val="Save Changes" />
+            </div>
+          </div>
+        </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           Item Two
         </CustomTabPanel>

@@ -9,11 +9,10 @@ function Settings() {
         <div className="body">
           <header className="p-5 font-secondary">
             <h1 className="text-2xl md:text-5xl text-white font-extrabold">
-              CHURCH MANAGEMENT DASHBOARD
+              SYSTEM SETTINGS AND CONFIGURATION
             </h1>
             <p className="pt-1 text-white">
-              Welcome back! Here's an overview of your church's key metrics and
-              recent activity.
+              Configure church information, system preferences, and administrative settings.
             </p>
           </header>
           <SettingsTabs />
