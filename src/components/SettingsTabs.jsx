@@ -68,28 +68,84 @@ export const SettingsTabs = () => {
             Basic church details and contact information.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
-
             <Input label="Church Name" />
             <Input label="Church Address" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Input label="Phone" />
-            <Input label="Email" />
-            <Input label="Website" />
-            <BlackButton val="Save Changes" />
+              <Input label="Phone" />
+              <Input label="Email" />
+              <Input label="Website" />
+              <BlackButton val="Save Changes" />
             </div>
           </div>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-          Item Two
+          <div className="flex justify-between items-center mb-4">
+            <div>
+              <h2 className="font-semibold text-lg">Service Schedule</h2>
+              <p className="text-sm text-gray-600 mb-8">
+                Manage service times and locations.
+              </p>
+            </div>
+            <div>
+              <BlackButton val="+ Add Service" />
+            </div>
+          </div>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
-          Item Three
+          <div className="flex justify-between items-center mb-4">
+            <div>
+              <h2 className="font-semibold text-lg">Ministry Management</h2>
+              <p className="text-sm text-gray-600 mb-8">
+                Configure church ministries and leadership assignments.
+              </p>
+            </div>
+            <div>
+              <BlackButton val="+ Add Ministry" />
+            </div>
+          </div>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={3}>
-          Item Two
+          <div className="flex justify-between items-center mb-4">
+            <div>
+              <h2 className="font-semibold text-lg">Email Configuration</h2>
+              <p className="text-sm text-gray-600 mb-8">
+                Configure SMTP settings for system emails.
+              </p>
+            </div>
+            
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Input label="SMTP Server" />
+            <Input label="SMTP Port" />
+          </div>
+          <Input label="Username" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-7 pt-4">
+            <button className="rounded-2xl font-black">○ Enable SSL/TLS</button>
+            <BlackButton val="Save Email Settings" />
+          </div>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={4}>
-          Item Three
+          <div className="flex justify-between items-center mb-4">
+            <div>
+              <h2 className="font-semibold text-lg">Data Backup & Recovery</h2>
+              <p className="text-sm text-gray-600 mb-8">
+                Configure automatic backups and data retention policies.
+              </p>
+              
+            <button className="rounded-2xl font-black">○ Enable SSL/TLS</button>
+            </div>
+            
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Input label="Backup Frequency" />
+            <Input label="Retention Days" />
+          </div>
+          
+          <div className="grid grid-cols-3 gap-4 pt-4">
+            <BlackButton val="Create Manual Backup" />
+            <BlackButton val="Download Backup" />
+            <BlackButton val="Restore from  Backup" />
+          </div>
         </CustomTabPanel>
       </div>
     </>

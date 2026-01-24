@@ -109,7 +109,7 @@ function MembersData() {
         <div className="p-4 md:p-5 font-secondary">
           <header className="mb-6 text-2xl md:text-5xl text-white">
             <h1 className="text-2xl md:text-5xl font-extrabold">
-              Members Data
+              MEMBERS DATA
             </h1>
             <p className="text-sm text-muted-foreground">
               Overview & statistics
@@ -133,7 +133,7 @@ function MembersData() {
                   <BlackButton
                     val="Import"
                     exc="Import Members"
-                    comp={<input type="file" id="file-input" />}
+                    comp={<input type="file" id="file-input" text="Click here"/>}
                   />
                   <BlackButton val="Export" exc="Export Members" />
                   <BlackButton
