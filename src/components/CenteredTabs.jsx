@@ -87,12 +87,9 @@ export const CenteredTabs = () => {
           <div className="md:col-span-1 space-y-1">
             <label className="font-medium">Role</label>
             <select className="w-full p-3 border rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
-              <option>Select a role</option>
+              <option>Member</option>
               <option>Admin</option>
               <option>Gatekeeper</option>
-              <option>Leader</option>
-              <option>Member</option>
-              <option>Volunteer</option>
             </select>
           </div>
         </div>
@@ -143,14 +140,7 @@ export const CenteredTabs = () => {
               placeholder="Enter LifeGroup Name"
             />
           </div>
-          <div className="space-y-2">
-            <label className="font-medium">LifeGroup Leader</label>
-            <input
-              type="text"
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Enter LifeGroup Leader Name"
-            />
-          </div>
+
           <div className="space-y-2">
             <label className="font-medium">Status</label>
             <input

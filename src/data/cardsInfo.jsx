@@ -20,7 +20,7 @@ export const infoCard = [
     value: 90,
     desc: "+ 3 from last month",
   },
- 
+
   {
     id: 3,
     title: "ACTIVE LIFEGROUPS",
@@ -58,7 +58,7 @@ export const ageCard = [
     id: 4,
     title: "YAN",
     icon: <BsWindowSidebar size={36} />,
-    info: "23 - 29 years old",
+    info: "24 - 29 years old",
     value: "15.15%",
     desc: "+8% growth from last month",
   },
