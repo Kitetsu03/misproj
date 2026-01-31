@@ -25,6 +25,7 @@ export const FinanceTab = () => {
         pledge: "100",
         timedate: "2025-01-15",
         refno: "001",
+        cost: "Electricity",
       },
       {
         id: 2,
@@ -36,6 +37,7 @@ export const FinanceTab = () => {
         pledge: "75",
         timedate: "2025-01-14",
         refno: "002",
+        cost: "Water",
       },
       {
         id: 3,
@@ -47,6 +49,7 @@ export const FinanceTab = () => {
         pledge: "60",
         timedate: "2025-01-13",
         refno: "003",
+        cost: "Internet",
       },
       {
         id: 4,
@@ -58,6 +61,7 @@ export const FinanceTab = () => {
         pledge: "80",
         timedate: "2025-01-12",
         refno: "004",
+        cost: "Supplies",
       },
     ],
     []
@@ -306,7 +310,7 @@ export const FinanceTab = () => {
                 {filteredUsers.map((u) => (
                   <tr key={u.id} className="border-b border-black/20 text-sm">
                     <td className="py-2">{u.refno}</td>
-                    <td>{u.network}</td>
+                    <td>{u.cost}</td>
 
                     {/* Roles */}
                     <td>{u.attendance}</td>
