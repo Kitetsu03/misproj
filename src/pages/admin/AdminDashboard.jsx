@@ -1,12 +1,14 @@
 import AdminNav from "../../components/AdminNav.jsx";
-import { categoryDistribution, 
-  membersGrowth, 
+import {
+  categoryDistribution,
+  membersGrowth,
   ageDemographics,
   attendanceDemographics,
   lifeGroupDemographics,
   tithesAndOfferings,
   expenses,
-  offeringVsExpenses, } from "../../data/chartData.js";
+  offeringVsExpenses,
+} from "../../data/chartData.js";
 import Card from "../../components/Card.jsx";
 import QuickActions from "../../components/QuickActions.jsx";
 import RecentActivities from "../../components/RecentActivities.jsx";
@@ -68,16 +70,16 @@ function AdminDashboard() {
                 desc={info.desc}
               />
             ))}
-             {financeCard.map((info) => (
-            <Card
-              key={info.id}
-              title={info.title}
-              icon={info.icon}
-              info={info.info}
-              value={info.value}
-              desc={info.desc}
-            />
-          ))}
+            {financeCard.map((info) => (
+              <Card
+                key={info.id}
+                title={info.title}
+                icon={info.icon}
+                info={info.info}
+                value={info.value}
+                desc={info.desc}
+              />
+            ))}
             {/* LineChart */}
             <LineChart
               title="MEMBERSHIP GROWTH"

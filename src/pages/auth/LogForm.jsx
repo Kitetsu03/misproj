@@ -1,58 +1,143 @@
-import { Link } from "react-router-dom";
+import { loginPatterns } from "../auth/js/utils/patterns.js";
+import { validateAll } from "../auth/js/utils/validator.js";
+import {
+  checkSession,
+  startSession,
+  getCurrentUser,
+} from "../auth/js/module/Session.js";
+import { Authenticate } from "../auth/js/module/Authentication.js";
+import { data } from "../../data/users_data.js";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function LogForm() {
+function LogForm({ currentSession, setLoaderVisible }) {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
+  const [isRemember, setIsRemember] = useState(false);
+  function SessionGate() {
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      const verifySession = async () => {
+        const currentSession = await checkSession(getCurrentUser());
+
+        if (currentSession) {
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 1500);
+        } else {
+          setLoading(false);
+        }
+      };
+
+      verifySession();
+    }, [navigate]);
+
+    if (loading) {
+      return <div className="loader" />;
+    }
+
+    return (
+      <LogForm currentSession={false} setLoaderVisible={setLoaderVisible} />
+    );
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Submitting form...", email, password);
+    const formData = { email, password };
+    const validated = validateAll(formData, loginPatterns);
+
+    if (validated.length > 0) {
+      setErrors(validated);
+      console.log(validated.join("\n"));
+    } else {
+      const cleanEmail = email.trim();
+      const cleanPassword = password.trim();
+    }
+
+    let authUser = Authenticate({ email, password });
+
+    if (authUser && authUser !== null) {
+      authUser.isRemembered = isRemember;
+      authUser.password = null;
+      console.log("Authenticated Successfully", "success");
+      startSession(authUser);
+      console.log(authUser);
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    } else {
+      console.log("Invalid email or password. Please try again.");
+    }
+  };
+
   return (
-    <div className="container absolute top-[50%] left-[50%] -translate-[50%] w-100 md:w-120 xl:w-150 flex justify-center content-center">
-      <div className="card rounded-2xl w-[95dvw] md:w-full pt-5">
-        <div className="card-header">
-          <div className="my-logo justify-center"></div>
-          <h2 className="cursor-default text-center pb-2 text-[min(5vw,20px)] md:text-[min(5vw,30px)]">
-            LOGIN ACCOUNT
-          </h2>
-          <hr className="p-1 border-white bg-white" />
-        </div>
-        <div className="card-body p-5 flex-row gap-4 text-[min(5vw,15px)] md:text-[min(5vw,20px)]">
-          <div className="form-group">
-            <input
-              id="email"
-              className="form-control"
-              name="email"
-              type="email"
-              placeholder=" "
-              required
-            />
-            <label htmlFor="email">Email address</label>
+    <>
+      <div className="container absolute top-[50%] left-[50%] -translate-[50%] w-100 md:w-120 xl:w-150 flex justify-center content-center">
+        <div className="card rounded-2xl w-[95dvw] md:w-full pt-5">
+          <div className="card-header">
+            <div className="my-logo justify-center"></div>
+            <h2 className="cursor-default text-center pb-2 text-[min(5vw,20px)] md:text-[min(5vw,30px)]">
+              LOGIN ACCOUNT
+            </h2>
+            <hr className="p-1 border-white bg-white" />
           </div>
-          <div className="form-group">
-            <input
-              id="password"
-              className="form-control"
-              name="password"
-              type="password"
-              placeholder=" "
-              required
-            />
-            <label htmlFor="password">Password</label>
-          </div>
-          <div className="card-footer flex-col justify-center items-center">
-            <Link to="/admin">
-              <button
-                className="submit cursor-pointer bg-blue-500 text-white p-1 mt-2"
-                name="submit"
-                type="submit"
-              >
-                Login Account
-              </button>
-            </Link>
-            <Link to="/register">
-              <a className="cursor-pointer login flex justify-center items-center mt-4 hover:text-cyan-800 opacity-70">
-                Create an account?
-              </a>
-            </Link>
-          </div>
+          <form
+            onSubmit={handleSubmit}
+            method="POST"
+            className="card-body p-5 flex-row gap-4 text-[min(5vw,15px)] md:text-[min(5vw,20px)]"
+          >
+            <div className="form-group">
+              <input
+                id="email"
+                className="form-control"
+                name="email"
+                type="email"
+                placeholder=" "
+                required={false}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <label htmlFor="email">Email address</label>
+            </div>
+            <div className="form-group">
+              <input
+                id="password"
+                className="form-control"
+                name="password"
+                type="password"
+                placeholder=" "
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <label htmlFor="password">Password</label>
+            </div>
+            <div className="card-footer flex-col justify-center items-center">
+              <Link to="/admin">
+                <button
+                  className="submit cursor-pointer bg-blue-500 text-white p-1 mt-2"
+                  name="submit"
+                  type="submit"
+                >
+                  Login Account
+                </button>
+              </Link>
+
+              <Link to="/register">
+                <a className="cursor-pointer login flex justify-center items-center mt-4 hover:text-cyan-800 opacity-70">
+                  Create an account?
+                </a>
+              </Link>
+            </div>
+          </form>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
