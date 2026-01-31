@@ -115,7 +115,7 @@ function MemberPortal() {
 
               <div className="giving-list space-y-3 mb-4">
                 <div className="give-row flex justify-between items-center">
-                  <span>October 1 — General Fund</span>
+                  <span>October 1 — Tithes</span>
                   <span className="font-semibold">₱150.00</span>
                 </div>
 
@@ -125,7 +125,7 @@ function MemberPortal() {
                 </div>
 
                 <div className="give-row flex justify-between items-center">
-                  <span>September 17 — General Fund</span>
+                  <span>September 17 — Pledges</span>
                   <span className="font-semibold">₱150.00</span>
                 </div>
               </div>

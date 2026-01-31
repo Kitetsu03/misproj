@@ -45,7 +45,7 @@ function UserAccess() {
         color: "bg-purple-500",
       },
     ],
-    []
+    [],
   );
 
   const filteredUsers = useMemo(() => {
@@ -53,7 +53,7 @@ function UserAccess() {
     const q = query.toLowerCase();
     return users.filter(
       (u) =>
-        u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q)
+        u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q),
     );
   }, [users, query]);
 
@@ -137,12 +137,7 @@ function UserAccess() {
                     >
                       <HiOutlinePencilSquare size={26} />
                     </button>
-                    <button
-                      aria-label={`Link ${u.name}`}
-                      className="text-green-900"
-                    >
-                      <FiKey size={26} />
-                    </button>
+
                     <button
                       aria-label={`Delete ${u.name}`}
                       className="text-green-900"
@@ -180,18 +175,6 @@ function UserAccess() {
                   </div>
                   <div className="flex gap-2">
                     <button
-                      aria-label={`Edit ${u.name}`}
-                      className="text-green-900"
-                    >
-                      <HiOutlinePencilSquare size={26} />
-                    </button>
-                    <button
-                      aria-label={`Link ${u.name}`}
-                      className="text-green-900"
-                    >
-                      <FiKey size={26} />
-                    </button>
-                    <button
                       aria-label={`Delete ${u.name}`}
                       className="text-green-900"
                     >
@@ -204,7 +187,7 @@ function UserAccess() {
           </div>
         </div>
 
-        {/* Role Definitions */}
+        {/* Role Definitions
         <div className="bg-[#A7E6FF] p-6 rounded-xl shadow-md">
           <h2 className="text-xl font-semibold mb-2">Role Definitions</h2>
           <p className="text-gray-700 text-sm mb-6">
@@ -249,7 +232,7 @@ function UserAccess() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </main>
     </div>
   );

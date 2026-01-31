@@ -5,9 +5,7 @@ function Dropdown() {
         <option>All Roles</option>
         <option>Admin</option>
         <option>Gatekeeper</option>
-        <option>Leader</option>
         <option>Member</option>
-        <option>Volunteer</option>
       </select>
     </>
   );

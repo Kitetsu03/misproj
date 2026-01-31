@@ -11,6 +11,11 @@ import { IoMdAdd } from "react-icons/io";
 import { LineChart } from "../../components/LineChart.jsx";
 import { DoughnutChart } from "../../components/DoughnutChart.jsx";
 import { BarLineChart } from "../../components/BarLineChart.jsx";
+import {
+  tithesAndOfferings,
+  expenses,
+  offeringVsExpenses,
+} from "../../data/chartData.js";
 
 function GatekeeperDashboard() {
   const quickActionButtons = [
