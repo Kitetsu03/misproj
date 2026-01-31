@@ -81,8 +81,8 @@ function Giving() {
               <div className="w-full max-w-4xl bg-white rounded-2xl shadow-lg border border-gray-300 p-10">
                 <h2 className="font-bold text-center">2025 Giving Summary</h2>
 
-                <p className="text-6xl font-extrabold text-center mt-5">
-                  ₱ 750.00
+                <p className="text-5xl font-extrabold text-center mt-5">
+                  ₱ 1,200.00
                 </p>
 
                 <p className="text-center text-gray-600 mt-2">

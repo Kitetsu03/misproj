@@ -10,6 +10,7 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
 import { LineChart } from "../../components/LineChart.jsx";
 import { DoughnutChart } from "../../components/DoughnutChart.jsx";
+import { BarLineChart } from "../../components/BarLineChart.jsx";
 
 function GatekeeperDashboard() {
   const quickActionButtons = [
@@ -81,6 +82,23 @@ function GatekeeperDashboard() {
               data={categoryDistribution}
               description="Total members by age or network"
             />
+            <BarLineChart
+              title="TITHES AND OFFERINGS"
+              data={tithesAndOfferings}
+              description="Quarterly tithes and offerings trends per Quarter."
+            />
+            <BarLineChart
+              title="EXPENSES"
+              data={expenses}
+              description="Church expenses breakdown per Quarter."
+            />
+            <div className="col-span-1 md:col-span-4 flex justify-center items-center">
+              <BarLineChart
+                title="OFFERINGS VS EXPENSES"
+                data={offeringVsExpenses}
+                description="Comparison of offerings and expenses."
+              />
+            </div>
             <div className="card p-5 row-span-2 col-start-1 row-start-4 rounded-2xl font-secondary">
               <h2 className="text-2xl font-semibold">QUICK ACTIONS</h2>
               <p className="pb-3">Common tasks</p>
