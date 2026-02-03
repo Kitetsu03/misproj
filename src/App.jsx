@@ -19,21 +19,30 @@ function App() {
   return (
     <main className="main-content">
       <Routes>
-        <Route path="/register" element={<RegForm />}></Route>
-        <Route path="/" element={<LogForm />}></Route>
-        <Route path="/admin" element={<AdminDashboard />}></Route>
-        <Route path="/useraccess" element={<UserAccess />}></Route>
-        <Route path="/gatekeeper" element={<GatekeeperDashboard />}></Route>
-        <Route path="/membersdata" element={<MembersData />}></Route>
-        <Route path="/reports" element={<Reports />}></Route>
-        <Route path="/settings" element={<Settings />}></Route>
-        <Route path="/member" element={<MemberPortal />}></Route>
-        <Route path="/reportsgate" element={<ReportsGate />}></Route>
-        <Route path="/membersdatagate" element={<MembersDataGate />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
-        <Route path="/giving" element={<Giving />}></Route>
-        <Route path="/attendance" element={<Attendance />}></Route>
-        <Route path="/finance" element={<Finance />}></Route>
+        {/* Public */}
+        <Route path="/" element={<LogForm />} />
+        <Route path="/register" element={<RegForm />} />
+
+        {/* Admin */}
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/members" element={<MembersData />} />
+        <Route path="/admin/reports" element={<Reports />} />
+        <Route path="/admin/settings" element={<Settings />} />
+        <Route path="/admin/finance" element={<Finance />} />
+
+        {/* Gatekeeper */}
+        <Route path="/gatekeeper" element={<GatekeeperDashboard />} />
+        <Route path="/gatekeeper/members" element={<MembersDataGate />} />
+        <Route path="/gatekeeper/reports" element={<ReportsGate />} />
+        <Route path="/gatekeeper/attendance" element={<Attendance />} />
+
+        {/* Member */}
+        <Route path="/member" element={<MemberPortal />} />
+        <Route path="/member/profile" element={<Profile />} />
+        <Route path="/member/giving" element={<Giving />} />
+
+        {/* Fallback */}
+        <Route path="*" element={<h2>Page Not Found</h2>} />
       </Routes>
     </main>
   );

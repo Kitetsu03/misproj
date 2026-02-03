@@ -26,7 +26,7 @@ function LogForm({ currentSession, setLoaderVisible }) {
 
         if (currentSession) {
           setTimeout(() => {
-            navigate("/dashboard");
+            navigate("/admin");
           }, 1500);
         } else {
           setLoading(false);
@@ -111,22 +111,20 @@ function LogForm({ currentSession, setLoaderVisible }) {
                 name="password"
                 type="password"
                 placeholder=" "
-                required
+                required={false}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <label htmlFor="password">Password</label>
             </div>
             <div className="card-footer flex-col justify-center items-center">
-              <Link to="/admin">
-                <button
-                  className="submit cursor-pointer bg-blue-500 text-white p-1 mt-2"
-                  name="submit"
-                  type="submit"
-                >
-                  Login Account
-                </button>
-              </Link>
+              <button
+                className="submit cursor-pointer bg-blue-500 text-white p-1 mt-2"
+                name="submit"
+                type="submit"
+              >
+                Login Account
+              </button>
 
               <Link to="/register">
                 <a className="cursor-pointer login flex justify-center items-center mt-4 hover:text-cyan-800 opacity-70">
