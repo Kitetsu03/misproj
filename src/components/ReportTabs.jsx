@@ -17,7 +17,7 @@ import {
   tithesAndOfferings,
   expenses,
   offeringVsExpenses,
-} from "../data/chartData";
+} from "../data/chartData.js";
 import Card from "./Card.jsx";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";

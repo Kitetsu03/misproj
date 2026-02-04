@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "./SearchBar";
 import { BlackButton } from "./BlackButton";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";
@@ -56,7 +56,7 @@ export const AttendanceTabs = () => {
         lgname: "Esther",
       },
     ],
-    []
+    [],
   );
 
   const filteredUsers = useMemo(() => {
@@ -64,7 +64,7 @@ export const AttendanceTabs = () => {
     const q = query.toLowerCase();
     return users.filter(
       (u) =>
-        u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q)
+        u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q),
     );
   }, [users, query]);
 
@@ -236,7 +236,7 @@ export const AttendanceTabs = () => {
         </main>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-         <main className="flex-1 p-1 space-y-5 font-secondary">
+        <main className="flex-1 p-1 space-y-5 font-secondary">
           {/* Search & Filter */}
           <div className="card p-5 rounded-xl shadow-md space-y-3">
             <h2 className="font-semibold text-lg">Search & Filter</h2>
@@ -294,7 +294,6 @@ export const AttendanceTabs = () => {
                     <td>{u.attendance}</td>
 
                     <td>{u.timedate}</td>
-
                   </tr>
                 ))}
               </tbody>
