@@ -1,17 +1,17 @@
 import AdminNav from "../../components/AdminNav";
-import Card from "../../components/Card.jsx";
+import Card from "../../components/ui/Card.jsx";
 import { ImStack } from "react-icons/im";
 import { BsWindowSidebar } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
-import SearchBar from "../../components/SearchBar";
-import Dropdown from "../../components/Dropdown";
+import SearchBar from "../../components/ui/input/SearchBar.jsx";
+import Dropdown from "../../components/ui/buttons/Dropdown.jsx";
 import { SlPeople } from "react-icons/sl";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useState, useMemo } from "react";
-import { BlackButton } from "../../components/BlackButton.jsx";
-import { AddNewMember } from "../../components/AddNewMember.jsx";
+import { BlackButton } from "../../components/ui/buttons/BlackButton.jsx";
+import { AddNewMember } from "../../components/ui/buttons/AddNewMember.jsx";
 function MembersData() {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
@@ -55,7 +55,7 @@ function MembersData() {
         color: "bg-purple-500",
       },
     ],
-    []
+    [],
   );
 
   const infos = [
@@ -98,7 +98,7 @@ function MembersData() {
     const q = query.toLowerCase();
     return users.filter(
       (u) =>
-        u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q)
+        u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q),
     );
   }, [users, query]);
 
@@ -133,7 +133,9 @@ function MembersData() {
                   <BlackButton
                     val="Import"
                     exc="Import Members"
-                    comp={<input type="file" id="file-input" text="Click here"/>}
+                    comp={
+                      <input type="file" id="file-input" text="Click here" />
+                    }
                   />
                   <BlackButton val="Export" exc="Export Members" />
                   <BlackButton

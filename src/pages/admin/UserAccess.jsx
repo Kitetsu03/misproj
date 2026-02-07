@@ -1,13 +1,13 @@
 import AdminNav from "../../components/AdminNav";
-import { BlackButton } from "../../components/BlackButton";
-import Dropdown from "../../components/Dropdown";
-import SearchBar from "../../components/SearchBar";
+import { BlackButton } from "../../components/ui/buttons/BlackButton";
+import Dropdown from "../../components/ui/buttons/Dropdown";
+import SearchBar from "../../components/ui/input/SearchBar";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useState, useMemo } from "react";
-import CreateNewUser from "../../components/CreateNewUser";
-import ConfigureButton from "../../components/ConfigureButton";
+import CreateNewUser from "../../components/ui/buttons/CreateNewUser";
+import ConfigureButton from "../../components/ui/buttons/ConfigureButton";
 import ConfigurePermission from "../../components/ConfigurePermission";
 
 function UserAccess() {

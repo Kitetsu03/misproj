@@ -1,12 +1,12 @@
-import { infoCard } from "../data/cardsInfo.jsx";
-import { ageCard } from "../data/cardsInfo.jsx";
-import { attendanceCard } from "../data/cardsInfo.jsx";
-import { lifeGroupCard } from "../data/cardsInfo.jsx";
-import { financeCard } from "../data/cardsInfo.jsx";
-import { ministryCard } from "../data/cardsInfo.jsx";
-import { LineChart } from "./LineChart.jsx";
-import { BarLineChart } from "./BarLineChart.jsx";
-import { DoughnutChart } from "./DoughnutChart.jsx";
+import { infoCard } from "../../../data/cardsInfo.jsx";
+import { ageCard } from "../../../data/cardsInfo.jsx";
+import { attendanceCard } from "../../../data/cardsInfo.jsx";
+import { lifeGroupCard } from "../../../data/cardsInfo.jsx";
+import { financeCard } from "../../../data/cardsInfo.jsx";
+import { ministryCard } from "../../../data/cardsInfo.jsx";
+import { LineChart } from "../charts/LineChart.jsx";
+import { BarLineChart } from "../charts/BarLineChart.jsx";
+import { DoughnutChart } from "../charts/DoughnutChart.jsx";
 
 import {
   categoryDistribution,
@@ -17,8 +17,8 @@ import {
   tithesAndOfferings,
   expenses,
   offeringVsExpenses,
-} from "../data/chartData.js";
-import Card from "./Card.jsx";
+} from "../../../data/chartData.js";
+import Card from "../Card.jsx";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";

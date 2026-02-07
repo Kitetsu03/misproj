@@ -2,14 +2,14 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import SearchBar from "./SearchBar";
-import { BlackButton } from "./BlackButton";
+import SearchBar from "../input/SearchBar.jsx";
+import { BlackButton } from "../buttons/BlackButton.jsx";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useState, useMemo } from "react";
 
-export const AttendanceTabs = () => {
+export const FinanceTab = () => {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
 
@@ -19,41 +19,49 @@ export const AttendanceTabs = () => {
         id: 1,
         name: "John Smith",
         network: "Men",
-        attendance: "Present",
-        timedate: "2025-01-15 | 8:20 AM",
-        weeksAttended: 12,
-        status: "Member",
-        lgname: "Daniel",
+        tithes: "50",
+        offering: "20",
+        mission: "10",
+        pledge: "100",
+        timedate: "2025-01-15",
+        refno: "001",
+        cost: "Electricity",
       },
       {
         id: 2,
         name: "Sarah Johnson",
         network: "YAN",
-        attendance: "Present",
-        timedate: "2025-01-15 | 8:10 AM",
-        weeksAttended: 12,
-        status: "Member",
-        lgname: "Moses",
+        tithes: "30",
+        offering: "15",
+        mission: "5",
+        pledge: "75",
+        timedate: "2025-01-14",
+        refno: "002",
+        cost: "Water",
       },
       {
         id: 3,
         name: "Mike Peters",
         network: "KKB",
-        attendance: "Present",
-        timedate: "2025-01-15 | 8:05 AM",
-        weeksAttended: 12,
-        status: "Member",
-        lgname: "Samuel",
+        tithes: "25",
+        offering: "10",
+        mission: "8",
+        pledge: "60",
+        timedate: "2025-01-13",
+        refno: "003",
+        cost: "Internet",
       },
       {
         id: 4,
         name: "Lisa Chen",
         network: "Women",
-        attendance: "Present",
-        timedate: "2025-01-15 | 8:00 AM",
-        weeksAttended: 12,
-        status: "Member",
-        lgname: "Esther",
+        tithes: "40",
+        offering: "25",
+        mission: "15",
+        pledge: "80",
+        timedate: "2025-01-12",
+        refno: "004",
+        cost: "Supplies",
       },
     ],
     [],
@@ -113,8 +121,8 @@ export const AttendanceTabs = () => {
             indicatorColor="primary"
             textColor="primary"
           >
-            <Tab label="Worship Service" {...a11yProps(0)} />
-            <Tab label="Lifegroup" {...a11yProps(1)} />
+            <Tab label="Offerings" {...a11yProps(0)} />
+            <Tab label="Expenses" {...a11yProps(1)} />
           </Tabs>
         </Box>
       </div>
@@ -162,9 +170,12 @@ export const AttendanceTabs = () => {
                 <tr className="text-left border-b border-black/20">
                   <th className="pb-2">Name</th>
                   <th className="pb-2">Network</th>
-                  <th className="pb-2">Attendance</th>
+                  <th className="pb-2">Tithes</th>
+                  <th className="pb-2">Offering</th>
+                  <th className="pb-2">Mission</th>
+                  <th className="pb-2">Pledge</th>
                   <th className="pb-2">Time & Date</th>
-                  <th className="pb-2">Lifegroup Name</th>
+                  <th className="pb-2">Actions</th>
                 </tr>
               </thead>
 
@@ -175,11 +186,20 @@ export const AttendanceTabs = () => {
                     <td>{u.network}</td>
 
                     {/* Roles */}
-                    <td>{u.attendance}</td>
+                    <td>{u.tithes}</td>
 
+                    <td>{u.offering}</td>
+                    <td>{u.mission}</td>
+                    <td>{u.pledge}</td>
                     <td>{u.timedate}</td>
-
-                    <td>{u.lgname}</td>
+                    <td className="flex gap-2 py-3">
+                      <button
+                        aria-label={`Edit ${u.name}`}
+                        className="text-green-900"
+                      >
+                        <HiOutlinePencilSquare size={26} />
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -277,18 +297,19 @@ export const AttendanceTabs = () => {
             <table className="hidden md:table w-full border-collapse">
               <thead>
                 <tr className="text-left border-b border-black/20">
-                  <th className="pb-2">Name</th>
-                  <th className="pb-2">Network</th>
-                  <th className="pb-2">Attendance</th>
+                  <th className="pb-2">Ref.no</th>
+                  <th className="pb-2">Name of cost</th>
+                  <th className="pb-2">Amount</th>
                   <th className="pb-2">Time & Date</th>
+                  <th className="pb-2">Actions</th>
                 </tr>
               </thead>
 
               <tbody className="space-y-4">
                 {filteredUsers.map((u) => (
                   <tr key={u.id} className="border-b border-black/20 text-sm">
-                    <td className="py-2">{u.name}</td>
-                    <td>{u.network}</td>
+                    <td className="py-2">{u.refno}</td>
+                    <td>{u.cost}</td>
 
                     {/* Roles */}
                     <td>{u.attendance}</td>
@@ -328,18 +349,6 @@ export const AttendanceTabs = () => {
                         className="text-green-900"
                       >
                         <HiOutlinePencilSquare size={26} />
-                      </button>
-                      <button
-                        aria-label={`Link ${u.name}`}
-                        className="text-green-900"
-                      >
-                        <FiKey size={26} />
-                      </button>
-                      <button
-                        aria-label={`Delete ${u.name}`}
-                        className="text-green-900"
-                      >
-                        <FaRegTrashAlt size={23} />
                       </button>
                     </div>
                   </div>

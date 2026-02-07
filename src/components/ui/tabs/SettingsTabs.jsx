@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { BlackButton } from "./BlackButton";
-import { Input } from "./Input";
+import { BlackButton } from "../buttons/BlackButton";
+import { Input } from "../input/Input";
 import { useState } from "react";
 
 export const SettingsTabs = () => {
@@ -112,7 +112,6 @@ export const SettingsTabs = () => {
                 Configure SMTP settings for system emails.
               </p>
             </div>
-            
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input label="SMTP Server" />
@@ -131,16 +130,17 @@ export const SettingsTabs = () => {
               <p className="text-sm text-gray-600 mb-8">
                 Configure automatic backups and data retention policies.
               </p>
-              
-            <button className="rounded-2xl font-black">○ Enable SSL/TLS</button>
+
+              <button className="rounded-2xl font-black">
+                ○ Enable SSL/TLS
+              </button>
             </div>
-            
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input label="Backup Frequency" />
             <Input label="Retention Days" />
           </div>
-          
+
           <div className="grid grid-cols-3 gap-4 pt-4">
             <BlackButton val="Create Manual Backup" />
             <BlackButton val="Download Backup" />

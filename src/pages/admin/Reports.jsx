@@ -1,5 +1,5 @@
-import { ReportTabs } from "../../components/ReportTabs.jsx";
-import { BlackButton } from "../../components/BlackButton.jsx";
+import { ReportTabs } from "../../components/ui/tabs/ReportTabs.jsx";
+import { BlackButton } from "../../components/ui/buttons/BlackButton.jsx";
 import AdminNav from "../../components/AdminNav.jsx";
 
 function Reports() {

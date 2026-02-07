@@ -1,5 +1,5 @@
 import GatekeeperNav from "../../components/GatekeeperNav.jsx";
-import { AttendanceTabs } from "../../components/AttendanceTabs.jsx";
+import { AttendanceTabs } from "../../components/ui/tabs/AttendanceTabs.jsx";
 export function Attendance() {
   return (
     <>

@@ -1,5 +1,5 @@
 import GatekeeperNav from "../../components/GatekeeperNav.jsx";
-import { FinanceTab } from "../../components/FinanceTab.jsx";
+import { FinanceTab } from "../../components/ui/tabs/FinanceTab.jsx";
 export function Finance() {
   return (
     <>

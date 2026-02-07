@@ -9,9 +9,9 @@ import {
   expenses,
   offeringVsExpenses,
 } from "../../data/chartData.js";
-import Card from "../../components/Card.jsx";
-import QuickActions from "../../components/QuickActions.jsx";
-import RecentActivities from "../../components/RecentActivities.jsx";
+import Card from "../../components/ui/Card.jsx";
+import QuickActions from "../../components/ui/notif/QuickActions.jsx";
+import RecentActivities from "../../components/ui/notif/RecentActivities.jsx";
 
 import { infoCard, financeCard } from "../../data/cardsInfo.jsx";
 
@@ -19,9 +19,9 @@ import { IoPersonAddOutline } from "react-icons/io5";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
-import { LineChart } from "../../components/LineChart.jsx";
-import { DoughnutChart } from "../../components/DoughnutChart.jsx";
-import { BarLineChart } from "../../components/BarLineChart.jsx";
+import { LineChart } from "../../components/ui/charts/LineChart.jsx";
+import { DoughnutChart } from "../../components/ui/charts/DoughnutChart.jsx";
+import { BarLineChart } from "../../components/ui/charts/BarLineChart.jsx";
 
 function AdminDashboard() {
   const quickActionButtons = [

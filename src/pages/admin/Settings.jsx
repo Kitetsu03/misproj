@@ -1,4 +1,4 @@
-import { SettingsTabs } from "../../components/SettingsTabs.jsx";
+import { SettingsTabs } from "../../components/ui/tabs/SettingsTabs.jsx";
 import AdminNav from "../../components/AdminNav.jsx";
 
 function Settings() {
@@ -12,7 +12,8 @@ function Settings() {
               SYSTEM SETTINGS AND CONFIGURATION
             </h1>
             <p className="pt-1 text-white">
-              Configure church information, system preferences, and administrative settings.
+              Configure church information, system preferences, and
+              administrative settings.
             </p>
           </header>
           <SettingsTabs />

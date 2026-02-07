@@ -1,4 +1,4 @@
-import { CenteredTabs } from "./CenteredTabs";
+import { CenteredTabs } from "../tabs/CenteredTabs.jsx";
 
 export function AddNewMember() {
   return (
