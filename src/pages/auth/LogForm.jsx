@@ -118,6 +118,7 @@ function LogForm({ currentSession, setLoaderVisible }) {
               <label htmlFor="password">Password</label>
             </div>
             <div className="card-footer flex-col justify-center items-center">
+              <Link to="/admin">
               <button
                 className="submit cursor-pointer bg-blue-500 text-white p-1 mt-2"
                 name="submit"
@@ -125,7 +126,7 @@ function LogForm({ currentSession, setLoaderVisible }) {
               >
                 Login Account
               </button>
-
+</Link>
               <Link to="/register">
                 <a className="cursor-pointer login flex justify-center items-center mt-4 hover:text-cyan-800 opacity-70">
                   Create an account?
