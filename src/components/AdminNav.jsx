@@ -30,17 +30,17 @@ function AdminNav() {
               </li>
               <hr className="opacity-30" />
               <li className="p-4 text-[1.2rem] hover:bg-white/20 border-t-white/20">
-                <Link to="/useraccess">Users & Access</Link>
+                <Link to="/admin/useraccess">Users & Access</Link>
               </li>
               <hr className="opacity-30" />
               <li className="p-4 text-[1.2rem] hover:bg-white/20">
-                <Link to="/membersdata">Members Data</Link>
+                <Link to="/admin/members">Members Data</Link>
               </li>
               <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ">
-                <Link to="/reports">Reports</Link>
+                <Link to="/admin/reports">Reports</Link>
               </li>
               <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20">
-                <Link to="/settings">Settings</Link>
+                <Link to="/admin/settings">Settings</Link>
               </li>
               <li className="p-4 pb-5 text-[1.2rem] absolute bottom-0 hover:bg-white/20 w-full border-t-white/20 border-t-2">
                 <Link to="/">Logout</Link>

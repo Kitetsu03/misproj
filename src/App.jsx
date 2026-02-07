@@ -25,6 +25,7 @@ function App() {
 
         {/* Admin */}
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/useraccess" element={<UserAccess />} />
         <Route path="/admin/members" element={<MembersData />} />
         <Route path="/admin/reports" element={<Reports />} />
         <Route path="/admin/settings" element={<Settings />} />
