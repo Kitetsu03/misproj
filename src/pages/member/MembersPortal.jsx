@@ -57,7 +57,7 @@ function MemberPortal() {
 
         <main className="main-content px-5 space-y-5">
           <section className="welcome-section text-center p-4  ">
-            <h1 className="welcome-title font-bold text-3xl p-4 ">
+            <h1 className="welcome-title font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary ">
               WELCOME BACK, KIM!
             </h1>
             <p className="welcome-subtext text-xl">
@@ -66,20 +66,20 @@ function MemberPortal() {
           </section>
 
           <div className="font-secondary space-y-5">
-            <section className="cards-container flex gap-4">
-              <div className="left-cards flex-5">
-                <div className="card bg-white w-full p-4 shadow rounded-xl">
-                  <section className="welcome-section flex items-center gap-4">
-                    <FaRegHeart className="text-3xl" />
-                    <div className="flex flex-col leading-tight">
-                      <span>This Year</span>
-                      <span className="font-semibold">10,000 Given</span>
-                    </div>
-                  </section>
+            <section className="cards-container flex gap-4 sm:w-full md:w-3/4 mx-auto">
+              <div id="total-giving-card" className="flex-5 bg-white w-full p-4 shadow rounded-xl">
+                <div className="flex items-center gap-4 sm:justify-center">
+                  <FaRegHeart className="text-3xl" />
+                  <div className="flex flex-col">
+                    <span>This Year</span>
+                    <span className="font-semibold">10,000 Given</span>
+                  </div>
                 </div>
               </div>
             </section>
+          </div>
 
+          <div className="font-secondary space-y-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
             <section className="section-card bg-white w-full p-4 shadow rounded-xl">
               <div className="section-title flex items-center gap-4 mb-3">
                 <FaCalendar />
@@ -91,7 +91,7 @@ function MemberPortal() {
                   The Smith’s Family Lifegroup
                 </p>
                 <p>Thursday, October 12 at 7:00 AM</p>
-                <p>Topic: "Walking in Faith - Hebrews 11"</p>
+                <i>Topic: "Walking in Faith - Hebrews 11"</i>
               </div>
 
               <div className="flex flex-col items-center gap-3 mt-2">
@@ -203,7 +203,7 @@ function MemberPortal() {
                 </p>
               </div>
 
-              <div className="flex justify-center">
+              <div className="flex justify-center mt-4">
                 <button className="btn flex items-center gap-3 px-10 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition">
                   <TbListDetails />
                   View All Announcement
@@ -211,6 +211,7 @@ function MemberPortal() {
               </div>
             </section>
           </div>
+
         </main>
       </div>
     </>
