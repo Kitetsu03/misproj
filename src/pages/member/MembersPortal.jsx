@@ -63,7 +63,7 @@ function MemberPortal() {
 
         <main className="main-content px-5 space-y-5">
           <section className="welcome-section text-center p-4  ">
-            <h1 className="welcome-title font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary ">
+            <h1 className=" text-amber-50  welcome-title font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary ">
               WELCOME BACK, KIM!
             </h1>
             <p className="welcome-subtext text-xl">
