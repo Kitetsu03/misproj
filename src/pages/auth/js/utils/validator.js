@@ -17,4 +17,4 @@ const validateAll = (values = {}, patterns = []) => {
   return errorMessages;
 };
 
-export { validateAll };
+export default validateAll;

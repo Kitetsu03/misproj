@@ -1,11 +1,12 @@
 import { User } from "../models/User.js";
 import { data } from "../../../../data/users_data.js";
 
-const Authenticate = ({ username, password } = {}) => {
+const Authenticate = ({ cleanEmail, cleanPassword }) => {
   let authUser = null;
 
   data.forEach((user) => {
-    if (user.username === username && user.password === password) {
+    if (user.email == cleanEmail && user.password == cleanPassword) {
+      console.log("User authenticated successfully:", user.role);
       authUser = new User(user);
       return;
     }

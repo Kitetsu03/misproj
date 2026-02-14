@@ -1,12 +1,11 @@
 import { loginPatterns } from "../auth/js/utils/patterns.js";
-import { validateAll } from "../auth/js/utils/validator.js";
+import validateAll from "../auth/js/utils/validator.js";
 import {
   checkSession,
   startSession,
   getCurrentUser,
 } from "../auth/js/module/Session.js";
 import { Authenticate } from "../auth/js/module/Authentication.js";
-import { data } from "../../data/users_data.js";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -47,31 +46,37 @@ function LogForm({ currentSession, setLoaderVisible }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitting form...", email, password);
     const formData = { email, password };
     const validated = validateAll(formData, loginPatterns);
 
     if (validated.length > 0) {
       setErrors(validated);
-      console.log(validated.join("\n"));
     } else {
       const cleanEmail = email.trim();
       const cleanPassword = password.trim();
-    }
 
-    let authUser = Authenticate({ email, password });
+      let authUser = Authenticate({ cleanEmail, cleanPassword });
 
-    if (authUser && authUser !== null) {
-      authUser.isRemembered = isRemember;
-      authUser.password = null;
-      console.log("Authenticated Successfully", "success");
-      startSession(authUser);
-      console.log(authUser);
-      setTimeout(() => {
-        navigate("/admin");
-      }, 1500);
-    } else {
-      console.log("Invalid email or password. Please try again.");
+      if (authUser && authUser !== null) {
+        authUser.password = null;
+        console.log("Authenticated Successfully", "success");
+        startSession(authUser);
+        console.log(authUser);
+        setTimeout(() => {
+          if (authUser.role === undefined || authUser.role === null) {
+            alert("Unknown user role. Please contact support.");
+            navigate("/");
+          } else if (authUser.role === "admin") {
+            navigate("/admin");
+          } else if (authUser.role === "user") {
+            navigate("/user");
+          } else if (authUser.role === "member") {
+            navigate("/member");
+          }
+        }, 1500);
+      } else {
+        console.log("Invalid email or password. Please try again.");
+      }
     }
   };
 
@@ -98,7 +103,7 @@ function LogForm({ currentSession, setLoaderVisible }) {
                 name="email"
                 type="email"
                 placeholder=" "
-                required={false}
+                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -111,26 +116,25 @@ function LogForm({ currentSession, setLoaderVisible }) {
                 name="password"
                 type="password"
                 placeholder=" "
-                required={false}
+                required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <label htmlFor="password">Password</label>
             </div>
             <div className="card-footer flex-col justify-center items-center">
-              <Link to="/admin">
-                <button
-                  className="submit cursor-pointer bg-blue-500 text-white p-1 mt-2"
-                  name="submit"
-                  type="submit"
-                >
-                  Login Account
-                </button>
-              </Link>
+              <button
+                className="submit cursor-pointer bg-blue-500 text-white p-1 mt-2"
+                name="submit"
+                type="submit"
+              >
+                Login Account
+              </button>
+
               <Link to="/register">
-                <a className="cursor-pointer login flex justify-center items-center mt-4 hover:text-cyan-800 opacity-70">
+                <button className="cursor-pointer login flex justify-center items-center mt-4 hover:text-cyan-800 opacity-70">
                   Create an account?
-                </a>
+                </button>
               </Link>
             </div>
           </form>

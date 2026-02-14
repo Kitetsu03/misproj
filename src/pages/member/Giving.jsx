@@ -70,7 +70,9 @@ function Giving() {
 
         <main className="main-content px-5 space-y-5">
           <section className="welcome-section text-center p-4 ">
-            <h1 className="welcome-title font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary ">MY GIVING</h1>
+            <h1 className="welcome-title text-amber-50 font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary ">
+              MY GIVING
+            </h1>
             <p className="welcome-subtext text-xl">
               View your giving summary and fund allocation.
             </p>
@@ -79,7 +81,9 @@ function Giving() {
           <section className="cards-container flex gap-4">
             <section className="w-full flex justify-center px-5 py-5">
               <div className="w-full max-w-4xl bg-white rounded-2xl shadow-lg border border-gray-300 p-10">
-                <h2 className="font-extrabold text-center font-secondary">2025 GIVING SUMMARY</h2>
+                <h2 className="font-extrabold text-center font-secondary">
+                  2025 GIVING SUMMARY
+                </h2>
 
                 <p className="text-5xl font-extrabold text-center mt-5">
                   ₱ 1,200.00

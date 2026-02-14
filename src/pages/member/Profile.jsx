@@ -8,7 +8,6 @@ import { HiOutlineInformationCircle } from "react-icons/hi2";
 import { MdLocationPin } from "react-icons/md";
 import { MdContactEmergency } from "react-icons/md";
 
-
 function Profile() {
   const navitem = [
     {
@@ -44,7 +43,7 @@ function Profile() {
 
         <main className="main-content px-5 space-y-5 sm:px-10 md:px-20 lg:px-40">
           <section className="welcome-section text-center p-4 ">
-            <h1 className="welcome-title font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary">
+            <h1 className="welcome-title text-amber-50 font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary">
               MY PROFILE
             </h1>
             <p className="welcome-subtext text-xl">
