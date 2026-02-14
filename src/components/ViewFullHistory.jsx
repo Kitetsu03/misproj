@@ -1,0 +1,3 @@
+export function ViewFullHistory() {
+  return <></>;
+}

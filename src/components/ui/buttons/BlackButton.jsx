@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function BlackButton({ val, exc, comp }) {
+export function BlackButton({ val, exc, comp, icon }) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => setOpen(true);
@@ -12,6 +12,7 @@ export function BlackButton({ val, exc, comp }) {
         className="bg-black text-white px-5 py-2 rounded-lg shadow-md hover:bg-gray-800 font-secondary"
         onClick={handleClick}
       >
+        {icon}
         {val}
       </button>
 
