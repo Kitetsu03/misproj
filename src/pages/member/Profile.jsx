@@ -7,6 +7,7 @@ import { FaCamera } from "react-icons/fa";
 import { HiOutlineInformationCircle } from "react-icons/hi2";
 import { MdLocationPin } from "react-icons/md";
 import { MdContactEmergency } from "react-icons/md";
+import { EditButton } from "../../components/ui/buttons/EditButton";
 
 function Profile() {
   const navitem = [
@@ -76,6 +77,9 @@ function Profile() {
           </section>
 
           <section className="section-card bg-white w-full p-4 shadow rounded-xl">
+            <div className="flex justify-end mt-4">
+              <EditButton />
+            </div>
             <h2 className="font-bold flex items-center gap-3">
               <HiOutlineInformationCircle />
               Personal Information
@@ -125,6 +129,9 @@ function Profile() {
           </section>
 
           <section className="section-card bg-white w-full p-4 shadow rounded-xl">
+            <div className="flex justify-end mt-4">
+              <EditButton />
+            </div>
             <h2 className="font-bold flex items-center gap-3">
               <MdLocationPin />
               Address Information
@@ -166,6 +173,9 @@ function Profile() {
           </section>
 
           <section className="section-card bg-white w-full p-4 shadow rounded-xl">
+            <div className="flex justify-end mt-4">
+              <EditButton />
+            </div>
             <h2 className="font-bold flex items-center gap-3">
               <MdContactEmergency />
               Emergency Contact
