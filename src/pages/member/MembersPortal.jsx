@@ -63,7 +63,7 @@ function MemberPortal() {
 
         <main className="main-content px-5 space-y-5">
           <section className="welcome-section text-center p-4  ">
-            <h1 className=" text-amber-50  welcome-title font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary ">
+            <h1 className=" welcome-title font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary ">
               WELCOME BACK, KIM!
             </h1>
             <p className="welcome-subtext text-xl">
@@ -73,7 +73,10 @@ function MemberPortal() {
 
           <div className="font-secondary space-y-5">
             <section className="cards-container flex gap-4 sm:w-full md:w-3/4 mx-auto">
-              <div id="total-giving-card" className="flex-5 bg-white w-full p-4 shadow rounded-xl">
+              <div
+                id="total-giving-card"
+                className="flex-5 bg-white w-full p-4 shadow rounded-xl"
+              >
                 <div className="flex items-center gap-4 sm:justify-center">
                   <FaRegHeart className="text-3xl" />
                   <div className="flex flex-col">
@@ -143,13 +146,14 @@ function MemberPortal() {
                   </div>
                 </div>
 
-              <div className="flex justify-center ">
-                <BlackButton
-                  val="View Full History"
-                  exc="Lagyan nyo"
-                  icon={<TbListDetails />}
-                  comp={<ViewFullHistory />}
-                />
+                <div className="flex justify-center ">
+                  <BlackButton
+                    val="View Full History"
+                    exc="Lagyan nyo"
+                    icon={<TbListDetails />}
+                    comp={<ViewFullHistory />}
+                  />
+                </div>
               </div>
             </section>
 
@@ -195,13 +199,11 @@ function MemberPortal() {
               </div>
 
               <div className="flex justify-center mt-4">
-                <button className="btn flex items-center gap-3 px-10 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition">
                 <BlackButton
                   val="View All Anouncement"
                   exc="Lagyan nyo"
                   comp={<ViewFullAttendace />}
                 />
-                </button>
               </div>
             </section>
 
@@ -213,27 +215,27 @@ function MemberPortal() {
                     <strong>Church Announcements</strong>
                   </div>
 
-              <div className="announcement-text space-y-2 mb-4">
-                <p className="announcement-title font-semibold text-lg">
-                  Prayer Meeting Tonight
-                </p>
-                <p className="announcement-desc text-gray-700">
-                  Join us at 7 PM in the sanctuary for our weekly prayer
-                  gathering.
-                </p>
-              </div>
-
-              <div className="flex justify-center mt-4">
-                <BlackButton
-                  val="View All Anouncement"
-                  exc="Lagyan nyo"
-                  comp={<ViewAllAnouncement />}
-                />
+                  <div className="announcement-text space-y-2 mb-4">
+                    <h3 className="announcement-title font-semibold text-lg">
+                      Prayer Meeting Tonight
+                    </h3>
+                    <p className="announcement-desc text-gray-700">
+                      Join us at 7 PM in the sanctuary for our weekly prayer
+                      gathering.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex justify-center mt-4">
+                  <BlackButton
+                    val="View All Anouncement"
+                    exc="Lagyan nyo"
+                    comp={<ViewAllAnouncement />}
+                  />
+                </div>
               </div>
             </section>
             <div className=""></div>
           </div>
-
         </main>
       </div>
     </>
