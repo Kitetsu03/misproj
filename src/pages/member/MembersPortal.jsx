@@ -71,10 +71,7 @@ function MemberPortal() {
 
           <div className="font-secondary space-y-5">
             <section className="cards-container flex gap-4 sm:w-full md:w-3/4 mx-auto">
-              <div
-                id="total-giving-card"
-                className="flex-5 bg-white w-full p-4 shadow rounded-xl"
-              >
+              <div id="total-giving-card" className="flex-5 bg-white w-full p-4 shadow rounded-xl">
                 <div className="flex items-center gap-4 sm:justify-center">
                   <FaRegHeart className="text-3xl" />
                   <div className="flex flex-col">
@@ -137,13 +134,11 @@ function MemberPortal() {
                 </div>
               </div>
 
-              <div className="flex justify-center ">
-                <BlackButton
-                  val="View Full History"
-                  exc="Lagyan nyo"
-                  icon={<TbListDetails />}
-                  comp={<ViewFullHistory />}
-                />
+              <div className="flex justify-center">
+                <button className="btn flex items-center gap-3 px-10 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition">
+                  <TbListDetails />
+                  View Full History
+                </button>
               </div>
             </section>
 
@@ -189,11 +184,13 @@ function MemberPortal() {
               </div>
 
               <div className="flex justify-center mt-4">
+                <button className="btn flex items-center gap-3 px-10 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition">
                 <BlackButton
                   val="View All Anouncement"
                   exc="Lagyan nyo"
                   comp={<ViewFullAttendace />}
                 />
+                </button>
               </div>
             </section>
 
@@ -214,14 +211,17 @@ function MemberPortal() {
               </div>
 
               <div className="flex justify-center mt-4">
-                <BlackButton
+                <button className="btn flex items-center gap-3 px-10 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition">
+               <BlackButton
                   val="View All Anouncement"
-                  exc="Lagyan nyo"
+                  exc="OK"
                   comp={<ViewAllAnouncement />}
                 />
+                </button>
               </div>
             </section>
           </div>
+
         </main>
       </div>
     </>

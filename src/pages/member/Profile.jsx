@@ -8,6 +8,7 @@ import { HiOutlineInformationCircle } from "react-icons/hi2";
 import { MdLocationPin } from "react-icons/md";
 import { MdContactEmergency } from "react-icons/md";
 
+
 function Profile() {
   const navitem = [{
     id: 1,
