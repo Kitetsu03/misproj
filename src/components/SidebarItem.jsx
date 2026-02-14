@@ -1,16 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-
-import {
-  House,
-  Package,
-  ArrowBigDown,
-  ArrowBigUp,
-  ChartColumnBig,
-  LogOut,
-} from "lucide-react";
+// const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const SidebarItem = ({ isOpen, activeComponent, setActiveComponent }) => {
   //   const [activeItem, setActiveItem] = useState("Dashboard");
@@ -24,23 +15,23 @@ const SidebarItem = ({ isOpen, activeComponent, setActiveComponent }) => {
     { id: "Reports", icon: ChartColumnBig, label: "Reports" },
   ];
 
-  const handleLogOut = async () => {
-    try {
-      localStorage.removeItem("token");
-      await axios.post(
-        `${BASE_URL}/api/v1/logout`,
-        {},
-        {
-          withCredentials: true,
-        }
-      );
+  // const handleLogOut = async () => {
+  //   try {
+  //     localStorage.removeItem("token");
+  //     await axios.post(
+  //       `${BASE_URL}/api/v1/logout`,
+  //       {},
+  //       {
+  //         withCredentials: true,
+  //       }
+  //     );
 
-      window.location.reload();
-    } catch (error) {
-      console.error("Logout failed:", error);
-      navigate("/login", { replace: true });
-    }
-  };
+  //     window.location.reload();
+  //   } catch (error) {
+  //     console.error("Logout failed:", error);
+  //     navigate("/login", { replace: true });
+  //   }
+  // };
 
   return (
     <>
