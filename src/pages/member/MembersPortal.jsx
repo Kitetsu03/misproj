@@ -13,6 +13,8 @@ import { BlackButton } from "../../components/ui/buttons/BlackButton";
 import { ViewAllAnouncement } from "../../components/ViewAllAnouncement";
 import { ViewFullAttendace } from "../../components/ViewFullAttendance";
 import { ViewFullHistory } from "../../components/ViewFullHistory";
+import { AddToCalendar } from "../../components/ui/tabs/AddToCalendar";
+import { ViewGroupDatails } from "../../components/ui/tabs/ViewGroupDatails";
 
 function MemberPortal() {
   const navitem = [
@@ -26,13 +28,13 @@ function MemberPortal() {
       id: 2,
       icon: <MdPerson />,
       text: "Profile",
-      path: "/profile",
+      path: "/member/profile",
     },
     {
       id: 3,
       icon: <FaWallet />,
       text: "Giving",
-      path: "/giving",
+      path: "/member/giving",
     },
   ];
 
@@ -61,7 +63,7 @@ function MemberPortal() {
 
         <main className="main-content px-5 space-y-5">
           <section className="welcome-section text-center p-4  ">
-            <h1 className="welcome-title font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary ">
+            <h1 className=" text-amber-50  welcome-title font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary ">
               WELCOME BACK, KIM!
             </h1>
             <p className="welcome-subtext text-xl">
@@ -91,54 +93,63 @@ function MemberPortal() {
               </div>
 
               <div className="text-block space-y-2 mb-4">
-                <p className="meeting-group font-semibold text-lg">
+                <h3 className="meeting-group font-semibold text-lg">
                   The Smith’s Family Lifegroup
-                </p>
+                </h3>
                 <p>Thursday, October 12 at 7:00 AM</p>
                 <i>Topic: "Walking in Faith - Hebrews 11"</i>
               </div>
 
               <div className="flex flex-col items-center gap-3 mt-2">
-                <button className="btn flex items-center gap-3 px-10 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition">
-                  <FaCalendar />
-                  Add To Calendar
-                </button>
+                <BlackButton
+                  val="Add to Calendar"
+                  exc="Lagyan nyo"
+                  icon={<FaCalendar />}
+                  comp={<AddToCalendar />}
+                />
 
-                <button className="btn flex items-center gap-3 px-10 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition">
-                  <TbListDetails />
-                  View Group Details
-                </button>
+                <BlackButton
+                  val="View Group Details"
+                  exc="Lagyan nyo"
+                  icon={<TbListDetails />}
+                  comp={<ViewGroupDatails />}
+                />
               </div>
             </section>
 
             <section className="section-card bg-white w-full p-4 shadow rounded-xl">
-              <div className="section-title flex items-center gap-4 mb-4">
-                <LuPhilippinePeso />
-                <strong>Recent Giving</strong>
-              </div>
+              <div className="flex flex-col h-full justify-between">
+                <div className="">
+                  <div className="section-title flex items-center gap-4 mb-4">
+                    <LuPhilippinePeso />
+                    <strong>Recent Giving</strong>
+                  </div>
 
-              <div className="giving-list space-y-3 mb-4">
-                <div className="give-row flex justify-between items-center">
-                  <span>October 1 — Tithes</span>
-                  <span className="font-semibold">₱150.00</span>
+                  <div className="giving-list space-y-3 mb-4">
+                    <div className="give-row flex justify-between items-center">
+                      <span>October 1 — Tithes</span>
+                      <span className="font-semibold">₱150.00</span>
+                    </div>
+
+                    <div className="give-row flex justify-between items-center">
+                      <span>September 24 — Missions</span>
+                      <span className="font-semibold">₱230.00</span>
+                    </div>
+
+                    <div className="give-row flex justify-between items-center">
+                      <span>September 17 — Pledges</span>
+                      <span className="font-semibold">₱150.00</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="give-row flex justify-between items-center">
-                  <span>September 24 — Missions</span>
-                  <span className="font-semibold">₱230.00</span>
-                </div>
-
-                <div className="give-row flex justify-between items-center">
-                  <span>September 17 — Pledges</span>
-                  <span className="font-semibold">₱150.00</span>
-                </div>
-              </div>
-
-              <div className="flex justify-center">
-                <button className="btn flex items-center gap-3 px-10 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition">
-                  <TbListDetails />
-                  View Full History
-                </button>
+              <div className="flex justify-center ">
+                <BlackButton
+                  val="View Full History"
+                  exc="Lagyan nyo"
+                  icon={<TbListDetails />}
+                  comp={<ViewFullHistory />}
+                />
               </div>
             </section>
 
@@ -195,10 +206,12 @@ function MemberPortal() {
             </section>
 
             <section className="section-card bg-white w-full p-4 shadow rounded-xl">
-              <div className="section-title flex items-center gap-4 mb-4">
-                <MdAnnouncement />
-                <strong>Church Announcements</strong>
-              </div>
+              <div className="flex flex-col h-full justify-between">
+                <div>
+                  <div className="section-title flex items-center gap-4 mb-4">
+                    <MdAnnouncement />
+                    <strong>Church Announcements</strong>
+                  </div>
 
               <div className="announcement-text space-y-2 mb-4">
                 <p className="announcement-title font-semibold text-lg">
@@ -211,15 +224,14 @@ function MemberPortal() {
               </div>
 
               <div className="flex justify-center mt-4">
-                <button className="btn flex items-center gap-3 px-10 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition">
-               <BlackButton
+                <BlackButton
                   val="View All Anouncement"
-                  exc="OK"
+                  exc="Lagyan nyo"
                   comp={<ViewAllAnouncement />}
                 />
-                </button>
               </div>
             </section>
+            <div className=""></div>
           </div>
 
         </main>

@@ -12,8 +12,9 @@ export function BlackButton({ val, exc, comp, icon }) {
         className="bg-black text-white px-5 py-2 rounded-lg shadow-md hover:bg-gray-800 font-secondary"
         onClick={handleClick}
       >
-        {icon}
-        {val}
+        <div className="flex items-center gap-2">
+          {icon} {val}
+        </div>
       </button>
 
       {open && (
