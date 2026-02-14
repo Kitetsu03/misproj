@@ -9,31 +9,30 @@ import { MdLocationPin } from "react-icons/md";
 import { MdContactEmergency } from "react-icons/md";
 
 function Profile() {
-  const navitem = [{
-    id: 1,
-    icon: <FaHome />,
-    text: "Home ",
-    path: "/member"
-  },
-  {
-    id: 2,
-    icon: <MdPerson />,
-    text: "Profile",
-    path: "/profile"
-  },
-  {
-    id: 3,
-    icon: <FaWallet />,
-    text: "Giving",
-    path: "/giving"
-  }
+  const navitem = [
+    {
+      id: 1,
+      icon: <FaHome />,
+      text: "Home ",
+      path: "/member",
+    },
+    {
+      id: 2,
+      icon: <MdPerson />,
+      text: "Profile",
+      path: "/member/profile",
+    },
+    {
+      id: 3,
+      icon: <FaWallet />,
+      text: "Giving",
+      path: "/member/giving",
+    },
   ];
 
   return (
     <>
-
-      <div className="min-h-screen pb-20">
-
+      <div className="min-h-screen pb-20 ">
         <div className="card w-full md:w-full pt-5">
           <div className="card-header">
             <div className="my-logo justify-center"></div>
@@ -42,11 +41,12 @@ function Profile() {
           </div>
         </div>
 
-
-        <main className="main-content px-5 space-y-5">
+        <main className="main-content px-5 space-y-5 sm:px-10 md:px-20 lg:px-40">
           <section className="welcome-section text-center p-4 ">
             <h1 className="welcome-title font-bold text-3xl p-4">MY PROFILE</h1>
-            <p className="welcome-subtext text-xl">Update your information and family details.</p>
+            <p className="welcome-subtext text-xl">
+              Update your information and family details.
+            </p>
           </section>
 
           <section className="section-card bg-white w-full p-4 shadow rounded-xl">
@@ -61,7 +61,11 @@ function Profile() {
                   <label className="cursor-pointer flex items-center gap-3 bg-gray-700 text-white px-10 py-5 rounded-xl hover:bg-gray-800 transition shadow-md">
                     <FaCamera />
                     Change Photo
-                    <input type="file" className="hidden" accept="image/png, image/jpeg" />
+                    <input
+                      type="file"
+                      className="hidden"
+                      accept="image/png, image/jpeg"
+                    />
                   </label>
                   <p className="text-sm text-gray-600">JPG or PNG, max 5MB</p>
                 </div>
@@ -69,142 +73,135 @@ function Profile() {
             </div>
           </section>
 
-
           <section className="section-card bg-white w-full p-4 shadow rounded-xl">
-              <h2 className="font-bold flex items-center gap-3">
-                <HiOutlineInformationCircle />
-                Personal Information</h2>
+            <h2 className="font-bold flex items-center gap-3">
+              <HiOutlineInformationCircle />
+              Personal Information
+            </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="font-semibold">First Name</label>
-                  <input
-                    type="text"
-                    className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
-                  />
-                </div>
-
-                <div>
-                  <label className="font-semibold">Last Name</label>
-                  <input
-                    type="text"
-                    className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
-                  />
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <label className="font-semibold">Email Address</label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="font-semibold">First Name</label>
                 <input
-                  type="email"
+                  type="text"
                   className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
                 />
               </div>
 
-              <div className="mt-6">
+              <div>
+                <label className="font-semibold">Last Name</label>
+                <input
+                  type="text"
+                  className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
+                />
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <label className="font-semibold">Email Address</label>
+              <input
+                type="email"
+                className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
+              />
+            </div>
+
+            <div className="mt-6">
+              <label className="font-semibold">Phone Number</label>
+              <input
+                type="text"
+                className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
+              />
+            </div>
+
+            <div className="mt-6">
+              <label className="font-semibold">Birth Date</label>
+              <input
+                type="date"
+                className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
+              />
+            </div>
+          </section>
+
+          <section className="section-card bg-white w-full p-4 shadow rounded-xl">
+            <h2 className="font-bold flex items-center gap-3">
+              <MdLocationPin />
+              Address Information
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
+              <div>
+                <label className="font-semibold">Address</label>
+                <input
+                  type="text"
+                  className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold">City</label>
+                <input
+                  type="text"
+                  className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
+                />
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <label className="font-semibold">State</label>
+              <input
+                type="email"
+                className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
+              />
+            </div>
+
+            <div className="mt-6">
+              <label className="font-semibold">Zip Code</label>
+              <input
+                type="text"
+                className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
+              />
+            </div>
+          </section>
+
+          <section className="section-card bg-white w-full p-4 shadow rounded-xl">
+            <h2 className="font-bold flex items-center gap-3">
+              <MdContactEmergency />
+              Emergency Contact
+            </h2>
+
+            <div>
+              <label className="font-semibold">Contact Name</label>
+              <input
+                type="text"
+                className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
+              <div>
+                <label className="font-semibold">Relationship</label>
+                <input
+                  type="text"
+                  className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
+                />
+              </div>
+              <div>
                 <label className="font-semibold">Phone Number</label>
                 <input
                   type="text"
                   className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
                 />
               </div>
-
-              <div className="mt-6">
-                <label className="font-semibold">Birth Date</label>
-                <input
-                  type="date"
-                  className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
-                />
-              </div>
-          </section>
-
-
-          <section className="section-card bg-white w-full p-4 shadow rounded-xl">
-
-
-              <h2 className="font-bold flex items-center gap-3">
-                <MdLocationPin />
-                Address Information</h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
-                <div>
-                  <label className="font-semibold">Address</label>
-                  <input
-                    type="text"
-                    className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
-                  />
-                </div>
-
-                <div>
-                  <label className="font-semibold">City</label>
-                  <input
-                    type="text"
-                    className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
-                  />
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <label className="font-semibold">State</label>
-                <input
-                  type="email"
-                  className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
-                />
-              </div>
-
-              <div className="mt-6">
-                <label className="font-semibold">Zip Code</label>
-                <input
-                  type="text"
-                  className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
-                />
-              </div>
-          </section>
-
-
-
-          <section className="section-card bg-white w-full p-4 shadow rounded-xl">
-
-              <h2 className="font-bold flex items-center gap-3">
-                <MdContactEmergency />
-                Emergency Contact</h2>
-
-                <div>
-                  <label className="font-semibold">Contact Name</label>
-                  <input
-                    type="text"
-                    className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
-                  />
-                </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
-                <div>
-                  <label className="font-semibold">Relationship</label>
-                  <input
-                    type="text"
-                    className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
-                  />
-                </div>
-                <div>
-                  <label className="font-semibold">Phone Number</label>
-                  <input
-                    type="text"
-                    className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
-                  />
-                  </div>
-                </div>
-            
-          </section>
-
-        <div className="flex justify-center">
-              <button className="btn flex items-center gap-3 px-20 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition">
-                Save Changes
-              </button>
             </div>
+          </section>
 
+          <div className="flex justify-center">
+            <button className="btn flex items-center gap-3 px-20 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition">
+              Save Changes
+            </button>
+          </div>
         </main>
       </div>
-
 
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-complementary border-t shadow-md">
         <div className="max-w-4xl mx-auto bg-complementary flex">

@@ -27,13 +27,13 @@ function Giving() {
       id: 2,
       icon: <MdPerson />,
       text: "Profile",
-      path: "/profile",
+      path: "/member/profile",
     },
     {
       id: 3,
       icon: <FaWallet />,
       text: "Giving",
-      path: "/giving",
+      path: "/member/giving",
     },
   ];
 
