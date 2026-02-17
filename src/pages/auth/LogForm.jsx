@@ -56,6 +56,7 @@ function LogForm({ currentSession, setLoaderVisible }) {
       const cleanPassword = password.trim();
 
       let authUser = Authenticate({ cleanEmail, cleanPassword });
+      let role = authUser.role;
 
       if (authUser && authUser !== null) {
         authUser.password = null;
@@ -63,14 +64,14 @@ function LogForm({ currentSession, setLoaderVisible }) {
         startSession(authUser);
         console.log(authUser);
         setTimeout(() => {
-          if (authUser.role === undefined || authUser.role === null) {
+          if (role === undefined || role === null) {
             alert("Unknown user role. Please contact support.");
             navigate("/");
-          } else if (authUser.role === "admin") {
+          } else if (role === "admin") {
             navigate("/admin");
-          } else if (authUser.role === "user") {
-            navigate("/user");
-          } else if (authUser.role === "member") {
+          } else if (role === "gatekeeper") {
+            navigate("/gatekeeper");
+          } else if (role === "member") {
             navigate("/member");
           }
         }, 1500);
@@ -122,7 +123,7 @@ function LogForm({ currentSession, setLoaderVisible }) {
               />
               <label htmlFor="password">Password</label>
             </div>
-            <div className="card-footer flex-col justify-center items-center">
+            <div className="card-footer flex flex-col justify-center items-center">
               <button
                 className="submit cursor-pointer bg-blue-500 text-white p-1 mt-2"
                 name="submit"
@@ -132,7 +133,7 @@ function LogForm({ currentSession, setLoaderVisible }) {
               </button>
 
               <Link to="/register">
-                <button className="cursor-pointer login flex justify-center items-center mt-4 hover:text-cyan-800 opacity-70">
+                <button className="cursor-pointer mt-4 hover:text-cyan-800 opacity-70">
                   Create an account?
                 </button>
               </Link>

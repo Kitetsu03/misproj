@@ -3,16 +3,17 @@ import { data } from "../../../../data/users_data.js";
 
 const Authenticate = ({ cleanEmail, cleanPassword }) => {
   let authUser = null;
+  let role = null;
 
   data.forEach((user) => {
     if (user.email == cleanEmail && user.password == cleanPassword) {
-      console.log("User authenticated successfully:", user.role);
+      role = user.role;
       authUser = new User(user);
       return;
     }
   });
 
-  return authUser;
+  return { user: authUser, role: role };
 };
 
 export { Authenticate };

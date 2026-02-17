@@ -6,7 +6,7 @@ export const data = [
     role: "admin",
   },
   {
-    email: "user@gmail.com",
+    email: "gatekeeper@gmail.com",
     password: "P@ssw0rd",
     fullName: "Marc Narvel Ortegoza",
     role: "gatekeeper",
