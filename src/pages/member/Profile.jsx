@@ -192,10 +192,15 @@ function Profile() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
               <div>
                 <label className="font-semibold">Relationship</label>
-                <input
-                  type="text"
-                  className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
-                />
+                <select className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300">
+                  <option value="">Select relationship</option>
+                  <option value="spouse">Spouse</o  ption>
+                  <option value="parent">Parent</option>
+                  <option value="sibling">Sibling</option>
+                  <option value="child">Child</option>
+                  <option value="grandparent">Grandparent</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
               <div>
                 <label className="font-semibold">Phone Number</label>
