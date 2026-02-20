@@ -200,8 +200,9 @@ function MemberPortal() {
 
               <div className="flex justify-center mt-4">
                 <BlackButton
-                  val="View All Anouncement"
+                  val="View Full Attendance"
                   exc="Lagyan nyo"
+                  icon={<TbListDetails />}
                   comp={<ViewFullAttendace />}
                 />
               </div>
@@ -229,6 +230,7 @@ function MemberPortal() {
                   <BlackButton
                     val="View All Anouncement"
                     exc="Lagyan nyo"
+                    icon={<TbListDetails />}
                     comp={<ViewAllAnouncement />}
                   />
                 </div>
