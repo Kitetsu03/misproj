@@ -113,10 +113,30 @@ function Profile() {
 
             <div className="mt-6">
               <label className="font-semibold">Phone Number</label>
-              <input
-                type="text"
-                className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
-              />
+              <div className="flex gap-3">
+                <select className="w-32 mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300">
+                  <option value="+1">+1 (US/CA)</option>
+                  <option value="+44">+44 (UK)</option>
+                  <option value="+63">+63 (PH)</option>
+                  <option value="+91">+91 (IN)</option>
+                  <option value="+60">+60 (MY)</option>
+                  <option value="+62">+62 (ID)</option>
+                  <option value="+65">+65 (SG)</option>
+                  <option value="+66">+66 (TH)</option>
+                  <option value="+84">+84 (VN)</option>
+                  <option value="+81">+81 (JP)</option>
+                  <option value="+86">+86 (CN)</option>
+                  <option value="+82">+82 (KR)</option>
+                  <option value="+61">+61 (AU)</option>
+                  <option value="+64">+64 (NZ)</option>
+                  <option value="+27">+27 (ZA)</option>
+                </select>
+                <input
+                  type="text"
+                  placeholder="9123456789"
+                  className="flex-1 mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
+                />
+              </div>
             </div>
 
             <div className="mt-6">
@@ -192,17 +212,42 @@ function Profile() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
               <div>
                 <label className="font-semibold">Relationship</label>
-                <input
-                  type="text"
-                  className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
-                />
+                <select className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300">
+                  <option value="">Select relationship</option>
+                  <option value="spouse">Spouse</option>
+                  <option value="parent">Parent</option>
+                  <option value="sibling">Sibling</option>
+                  <option value="child">Child</option>
+                  <option value="grandparent">Grandparent</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
               <div>
                 <label className="font-semibold">Phone Number</label>
-                <input
-                  type="text"
-                  className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
-                />
+                <div className="flex gap-3">
+                  <select className="w-32 mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300">
+                    <option value="+1">+1 (US/CA)</option>
+                    <option value="+44">+44 (UK)</option>
+                    <option value="+63">+63 (PH)</option>
+                    <option value="+91">+91 (IN)</option>
+                    <option value="+60">+60 (MY)</option>
+                    <option value="+62">+62 (ID)</option>
+                    <option value="+65">+65 (SG)</option>
+                    <option value="+66">+66 (TH)</option>
+                    <option value="+84">+84 (VN)</option>
+                    <option value="+81">+81 (JP)</option>
+                    <option value="+86">+86 (CN)</option>
+                    <option value="+82">+82 (KR)</option>
+                    <option value="+61">+61 (AU)</option>
+                    <option value="+64">+64 (NZ)</option>
+                    <option value="+27">+27 (ZA)</option>
+                  </select>
+                  <input
+                    type="text"
+                    placeholder="9123456789"
+                    className="flex-1 mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
+                  />
+                </div>
               </div>
             </div>
           </section>
