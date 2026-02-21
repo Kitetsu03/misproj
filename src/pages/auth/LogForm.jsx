@@ -8,6 +8,8 @@ import {
 import { Authenticate } from "../auth/js/module/Authentication.js";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 function LogForm({ currentSession, setLoaderVisible }) {
   const navigate = useNavigate();
@@ -15,6 +17,10 @@ function LogForm({ currentSession, setLoaderVisible }) {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [isRemember, setIsRemember] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+
   function SessionGate() {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -51,6 +57,10 @@ function LogForm({ currentSession, setLoaderVisible }) {
 
     if (validated.length > 0) {
       setErrors(validated);
+      setSnackbarMessage(validated.join("\n"));
+      setSnackbarSeverity("warning");
+      setOpenSnackbar(true);
+      console.log(validated);
     } else {
       const cleanEmail = email.trim();
       const cleanPassword = password.trim();
@@ -83,15 +93,33 @@ function LogForm({ currentSession, setLoaderVisible }) {
 
   return (
     <>
-      <div className="container absolute top-[50%] left-[50%] -translate-[50%] w-100 md:w-120 xl:w-150 flex justify-center content-center">
+      <div className="h-auto">
+        <Snackbar
+          open={openSnackbar}
+          autoHideDuration={3000}
+          onClose={() => setOpenSnackbar(false)}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert
+            onClose={() => setOpenSnackbar(false)}
+            severity={snackbarSeverity}
+            variant="filled"
+          >
+            {snackbarMessage}
+          </Alert>
+        </Snackbar>
+      </div>
+      <div className="container h-full w-full absolute top-[50%] left-[50%] -translate-[50%] md:h-fit md:w-120 xl:w-150 flex justify-center content-center">
         <div className="card rounded-2xl w-[95dvw] md:w-full pt-5">
           <div className="card-header">
             <div className="my-logo justify-center"></div>
+
             <h2 className="cursor-default text-center pb-2 text-[min(5vw,20px)] md:text-[min(5vw,30px)]">
               LOGIN ACCOUNT
             </h2>
             <hr className="p-1 border-white bg-white" />
           </div>
+
           <form
             onSubmit={handleSubmit}
             method="POST"
@@ -104,7 +132,6 @@ function LogForm({ currentSession, setLoaderVisible }) {
                 name="email"
                 type="email"
                 placeholder=" "
-                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -117,7 +144,6 @@ function LogForm({ currentSession, setLoaderVisible }) {
                 name="password"
                 type="password"
                 placeholder=" "
-                required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -131,12 +157,6 @@ function LogForm({ currentSession, setLoaderVisible }) {
               >
                 Login Account
               </button>
-
-              <Link to="/register">
-                <button className="cursor-pointer mt-4 hover:text-cyan-800 opacity-70">
-                  Create an account?
-                </button>
-              </Link>
             </div>
           </form>
         </div>
