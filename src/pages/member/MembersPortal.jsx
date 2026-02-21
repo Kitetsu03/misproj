@@ -106,14 +106,14 @@ function MemberPortal() {
               <div className="flex flex-col items-center gap-3 mt-2">
                 <BlackButton
                   val="Add to Calendar"
-                  exc="Lagyan nyo"
+                  exc=""
                   icon={<FaCalendar />}
                   comp={<AddToCalendar />}
                 />
 
                 <BlackButton
                   val="View Group Details"
-                  exc="Lagyan nyo"
+                  exc=""
                   icon={<TbListDetails />}
                   comp={<ViewGroupDatails />}
                 />
@@ -149,7 +149,7 @@ function MemberPortal() {
                 <div className="flex justify-center ">
                   <BlackButton
                     val="View Full History"
-                    exc="Lagyan nyo"
+                    exc=""
                     icon={<TbListDetails />}
                     comp={<ViewFullHistory />}
                   />
@@ -201,7 +201,7 @@ function MemberPortal() {
               <div className="flex justify-center mt-4">
                 <BlackButton
                   val="View Full Attendance"
-                  exc="Lagyan nyo"
+                  exc=""
                   icon={<TbListDetails />}
                   comp={<ViewFullAttendace />}
                 />
