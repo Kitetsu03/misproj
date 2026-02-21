@@ -70,18 +70,31 @@ function LogForm({ currentSession, setLoaderVisible }) {
 
       if (authUser && authUser !== null) {
         authUser.password = null;
-        console.log("Authenticated Successfully", "success");
+        setSnackbarMessage("Logged-in Successfully!");
+        setSnackbarSeverity("success");
+        setOpenSnackbar(true);
         startSession(authUser);
         console.log(authUser);
         setTimeout(() => {
           if (role === undefined || role === null) {
-            alert("Unknown user role. Please contact support.");
+            setSnackbarMessage("Unknown user role. Please contact support.");
+            setSnackbarSeverity("error");
+            setOpenSnackbar(true);
             navigate("/");
           } else if (role === "admin") {
+            setSnackbarMessage("Welcome to Dashboard Admin!");
+            setSnackbarSeverity("success");
+            setOpenSnackbar(true);
             navigate("/admin");
           } else if (role === "gatekeeper") {
+            setSnackbarMessage("Welcome to Dashboard Gatekeeper!");
+            setSnackbarSeverity("success");
+            setOpenSnackbar(true);
             navigate("/gatekeeper");
           } else if (role === "member") {
+            setSnackbarMessage("Welcome to members portal!");
+            setSnackbarSeverity("success");
+            setOpenSnackbar(true);
             navigate("/member");
           }
         }, 1500);
