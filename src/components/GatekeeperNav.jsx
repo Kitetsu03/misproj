@@ -32,16 +32,16 @@ function GatekeeperNav() {
               </li>
               <hr className="opacity-30" />
               <li className="p-4 text-[1.2rem] hover:bg-white/20">
-                <Link to="/membersdatagate">Members Data</Link>
+                <Link to="/gatekeeper/members">Members Data</Link>
               </li>
               <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ">
-                <Link to="/attendance">Attendance</Link>
+                <Link to="/gatekeeper/attendance">Attendance</Link>
               </li>
               <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ">
-                <Link to="/finance">Finance</Link>
+                <Link to="/gatekeeper/finance">Finance</Link>
               </li>
               <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20">
-                <Link to="/reportsgate">Reports</Link>
+                <Link to="/gatekeeper/reports">Reports</Link>
               </li>
               <li className="p-4 pb-5 text-[1.2rem] absolute bottom-0 hover:bg-white/20 w-full border-t-white/20 border-t-2">
                 <Link to="/">Logout</Link>
