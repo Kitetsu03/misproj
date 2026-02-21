@@ -159,7 +159,7 @@ function Profile() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
               <div>
-                <label className="font-semibold">Address</label>
+                <label className="font-semibold">City / Municipality</label>
                 <input
                   type="text"
                   className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
@@ -167,7 +167,7 @@ function Profile() {
               </div>
 
               <div>
-                <label className="font-semibold">City</label>
+                <label className="font-semibold">Province</label>
                 <input
                   type="text"
                   className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
@@ -176,7 +176,7 @@ function Profile() {
             </div>
 
             <div className="mt-6">
-              <label className="font-semibold">State</label>
+              <label className="font-semibold">Barangay</label>
               <input
                 type="email"
                 className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
@@ -184,7 +184,15 @@ function Profile() {
             </div>
 
             <div className="mt-6">
-              <label className="font-semibold">Zip Code</label>
+              <label className="font-semibold">House No. / Street / Sitio / Purok</label>
+              <input
+                type="email"
+                className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
+              />
+            </div>
+
+            <div className="mt-6">
+              <label className="font-semibold">ZIP / Postal Code</label>
               <input
                 type="text"
                 className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"
