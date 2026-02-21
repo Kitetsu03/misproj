@@ -34,8 +34,9 @@ function App() {
         {/* Gatekeeper */}
         <Route path="/gatekeeper" element={<GatekeeperDashboard />} />
         <Route path="/gatekeeper/members" element={<MembersDataGate />} />
-        <Route path="/gatekeeper/reports" element={<ReportsGate />} />
         <Route path="/gatekeeper/attendance" element={<Attendance />} />
+        <Route path="/gatekeeper/finance" element={<Finance />} />
+        <Route path="/gatekeeper/reports" element={<ReportsGate />} />
 
         {/* Member */}
         <Route path="/member" element={<MemberPortal />} />
