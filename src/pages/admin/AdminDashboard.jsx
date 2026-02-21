@@ -1,5 +1,5 @@
-// import AdminNav from "../../components/AdminNav.jsx";
-import Sidebar from "../../components/Sidebar.jsx";
+import AdminNav from "../../components/AdminNav.jsx";
+// import Sidebar from "../../components/Sidebar.jsx";
 import { SidebarItem } from "../../components/Sidebar.jsx";
 import { MdEmojiPeople } from "react-icons/md";
 import {
@@ -25,6 +25,7 @@ import { IoMdAdd } from "react-icons/io";
 import { LineChart } from "../../components/ui/charts/LineChart.jsx";
 import { DoughnutChart } from "../../components/ui/charts/DoughnutChart.jsx";
 import { BarLineChart } from "../../components/ui/charts/BarLineChart.jsx";
+import { AddNewMember } from "../../components/ui/buttons/AddNewMember.jsx";
 
 function AdminDashboard() {
   const quickActionButtons = [
@@ -32,6 +33,7 @@ function AdminDashboard() {
       id: 1,
       icon: <IoPersonAddOutline />,
       title: "Add new member",
+      comp: <AddNewMember />,
     },
     {
       id: 2,
@@ -51,22 +53,42 @@ function AdminDashboard() {
   ];
 
   const menuItems = [
-    { id: 1, text: "Dashboard", icon: <MdEmojiPeople /> },
-    { id: 2, text: "Users & Access", icon: <MdEmojiPeople /> },
-    { id: 3, text: "Members Data", icon: <MdEmojiPeople /> },
-    { id: 4, text: "Reports", icon: <MdEmojiPeople /> },
-    { id: 5, text: "Settings", icon: <MdEmojiPeople /> },
+    { id: 1, text: "Dashboard", icon: <MdEmojiPeople />, path: "/admin" },
+    {
+      id: 2,
+      text: "Users",
+      icon: <MdEmojiPeople />,
+      path: "/admin/useraccess",
+    },
+    {
+      id: 3,
+      text: "Members",
+      icon: <MdEmojiPeople />,
+      path: "/admin/members",
+    },
+    { id: 4, text: "Reports", icon: <MdEmojiPeople />, path: "/admin/reports" },
+    {
+      id: 5,
+      text: "Settings",
+      icon: <MdEmojiPeople />,
+      path: "/admin/settings",
+    },
   ];
 
   return (
     <>
       <div className="min-h-dvh grid grid-cols-[auto_1fr]">
-        {/* <AdminNav /> */}
-        <Sidebar>
+        <AdminNav />
+        {/* <Sidebar>
           {menuItems.map((item) => (
-            <SidebarItem key={item.id} text={item.text} icon={item.icon} />
+            <SidebarItem
+              key={item.id}
+              text={item.text}
+              icon={item.icon}
+              to={item.path}
+            />
           ))}
-        </Sidebar>
+        </Sidebar> */}
         <div className="body">
           <header className="p-5 font-secondary">
             <h1 className="text-2xl md:text-5xl text-white font-extrabold">

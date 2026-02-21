@@ -1,6 +1,7 @@
 import { LuChevronFirst, LuChevronLast } from "react-icons/lu";
 import { CgMoreVerticalAlt } from "react-icons/cg";
 import { useContext, createContext, useState } from "react";
+import { Link } from "react-router-dom";
 
 const SidebarContext = createContext();
 
@@ -9,7 +10,7 @@ export default function Sidebar({ children }) {
 
   return (
     <aside className="h-screen font-secondary">
-      <nav className="h-full flex flex-col bg-white/10 border-r shadow-sm">
+      <nav className="h-full flex flex-col bg-white/10 border-r border-white/90 shadow-sm">
         <div className="p-4 pb-2 flex justify-between items-center">
           <img
             src="https://img.logoipsum.com/243.svg"
@@ -20,7 +21,7 @@ export default function Sidebar({ children }) {
           />
           <button
             onClick={() => setExpanded((curr) => !curr)}
-            className="p-1.5 rounded-lg bg-white/10 hover:bg-gray-100"
+            className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20"
           >
             {expanded ? <LuChevronFirst /> : <LuChevronLast />}
           </button>
@@ -30,7 +31,7 @@ export default function Sidebar({ children }) {
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
 
-        <div className="border-t flex p-3">
+        <div className="border-t border-white/90 flex p-3">
           <img
             src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
             alt=""
@@ -42,11 +43,13 @@ export default function Sidebar({ children }) {
               overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
           `}
           >
-            <div className="leading-4">
+            <div className="leading-4 ">
               <h4 className="font-semibold">John Doe</h4>
               <span className="text-xs text-gray-600">johndoe@gmail.com</span>
             </div>
-            <CgMoreVerticalAlt size={20} />
+            <button className="p-1.5 rounded-lg bg-white/10 hover:bg-white/30">
+              <CgMoreVerticalAlt size={20} color="white" />
+            </button>
           </div>
         </div>
       </nav>
@@ -54,50 +57,52 @@ export default function Sidebar({ children }) {
   );
 }
 
-export function SidebarItem({ icon, text, active, alert }) {
+export function SidebarItem({ icon, text, active, alert, to = "/" }) {
   const { expanded } = useContext(SidebarContext);
 
   return (
-    <li
-      className={`
+    <Link to={to}>
+      <li
+        className={`
         relative flex items-center py-2 px-3 my-1
         font-medium rounded-md cursor-pointer
         transition-colors group
         ${
           active
             ? "bg-linear-to-tr from-indigo-200 to-indigo-100 text-indigo-800"
-            : "hover:bg-complementary text-black"
+            : "hover:bg-white/20 text-white"
         }
     `}
-    >
-      {icon}
-      <span
-        className={`overflow-hidden transition-all ${
-          expanded ? "w-52 ml-3" : "w-0"
-        }`}
       >
-        {text}
-      </span>
-      {alert && (
-        <div
-          className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${
-            expanded ? "" : "top-2"
+        {icon}
+        <span
+          className={`overflow-hidden transition-all ${
+            expanded ? "w-52 ml-3" : "w-0"
           }`}
-        />
-      )}
+        >
+          {text}
+        </span>
+        {alert && (
+          <div
+            className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${
+              expanded ? "" : "top-2"
+            }`}
+          />
+        )}
 
-      {!expanded && (
-        <div
-          className={`
+        {!expanded && (
+          <div
+            className={`
           absolute left-full rounded-md px-2 py-1 ml-6
           bg-indigo-100 text-indigo-800 text-sm
           invisible opacity-20 -translate-x-3 transition-all
           group-hover:visible group-hover:w-30 group-hover:opacity-100 group-hover:translate-x-0
       `}
-        >
-          {text}
-        </div>
-      )}
-    </li>
+          >
+            {text}
+          </div>
+        )}
+      </li>
+    </Link>
   );
 }
