@@ -63,7 +63,7 @@ function MemberPortal() {
 
         <main className="main-content px-5 space-y-5 sm:px-10 md:px-20 lg:px-40">
           <section className="welcome-section text-center p-4  ">
-            <h1 className=" welcome-title text-amber-50 font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary ">
+            <h1 className="welcome-title text-amber-50 font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary ">
               WELCOME BACK, MARC!
             </h1>
             <p className="welcome-subtext text-xl">
@@ -72,7 +72,7 @@ function MemberPortal() {
           </section>
 
           <div className="font-secondary space-y-5">
-            <section className="cards-container flex gap-4 sm:w-full md:w-3/4 mx-auto">
+            <section className="cards-container flex gap-4 sm:w-full md:w-3/4 mx-auto border-2 rounded-xl ">
               <div
                 id="total-giving-card"
                 className="flex-5 bg-white w-full p-4 shadow rounded-xl"
@@ -89,7 +89,7 @@ function MemberPortal() {
           </div>
 
           <div className="font-secondary space-y-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
-            <section className="section-card bg-white w-full p-4 shadow rounded-xl">
+            <section className="section-card bg-white w-full p-4 shadow rounded-xl border-2">
               <div className="section-title flex items-center gap-4 mb-3">
                 <FaCalendar />
                 <strong>Next LifeGroup Meeting</strong>
@@ -120,7 +120,7 @@ function MemberPortal() {
               </div>
             </section>
 
-            <section className="section-card bg-white w-full p-4 shadow rounded-xl">
+            <section className="section-card bg-white w-full p-4 shadow rounded-xl border-2">
               <div className="flex flex-col h-full justify-between">
                 <div className="">
                   <div className="section-title flex items-center gap-4 mb-4">
@@ -157,7 +157,7 @@ function MemberPortal() {
               </div>
             </section>
 
-            <section className="section-card bg-white w-full p-4 shadow rounded-xl">
+            <section className="section-card bg-white w-full p-4 shadow rounded-xl border-2">
               <div className="section-title flex items-center gap-4 mb-4">
                 <FaUserCheck className="text-xl" />
                 <strong>Attendance Summary</strong>
@@ -208,7 +208,7 @@ function MemberPortal() {
               </div>
             </section>
 
-            <section className="section-card bg-white w-full p-4 shadow rounded-xl">
+            <section className="section-card bg-white w-full p-4 shadow rounded-xl border-2">
               <div className="flex flex-col h-full justify-between">
                 <div>
                   <div className="section-title flex items-center gap-4 mb-4">
