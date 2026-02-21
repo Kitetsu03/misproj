@@ -41,14 +41,14 @@ export const CenteredTabs = () => {
   }
   return (
     <>
-      <div className="bg-zinc-300 w-full rounded-2xl mx-2">
+      <div className="bg-white w-full rounded-2xl mx-2">
         <Box>
           <Tabs
             value={value}
             onChange={handleChange}
             centered
             indicatorColor="primary"
-            textColor="primary"
+            textColor="bg-black"
           >
             <Tab label="Personal Info" {...a11yProps(0)} />
             <Tab label="Contact Details" {...a11yProps(1)} />
