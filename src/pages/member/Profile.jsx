@@ -52,7 +52,7 @@ function Profile() {
             </p>
           </section>
 
-          <section className="section-card bg-white w-full p-4 shadow rounded-xl">
+          <section className="section-card bg-white w-full p-4 shadow rounded-xl border-2">
             <div className="max-w-xl bg-white rounded-2xl ">
               <h2 className="font-bold flex items-center gap-3">
                 <FaUser />
@@ -76,7 +76,7 @@ function Profile() {
             </div>
           </section>
 
-          <section className="section-card bg-white w-full p-4 shadow rounded-xl">
+          <section className="section-card bg-white w-full p-4 shadow rounded-xl border-2">
             <div className="flex justify-end mt-4">
               <EditButton />
             </div>
@@ -148,7 +148,7 @@ function Profile() {
             </div>
           </section>
 
-          <section className="section-card bg-white w-full p-4 shadow rounded-xl">
+          <section className="section-card bg-white w-full p-4 shadow rounded-xl border-2">
             <div className="flex justify-end mt-4">
               <EditButton />
             </div>
@@ -200,7 +200,7 @@ function Profile() {
             </div>
           </section>
 
-          <section className="section-card bg-white w-full p-4 shadow rounded-xl">
+          <section className="section-card bg-white w-full p-4 shadow rounded-xl border-2">
             <div className="flex justify-end mt-4">
               <EditButton />
             </div>
