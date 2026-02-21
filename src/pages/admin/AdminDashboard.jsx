@@ -25,6 +25,7 @@ import { IoMdAdd } from "react-icons/io";
 import { LineChart } from "../../components/ui/charts/LineChart.jsx";
 import { DoughnutChart } from "../../components/ui/charts/DoughnutChart.jsx";
 import { BarLineChart } from "../../components/ui/charts/BarLineChart.jsx";
+import { AddNewMember } from "../../components/ui/buttons/AddNewMember.jsx";
 
 function AdminDashboard() {
   const quickActionButtons = [
@@ -32,6 +33,7 @@ function AdminDashboard() {
       id: 1,
       icon: <IoPersonAddOutline />,
       title: "Add new member",
+      comp: <AddNewMember />,
     },
     {
       id: 2,
