@@ -64,7 +64,7 @@ function MemberPortal() {
         <main className="main-content px-5 space-y-5 sm:px-10 md:px-20 lg:px-40">
           <section className="welcome-section text-center p-4  ">
             <h1 className=" welcome-title text-amber-50 font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary ">
-              WELCOME BACK, KIM!
+              WELCOME BACK, MARC!
             </h1>
             <p className="welcome-subtext text-xl">
               Here's your church dashboard.
