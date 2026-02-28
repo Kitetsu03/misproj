@@ -139,31 +139,19 @@ function AdminDashboard() {
                 <WhiteButton
                   val="Generate attendance Report"
                   exc="Add Member"
-                  icon={
-                    <>
-                      <HiOutlinePencilAlt />
-                    </>
-                  }
+                  icon={<HiOutlinePencilAlt />}
                   comp={<AddNewMember />}
                 />
                 <WhiteButton
                   val="Generate financial report"
                   exc="Add Member"
-                  icon={
-                    <>
-                      <IoMdAdd />
-                    </>
-                  }
+                  icon={<IoMdAdd />}
                   comp={<AddNewMember />}
                 />
                 <WhiteButton
                   val="Send Announcement"
                   exc="Add Member"
-                  icon={
-                    <>
-                      <RiSendPlaneFill />
-                    </>
-                  }
+                  icon={<RiSendPlaneFill />}
                   comp={<AddNewMember />}
                 />
               </div>
