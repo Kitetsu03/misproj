@@ -152,7 +152,6 @@ export const FinanceTab = () => {
                 placeholder="Select Date"
               />
             </div>
-            <BlackButton val={"Edit"} />
           </div>
 
           {/* Users Table */}
@@ -281,7 +280,6 @@ export const FinanceTab = () => {
                 placeholder="Select Date"
               />
             </div>
-            <BlackButton val={"Edit"} />
           </div>
 
           {/* Users Table */}

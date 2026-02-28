@@ -144,7 +144,6 @@ export const AttendanceTabs = () => {
                 placeholder="Select Date"
               />
             </div>
-            <BlackButton val={"Edit"} />
           </div>
 
           {/* Users Table */}
@@ -236,9 +235,9 @@ export const AttendanceTabs = () => {
         </main>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <main className="flex-1 p-1 space-y-5 font-secondary">
+        <main className="flex-1 p-1 space-y-2 font-secondary">
           {/* Search & Filter */}
-          <div className="card p-5 rounded-xl shadow-md space-y-3">
+          <div className="card p-5 rounded-xl shadow-md">
             <h2 className="font-semibold text-lg">Search & Filter</h2>
             <div className="flex gap-2 flex-col md:flex-row">
               <SearchBar
@@ -261,7 +260,6 @@ export const AttendanceTabs = () => {
                 placeholder="Select Date"
               />
             </div>
-            <BlackButton val={"Edit"} />
           </div>
 
           {/* Users Table */}
