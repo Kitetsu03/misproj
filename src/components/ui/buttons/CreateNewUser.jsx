@@ -1,6 +1,14 @@
 import { Input } from "../input/Input.jsx";
+import { data } from "../../../data/users_data.js";
 
 function CreateNewUser() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = { firstName, email, password, middleName, lastName };
+    data.push(formData);
+    console.log("New user added:", formData);
+    // Reset form fields or show success message as needed
+  };
   return (
     <div className="bg-white p-3 rounded-2xl  max-w-4xl mx-auto">
       {" "}
@@ -12,14 +20,26 @@ function CreateNewUser() {
       </header>
       {/* Form */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Input type="text" label="First Name" placeholder="Enter first name" />
 
-        <Input type="text" label="Last Name" placeholder="Enter last name" />
+        <form
+          onSubmit={handleSubmit}
+          method="POST"
+        >
+          <Input type="text" label="First Name" className="form-control"
+            name="first_name" value={firstName} placeholder="Enter first name" onChange={(e) => setFirstName(e.target.value)} />
 
-        <Input type="email" label="Email" placeholder="Enter email address" />
+          <Input type="text" label="Middle Name" className="form-control"
+            name="middle_name" value={middleName} placeholder="Enter middle name" onChange={(e) => setMiddleName(e.target.value)} />
 
-        <Input type="password" label="Password" placeholder="Password" />
+          <Input type="text" label="Last Name" className="form-control"
+            name="last_name" value={lastName} placeholder="Enter last name" onChange={(e) => setLastName(e.target.value)} />
 
+          <Input type="email" label="Email" className="form-control"
+            name="email" value={email} placeholder="Enter email address" onChange={(e) => setEmail(e.target.value)} />
+
+          <Input type="password" label="Password" className="form-control"
+            name="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+        </form>
         {/* Role */}
         <div className="md:col-span-2 space-y-1">
           <label className="font-medium">Role</label>
@@ -29,6 +49,7 @@ function CreateNewUser() {
             <option>Gatekeeper</option>
             <option>Member</option>
           </select>
+
         </div>
       </div>
     </div>

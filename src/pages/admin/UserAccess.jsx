@@ -9,44 +9,20 @@ import { useState, useMemo } from "react";
 import CreateNewUser from "../../components/ui/buttons/CreateNewUser";
 import ConfigureButton from "../../components/ui/buttons/ConfigureButton";
 import ConfigurePermission from "../../components/ConfigurePermission";
+import { data } from "../../data/users_data";
 
 function UserAccess() {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
 
-  const users = useMemo(
-    () => [
-      {
-        name: "John Smith",
-        email: "john.smith@church.org",
-        role: "Admin",
-        lastLogin: "2025-01-15",
-        color: "bg-red-500",
-      },
-      {
-        name: "Sarah Johnson",
-        email: "sarah.johnson@church.org",
-        role: "Gatekeeper",
-        lastLogin: "2025-01-15",
-        color: "bg-green-500",
-      },
-      {
-        name: "Mike Peters",
-        email: "mike.peters@church.org",
-        role: "Leader",
-        lastLogin: "2025-01-15",
-        color: "bg-yellow-500",
-      },
-      {
-        name: "Lisa Chen",
-        email: "lisa.chen@church.org",
-        role: "Volunteer",
-        lastLogin: "2025-01-15",
-        color: "bg-purple-500",
-      },
-    ],
-    [],
-  );
+
+  const users = data.map((u) => ({
+    name: u.fullName,
+    email: u.email,
+    role: u.role,
+    lastLogin: u.lastLogin,
+    color: u.color,
+  }));
 
   const filteredUsers = useMemo(() => {
     if (!query) return users;
@@ -56,6 +32,8 @@ function UserAccess() {
         u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q),
     );
   }, [users, query]);
+
+  
 
   return (
     <div className="min-h-dvh grid grid-cols-[auto_1fr]">
