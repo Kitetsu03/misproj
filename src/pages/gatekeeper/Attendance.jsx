@@ -1,11 +1,12 @@
 import GatekeeperNav from "../../components/GatekeeperNav.jsx";
 import { AttendanceTabs } from "../../components/ui/tabs/AttendanceTabs.jsx";
+import { BlackButton } from "../../components/ui/buttons/BlackButton.jsx";
 export function Attendance() {
   return (
     <>
       <div className="min-h-dvh grid grid-cols-[auto_1fr]">
         <GatekeeperNav />
-        <main className="flex-1 p-6 space-y-6 font-secondary">
+        <main className="flex-1 p-6 space-y-2 font-secondary">
           {/* Header */}
           <div className="flex justify-between items-center">
             <div>
@@ -16,6 +17,7 @@ export function Attendance() {
                 Tracking attendance of church members and visitors.
               </p>
             </div>
+            <BlackButton val={"+ Add Attendance"} />
           </div>
           <AttendanceTabs />
         </main>
