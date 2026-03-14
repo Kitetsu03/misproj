@@ -14,7 +14,7 @@ import { ViewAllAnouncement } from "../../components/ViewAllAnouncement";
 import { ViewFullAttendace } from "../../components/ViewFullAttendance";
 import { ViewFullHistory } from "../../components/ViewFullHistory";
 import { AddToCalendar } from "../../components/ui/tabs/AddToCalendar";
-import { ViewGroupDatails } from "../../components/ui/tabs/ViewGroupDatails";
+import { ViewGroupDetails } from "../../components/ui/tabs/ViewGroupDetails";
 
 function MemberPortal() {
   const navitem = [
@@ -36,6 +36,12 @@ function MemberPortal() {
       text: "Giving",
       path: "/member/giving",
     },
+  ];
+
+  const givingHistory = [
+    { date: "October 1", type: "Tithes", amount: "150.00" },
+    { date: "September 24", type: "Missions", amount: "230.00" },
+    { date: "September 17", type: "Pledges", amount: "150.00" },
   ];
 
   return (
@@ -115,7 +121,7 @@ function MemberPortal() {
                   val="View Group Details"
                   exc=""
                   icon={<TbListDetails />}
-                  comp={<ViewGroupDatails />}
+                  comp={<ViewGroupDetails />}
                 />
               </div>
             </section>
@@ -129,20 +135,12 @@ function MemberPortal() {
                   </div>
 
                   <div className="giving-list space-y-3 mb-4">
-                    <div className="give-row flex justify-between items-center">
-                      <span>October 1 — Tithes</span>
-                      <span className="font-semibold">₱150.00</span>
-                    </div>
-
-                    <div className="give-row flex justify-between items-center">
-                      <span>September 24 — Missions</span>
-                      <span className="font-semibold">₱230.00</span>
-                    </div>
-
-                    <div className="give-row flex justify-between items-center">
-                      <span>September 17 — Pledges</span>
-                      <span className="font-semibold">₱150.00</span>
-                    </div>
+                    {givingHistory.map((g, i) => (
+                      <div key={i} className="give-row flex justify-between items-center">
+                        <span>{g.date} — {g.type}</span>
+                        <span className="font-semibold">₱{g.amount}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
@@ -151,7 +149,7 @@ function MemberPortal() {
                     val="View Full History"
                     exc=""
                     icon={<TbListDetails />}
-                    comp={<ViewFullHistory />}
+                    comp={<ViewFullHistory data={givingHistory} />}
                   />
                 </div>
               </div>

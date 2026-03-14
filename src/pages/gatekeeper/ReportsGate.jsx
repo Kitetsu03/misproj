@@ -18,7 +18,9 @@ function Reports() {
                 into membership, attendance, and engagement.
               </p>
             </header>
-            <BlackButton val="+ Create Report" exc="Create Report" />
+            <div className="p-8 ">
+              <BlackButton val="+ Create Report" exc="Create Report" />
+            </div>
           </div>
           <ReportTabs />
         </div>

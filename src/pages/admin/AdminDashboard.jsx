@@ -25,31 +25,10 @@ import { IoMdAdd } from "react-icons/io";
 import { LineChart } from "../../components/ui/charts/LineChart.jsx";
 import { DoughnutChart } from "../../components/ui/charts/DoughnutChart.jsx";
 import { BarLineChart } from "../../components/ui/charts/BarLineChart.jsx";
+import { AddNewMember } from "../../components/ui/buttons/AddNewMember.jsx";
+import { WhiteButton } from "../../components/ui/buttons/WhiteButton.jsx";
 
 function AdminDashboard() {
-  const quickActionButtons = [
-    {
-      id: 1,
-      icon: <IoPersonAddOutline />,
-      title: "Add new member",
-    },
-    {
-      id: 2,
-      icon: <HiOutlinePencilAlt />,
-      title: "Generate attendance report",
-    },
-    {
-      id: 3,
-      icon: <IoMdAdd />,
-      title: "Generate financial report",
-    },
-    {
-      id: 4,
-      icon: <RiSendPlaneFill />,
-      title: "Send announcement",
-    },
-  ];
-
   const menuItems = [
     { id: 1, text: "Dashboard", icon: <MdEmojiPeople />, path: "/admin" },
     {
@@ -150,13 +129,32 @@ function AdminDashboard() {
             <div className="card p-5 row-span-2 col-start-1 row-start-4 rounded-2xl font-secondary">
               <h2 className="text-2xl font-semibold">QUICK ACTIONS</h2>
               <p className="pb-3">Common tasks</p>
-              {quickActionButtons.map((buttons) => (
-                <QuickActions
-                  key={buttons.id}
-                  icon={buttons.icon}
-                  title={buttons.title}
+              <div className="p-1 flex flex-col gap-2">
+                <WhiteButton
+                  val="Add New Member"
+                  exc="Add Member"
+                  icon={<IoPersonAddOutline />}
+                  comp={<AddNewMember />}
                 />
-              ))}
+                <WhiteButton
+                  val="Generate attendance Report"
+                  exc="Add Member"
+                  icon={<HiOutlinePencilAlt />}
+                  comp={<AddNewMember />}
+                />
+                <WhiteButton
+                  val="Generate financial report"
+                  exc="Add Member"
+                  icon={<IoMdAdd />}
+                  comp={<AddNewMember />}
+                />
+                <WhiteButton
+                  val="Send Announcement"
+                  exc="Add Member"
+                  icon={<RiSendPlaneFill />}
+                  comp={<AddNewMember />}
+                />
+              </div>
             </div>
             <div className="card p-5 col-span-3 row-span-2 col-start-2 row-start-4 rounded-2xl">
               <RecentActivities />

@@ -79,8 +79,8 @@ function Giving() {
           </section>
 
           <section className="cards-container flex gap-4">
-            <section className="w-full flex justify-center px-5 py-5">
-              <div className="w-full max-w-4xl bg-white rounded-2xl shadow-lg border border-gray-300 p-10">
+            <section className="w-full flex justify-center px-5 py-5 ">
+              <div className="border-2 w-full max-w-4xl bg-white rounded-2xl shadow-lg p-10">
                 <h2 className="font-extrabold text-center font-secondary">
                   2025 GIVING SUMMARY
                 </h2>
@@ -94,7 +94,7 @@ function Giving() {
                 </p>
 
                 <hr className="my-10" />
-                <h3 className="text-center font-extrabold text-lg mb-4 font-secondary">
+                <h3 className="text-center font-extrabold text-lg mb-4 font-secondary ">
                   GIVING BREAKDOWN
                 </h3>
 
