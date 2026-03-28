@@ -112,14 +112,14 @@ function MemberPortal() {
               <div className="flex flex-col items-center gap-3 mt-2">
                 <BlackButton
                   val="Add to Calendar"
-                  exc=""
+                  excBgClass="bg-white"
                   icon={<FaCalendar />}
                   comp={<AddToCalendar />}
                 />
 
                 <BlackButton
                   val="View Group Details"
-                  exc=""
+                  excBgClass="bg-white"
                   icon={<TbListDetails />}
                   comp={<ViewGroupDetails />}
                 />
@@ -136,8 +136,13 @@ function MemberPortal() {
 
                   <div className="giving-list space-y-3 mb-4">
                     {givingHistory.map((g, i) => (
-                      <div key={i} className="give-row flex justify-between items-center">
-                        <span>{g.date} — {g.type}</span>
+                      <div
+                        key={i}
+                        className="give-row flex justify-between items-center"
+                      >
+                        <span>
+                          {g.date} — {g.type}
+                        </span>
                         <span className="font-semibold">₱{g.amount}</span>
                       </div>
                     ))}
@@ -147,7 +152,7 @@ function MemberPortal() {
                 <div className="flex justify-center ">
                   <BlackButton
                     val="View Full History"
-                    exc=""
+                    excBgClass="bg-white"
                     icon={<TbListDetails />}
                     comp={<ViewFullHistory data={givingHistory} />}
                   />
@@ -199,7 +204,7 @@ function MemberPortal() {
               <div className="flex justify-center mt-4">
                 <BlackButton
                   val="View Full Attendance"
-                  exc=""
+                  excBgClass="bg-white"
                   icon={<TbListDetails />}
                   comp={<ViewFullAttendace />}
                 />
@@ -227,7 +232,7 @@ function MemberPortal() {
                 <div className="flex justify-center mt-4">
                   <BlackButton
                     val="View All Anouncement"
-                    exc="Lagyan nyo"
+                    excBgClass="bg-white"
                     icon={<TbListDetails />}
                     comp={<ViewAllAnouncement />}
                   />

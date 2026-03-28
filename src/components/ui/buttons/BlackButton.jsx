@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function BlackButton({ val, exc, comp, icon }) {
+export function BlackButton({ val, exc, comp, icon, excBgClass }) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => setOpen(true);
@@ -39,9 +39,13 @@ export function BlackButton({ val, exc, comp, icon }) {
                 >
                   Cancel
                 </button>
-                <button className="px-5 py-2 bg-black text-white rounded-lg font-secondary">
-                  {exc}
-                </button>
+                {exc && (
+                  <button
+                    className={`px-5 py-2 rounded-lg font-secondary ${excBgClass ?? "bg-black text-white"}`}
+                  >
+                    {exc}
+                  </button>
+                )}
               </div>
             </div>
           </div>
