@@ -119,9 +119,9 @@ export const AttendanceTabs = () => {
         </Box>
       </div>
       <CustomTabPanel value={value} index={0}>
-        <main className="flex-1 p-1 space-y-5 font-secondary">
+        <main className="flex-1 p-1 space-y-2 font-secondary">
           {/* Search & Filter */}
-          <div className="card p-5 rounded-xl shadow-md space-y-3">
+          <div className="card p-5 rounded-xl shadow-md">
             <h2 className="font-semibold text-lg">Search & Filter</h2>
             <div className="flex gap-2 flex-col md:flex-row">
               <SearchBar
@@ -129,8 +129,16 @@ export const AttendanceTabs = () => {
                 onChange={(v) => setSearchValue(v)}
                 onSearch={() => setQuery(searchValue)}
               />
-
-              <select className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black">
+              <label
+                htmlFor="network-filter"
+                className="text-sm font-medium flex flex-col md:flex-row items-start md:items-center gap-1"
+              >
+                Filter by Network
+              </label>
+              <select
+                id="network-filter"
+                className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black"
+              >
                 <option>Network</option>
                 <option>Men</option>
                 <option>Women</option>
@@ -138,7 +146,28 @@ export const AttendanceTabs = () => {
                 <option>YAN</option>
                 <option>Children</option>
               </select>
+              <label
+                htmlFor="from-date"
+                className="text-sm font-medium flex flex-col md:flex-row items-start md:items-center gap-1"
+              >
+                From :
+              </label>
+
               <input
+                id="from-date"
+                type="date"
+                className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black"
+                placeholder="Select Date"
+              />
+              <label
+                htmlFor="to-date"
+                className="text-sm font-medium flex flex-col md:flex-row items-start md:items-center gap-1"
+              >
+                To :
+              </label>
+
+              <input
+                id="to-date"
                 type="date"
                 className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black"
                 placeholder="Select Date"
@@ -163,7 +192,6 @@ export const AttendanceTabs = () => {
                   <th className="pb-2">Network</th>
                   <th className="pb-2">Attendance</th>
                   <th className="pb-2">Time & Date</th>
-                  <th className="pb-2">Lifegroup Name</th>
                 </tr>
               </thead>
 
@@ -177,8 +205,6 @@ export const AttendanceTabs = () => {
                     <td>{u.attendance}</td>
 
                     <td>{u.timedate}</td>
-
-                    <td>{u.lgname}</td>
                   </tr>
                 ))}
               </tbody>
@@ -235,9 +261,9 @@ export const AttendanceTabs = () => {
         </main>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <main className="flex-1 p-1 space-y-2 font-secondary">
+        <main className="flex-1 p-1 space-y-5 font-secondary">
           {/* Search & Filter */}
-          <div className="card p-5 rounded-xl shadow-md">
+          <div className="card p-5 rounded-xl shadow-md space-y-3">
             <h2 className="font-semibold text-lg">Search & Filter</h2>
             <div className="flex gap-2 flex-col md:flex-row">
               <SearchBar
@@ -245,8 +271,16 @@ export const AttendanceTabs = () => {
                 onChange={(v) => setSearchValue(v)}
                 onSearch={() => setQuery(searchValue)}
               />
-
-              <select className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black">
+              <label
+                htmlFor="network-filter"
+                className="text-sm font-medium flex flex-col md:flex-row items-start md:items-center gap-1"
+              >
+                Filter by Network
+              </label>
+              <select
+                id="network-filter"
+                className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black"
+              >
                 <option>Network</option>
                 <option>Men</option>
                 <option>Women</option>
@@ -254,10 +288,29 @@ export const AttendanceTabs = () => {
                 <option>YAN</option>
                 <option>Children</option>
               </select>
+              <label
+                htmlFor="from-date"
+                className="text-sm font-medium flex flex-col md:flex-row items-start md:items-center gap-1"
+              >
+                From :
+              </label>
               <input
+                id="from-date"
                 type="date"
                 className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black"
-                placeholder="Select Date"
+                placeholder="From Date"
+              />
+              <label
+                htmlFor="to-date"
+                className="text-sm font-medium flex flex-col md:flex-row items-start md:items-center gap-1"
+              >
+                To :
+              </label>
+              <input
+                id="to-date"
+                type="date"
+                className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black"
+                placeholder="To Date"
               />
             </div>
           </div>
@@ -279,6 +332,7 @@ export const AttendanceTabs = () => {
                   <th className="pb-2">Network</th>
                   <th className="pb-2">Attendance</th>
                   <th className="pb-2">Time & Date</th>
+                  <th className="pb-2">Lifegroup Name</th>
                 </tr>
               </thead>
 
@@ -292,6 +346,8 @@ export const AttendanceTabs = () => {
                     <td>{u.attendance}</td>
 
                     <td>{u.timedate}</td>
+
+                    <td>{u.lgname}</td>
                   </tr>
                 ))}
               </tbody>

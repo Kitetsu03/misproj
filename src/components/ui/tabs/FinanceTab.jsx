@@ -137,8 +137,16 @@ export const FinanceTab = () => {
                 onChange={(v) => setSearchValue(v)}
                 onSearch={() => setQuery(searchValue)}
               />
-
-              <select className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black">
+              <label
+                htmlFor="network-filter"
+                className="text-sm font-medium flex flex-col md:flex-row items-start md:items-center gap-1"
+              >
+                Filter by Network
+              </label>
+              <select
+                id="network-filter"
+                className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black"
+              >
                 <option>Network</option>
                 <option>Men</option>
                 <option>Women</option>
@@ -146,7 +154,26 @@ export const FinanceTab = () => {
                 <option>YAN</option>
                 <option>Children</option>
               </select>
+              <label
+                htmlFor="from-date"
+                className="text-sm font-medium flex flex-col md:flex-row items-start md:items-center gap-1"
+              >
+                From :
+              </label>
               <input
+                id="from-date"
+                type="date"
+                className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black"
+                placeholder="Select Date"
+              />
+              <label
+                htmlFor="to-date"
+                className="text-sm font-medium flex flex-col md:flex-row items-start md:items-center gap-1"
+              >
+                To :
+              </label>
+              <input
+                id="to-date"
                 type="date"
                 className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black"
                 placeholder="Select Date"
@@ -261,18 +288,17 @@ export const FinanceTab = () => {
             <h2 className="font-semibold text-lg">Search & Filter</h2>
             <div className="flex gap-2 flex-col md:flex-row">
               <SearchBar
+                placeholder="Search by Ref. No. or Name of Cost"
                 value={searchValue}
                 onChange={(v) => setSearchValue(v)}
                 onSearch={() => setQuery(searchValue)}
               />
 
               <select className="px-4 py-2 rounded-lg border bg-[#A7E6FF] border-black">
-                <option>Network</option>
-                <option>Men</option>
-                <option>Women</option>
-                <option>KKB</option>
-                <option>YAN</option>
-                <option>Children</option>
+                <option>Amount Ascending</option>
+                <option>Amount Descending</option>
+                <option>Ref No. Ascending</option>
+                <option>Ref No. Descending</option>
               </select>
               <input
                 type="date"

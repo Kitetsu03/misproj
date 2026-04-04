@@ -136,8 +136,13 @@ function MemberPortal() {
 
                   <div className="giving-list space-y-3 mb-4">
                     {givingHistory.map((g, i) => (
-                      <div key={i} className="give-row flex justify-between items-center">
-                        <span>{g.date} — {g.type}</span>
+                      <div
+                        key={i}
+                        className="give-row flex justify-between items-center"
+                      >
+                        <span>
+                          {g.date} — {g.type}
+                        </span>
                         <span className="font-semibold">₱{g.amount}</span>
                       </div>
                     ))}

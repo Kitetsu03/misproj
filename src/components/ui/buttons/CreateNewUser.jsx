@@ -20,25 +20,61 @@ function CreateNewUser() {
       </header>
       {/* Form */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form onSubmit={handleSubmit} method="POST">
+          <Input
+            id="first-name"
+            type="text"
+            label="First Name"
+            className="form-control"
+            name="first_name"
+            value={firstName}
+            placeholder="Enter first name"
+            onChange={(e) => setFirstName(e.target.value)}
+          />
 
-        <form
-          onSubmit={handleSubmit}
-          method="POST"
-        >
-          <Input type="text" label="First Name" className="form-control"
-            name="first_name" value={firstName} placeholder="Enter first name" onChange={(e) => setFirstName(e.target.value)} />
+          <Input
+            id="middle-name"
+            type="text"
+            label="Middle Name"
+            className="form-control"
+            name="middle_name"
+            value={middleName}
+            placeholder="Enter middle name"
+            onChange={(e) => setMiddleName(e.target.value)}
+          />
 
-          <Input type="text" label="Middle Name" className="form-control"
-            name="middle_name" value={middleName} placeholder="Enter middle name" onChange={(e) => setMiddleName(e.target.value)} />
+          <Input
+            id="last-name"
+            type="text"
+            label="Last Name"
+            className="form-control"
+            name="last_name"
+            value={lastName}
+            placeholder="Enter last name"
+            onChange={(e) => setLastName(e.target.value)}
+          />
 
-          <Input type="text" label="Last Name" className="form-control"
-            name="last_name" value={lastName} placeholder="Enter last name" onChange={(e) => setLastName(e.target.value)} />
+          <Input
+            id="email"
+            type="email"
+            label="Email"
+            className="form-control"
+            name="email"
+            value={email}
+            placeholder="Enter email address"
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-          <Input type="email" label="Email" className="form-control"
-            name="email" value={email} placeholder="Enter email address" onChange={(e) => setEmail(e.target.value)} />
-
-          <Input type="password" label="Password" className="form-control"
-            name="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+          <Input
+            id="password"
+            type="password"
+            label="Password"
+            className="form-control"
+            name="password"
+            value={password}
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </form>
         {/* Role */}
         <div className="md:col-span-2 space-y-1">
@@ -49,7 +85,6 @@ function CreateNewUser() {
             <option>Gatekeeper</option>
             <option>Member</option>
           </select>
-
         </div>
       </div>
     </div>
