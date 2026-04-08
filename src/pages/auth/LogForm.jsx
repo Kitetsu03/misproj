@@ -111,7 +111,7 @@ function LogForm({ currentSession, setLoaderVisible }) {
           open={openSnackbar}
           autoHideDuration={3000}
           onClose={() => setOpenSnackbar(false)}
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
         >
           <Alert
             onClose={() => setOpenSnackbar(false)}

@@ -24,7 +24,7 @@ function CreateNewUser() {
           <Input
             id="first-name"
             type="text"
-            label="First Name"
+            label="FirstName"
             className="form-control"
             name="first_name"
             value={firstName}
@@ -35,7 +35,7 @@ function CreateNewUser() {
           <Input
             id="middle-name"
             type="text"
-            label="Middle Name"
+            label="MiddleName"
             className="form-control"
             name="middle_name"
             value={middleName}
@@ -46,7 +46,7 @@ function CreateNewUser() {
           <Input
             id="last-name"
             type="text"
-            label="Last Name"
+            label="LastName"
             className="form-control"
             name="last_name"
             value={lastName}

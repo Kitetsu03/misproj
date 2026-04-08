@@ -74,6 +74,14 @@ export const CenteredTabs = () => {
               placeholder="Enter last name"
             />
           </div>
+          <div className="space-y-2">
+            <label className="font-medium">Middle Name</label>
+            <input
+              type="text"
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Enter middle name"
+            />
+          </div>
 
           <div className="space-y-1">
             <label className="font-medium">Birth Date</label>
