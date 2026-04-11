@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function BlackButton({ val, exc, comp, icon, excBgClass }) {
+export function BlackButton({ val, comp, icon }) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => setOpen(true);
@@ -31,22 +31,13 @@ export function BlackButton({ val, exc, comp, icon, excBgClass }) {
             {/* <AddNewMember onClose={handleClose}/> */}
             {comp}
 
-            <div className="mt-4 text-right">
-              <div className="flex justify-end gap-4 mt-8">
-                <button
-                  className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 font-secondary"
-                  onClick={handleClose}
-                >
-                  Cancel
-                </button>
-                {exc && (
-                  <button
-                    className={`px-5 py-2 rounded-lg font-secondary ${excBgClass ?? "bg-black text-white"}`}
-                  >
-                    {exc}
-                  </button>
-                )}
-              </div>
+            <div className="flex justify-end ">
+              <button
+                className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 font-secondary"
+                onClick={handleClose}
+              >
+                Cancel
+              </button>
             </div>
           </div>
         </div>

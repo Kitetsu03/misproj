@@ -1,7 +1,7 @@
 import { Chart as Chartjs } from "chart.js/auto";
 import { useRef, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { IoPersonOutline } from "react-icons/io5";
 
 function AdminNav() {
@@ -25,26 +25,86 @@ function AdminNav() {
               Admin
             </h3>
             <ul className="w-full">
-              <li className="p-4 text-[1.2rem] hover:bg-white/20">
-                <Link to="/admin">Dashboard</Link>
-              </li>
+              <NavLink to="/admin" end>
+                {({ isActive }) => (
+                  <li
+                    className={`p-4 text-[1.2rem] hover:bg-white/20 ${
+                      isActive
+                        ? "bg-white text-blue-500 font-semibold rounded-lg mx-2"
+                        : ""
+                    }`}
+                  >
+                    Dashboard
+                  </li>
+                )}
+              </NavLink>
               <hr className="opacity-30" />
-              <li className="p-4 text-[1.2rem] hover:bg-white/20 border-t-white/20">
-                <Link to="/admin/useraccess">Users & Access</Link>
-              </li>
+              <NavLink to="/admin/useraccess">
+                {({ isActive }) => (
+                  <li
+                    className={`p-4 text-[1.2rem] hover:bg-white/20 ${
+                      isActive
+                        ? "bg-white text-blue-500 font-semibold rounded-lg mx-2"
+                        : ""
+                    }`}
+                  >
+                    Users & Access
+                  </li>
+                )}
+              </NavLink>
               <hr className="opacity-30" />
-              <li className="p-4 text-[1.2rem] hover:bg-white/20">
-                <Link to="/admin/members">Members Data</Link>
-              </li>
-              <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ">
-                <Link to="/admin/reports">Reports</Link>
-              </li>
-              <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20">
-                <Link to="/admin/settings">Settings</Link>
-              </li>
-              <li className="p-4 pb-5 text-[1.2rem] absolute bottom-0 hover:bg-white/20 w-full border-t-white/20 border-t-2">
-                <Link to="/">Logout</Link>
-              </li>
+              <NavLink to="/admin/members">
+                {({ isActive }) => (
+                  <li
+                    className={`p-4 text-[1.2rem] hover:bg-white/20 ${
+                      isActive
+                        ? "bg-white text-blue-500 font-semibold rounded-lg mx-2"
+                        : ""
+                    }`}
+                  >
+                    Members Data
+                  </li>
+                )}
+              </NavLink>
+              <NavLink to="/admin/reports">
+                {({ isActive }) => (
+                  <li
+                    className={`p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ${
+                      isActive
+                        ? "bg-white text-blue-500 font-semibold rounded-lg mx-2"
+                        : ""
+                    }`}
+                  >
+                    Reports
+                  </li>
+                )}
+              </NavLink>
+              <NavLink to="/admin/settings">
+                {({ isActive }) => (
+                  <li
+                    className={`p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ${
+                      isActive
+                        ? "bg-white text-blue-500 font-semibold rounded-lg mx-2"
+                        : ""
+                    }`}
+                  >
+                    Settings
+                  </li>
+                )}
+              </NavLink>
+              <NavLink to="/">
+                {({ isActive }) => (
+                  <li
+                    className={`p-4 pb-5 text-[1.2rem] absolute bottom-0 hover:bg-white/20 w-full border-t-white/20 border-t-2 ${
+                      isActive
+                        ? "bg-white text-blue-500 font-semibold rounded-lg mx-2"
+                        : ""
+                    }`}
+                  >
+                    Logout
+                  </li>
+                )}
+              </NavLink>
             </ul>
             {/* <button
               className="nav-btn close-btn sm:hidden"

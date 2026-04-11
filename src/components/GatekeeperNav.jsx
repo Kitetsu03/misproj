@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { BsPerson } from "react-icons/bs";
 import { FaBars } from "react-icons/fa";
 import { IoPersonOutline } from "react-icons/io5";
@@ -27,25 +27,85 @@ function GatekeeperNav() {
               Gatekeeper
             </h3>
             <ul className="w-full">
-              <li className="p-4 text-[1.2rem] hover:bg-white/20">
-                <Link to="/gatekeeper">Dashboard</Link>
-              </li>
+              <NavLink to="/gatekeeper" end>
+                {({ isActive }) => (
+                  <li
+                    className={`p-4 text-[1.2rem] hover:bg-white/20 ${
+                      isActive
+                        ? "bg-white text-blue-500 font-semibold rounded-lg mx-2"
+                        : ""
+                    }`}
+                  >
+                    Dashboard
+                  </li>
+                )}
+              </NavLink>
               <hr className="opacity-30" />
-              <li className="p-4 text-[1.2rem] hover:bg-white/20">
-                <Link to="/gatekeeper/members">Members Data</Link>
-              </li>
-              <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ">
-                <Link to="/gatekeeper/attendance">Attendance</Link>
-              </li>
-              <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ">
-                <Link to="/gatekeeper/finance">Finance</Link>
-              </li>
-              <li className="p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20">
-                <Link to="/gatekeeper/reports">Reports</Link>
-              </li>
-              <li className="p-4 pb-5 text-[1.2rem] absolute bottom-0 hover:bg-white/20 w-full border-t-white/20 border-t-2">
-                <Link to="/">Logout</Link>
-              </li>
+              <NavLink to="/gatekeeper/members">
+                {({ isActive }) => (
+                  <li
+                    className={`p-4 text-[1.2rem] hover:bg-white/20 ${
+                      isActive
+                        ? "bg-white text-blue-500 font-semibold rounded-lg mx-2"
+                        : ""
+                    }`}
+                  >
+                    Members Data
+                  </li>
+                )}
+              </NavLink>
+              <NavLink to="/gatekeeper/attendance">
+                {({ isActive }) => (
+                  <li
+                    className={`p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ${
+                      isActive
+                        ? "bg-white text-blue-500 font-semibold rounded-lg mx-2"
+                        : ""
+                    }`}
+                  >
+                    Attendance
+                  </li>
+                )}
+              </NavLink>
+              <NavLink to="/gatekeeper/finance">
+                {({ isActive }) => (
+                  <li
+                    className={`p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ${
+                      isActive
+                        ? "bg-white text-blue-500 font-semibold rounded-lg mx-2"
+                        : ""
+                    }`}
+                  >
+                    Finance
+                  </li>
+                )}
+              </NavLink>
+              <NavLink to="/gatekeeper/reports">
+                {({ isActive }) => (
+                  <li
+                    className={`p-4 border-t-white/20 border-t-2 text-[1.2rem] hover:bg-white/20 ${
+                      isActive
+                        ? "bg-white text-blue-500 font-semibold rounded-lg mx-2"
+                        : ""
+                    }`}
+                  >
+                    Reports
+                  </li>
+                )}
+              </NavLink>
+              <NavLink to="/">
+                {({ isActive }) => (
+                  <li
+                    className={`p-4 pb-5 text-[1.2rem] absolute bottom-0 hover:bg-white/20 w-full border-t-white/20 border-t-2 ${
+                      isActive
+                        ? "bg-white text-blue-500 font-semibold rounded-lg mx-2"
+                        : ""
+                    }`}
+                  >
+                    Logout
+                  </li>
+                )}
+              </NavLink>
             </ul>
             {/* <button
                   className="nav-btn close-btn sm:hidden"

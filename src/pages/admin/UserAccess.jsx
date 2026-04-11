@@ -15,7 +15,6 @@ function UserAccess() {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
 
-
   const users = data.map((u) => ({
     name: u.fullName,
     email: u.email,
@@ -33,8 +32,6 @@ function UserAccess() {
     );
   }, [users, query]);
 
-  
-
   return (
     <div className="min-h-dvh grid grid-cols-[auto_1fr]">
       <AdminNav />
@@ -50,11 +47,7 @@ function UserAccess() {
               Manage user accounts, roles, and permissions for your system.
             </p>
           </div>
-          <BlackButton
-            val="+ Add User"
-            exc="Create User"
-            comp={<CreateNewUser />}
-          />
+          <BlackButton val="+ Add User" comp={<CreateNewUser />} />
         </div>
 
         {/* Search & Filter */}

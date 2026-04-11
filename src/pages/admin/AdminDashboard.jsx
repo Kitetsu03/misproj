@@ -1,6 +1,6 @@
-// import AdminNav from "../../components/AdminNav.jsx";
-import Sidebar from "../../components/Sidebar.jsx";
-import { SidebarItem } from "../../components/Sidebar.jsx";
+import AdminNav from "../../components/AdminNav.jsx";
+// import Sidebar from "../../components/Sidebar.jsx";
+// import { SidebarItem } from "../../components/Sidebar.jsx";
 import { MdEmojiPeople } from "react-icons/md";
 import {
   categoryDistribution,
@@ -55,8 +55,8 @@ function AdminDashboard() {
   return (
     <>
       <div className="min-h-dvh grid grid-cols-[auto_1fr]">
-        {/* <AdminNav /> */}
-        <Sidebar>
+        <AdminNav />
+        {/* <Sidebar>
           {menuItems.map((item) => (
             <SidebarItem
               key={item.id}
@@ -65,7 +65,7 @@ function AdminDashboard() {
               to={item.path}
             />
           ))}
-        </Sidebar>
+        </Sidebar> */}
         <div className="body">
           <header className="p-5 font-secondary">
             <h1 className="text-2xl md:text-5xl text-white font-extrabold">

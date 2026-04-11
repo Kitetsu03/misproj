@@ -74,7 +74,6 @@ function LogForm({ currentSession, setLoaderVisible }) {
         setSnackbarSeverity("success");
         setOpenSnackbar(true);
         startSession(authUser);
-        console.log(authUser);
         setTimeout(() => {
           if (role === undefined || role === null) {
             setSnackbarMessage("Unknown user role. Please contact support.");
@@ -99,7 +98,9 @@ function LogForm({ currentSession, setLoaderVisible }) {
           }
         }, 1500);
       } else {
-        console.log("Invalid email or password. Please try again.");
+        setSnackbarMessage("Invalid email or password. Please try again.");
+        setSnackbarSeverity("error");
+        setOpenSnackbar(true);
       }
     }
   };
