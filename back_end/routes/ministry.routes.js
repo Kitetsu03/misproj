@@ -2,7 +2,7 @@ import express from "express";
 import {
   createMinistry,
   addMemberToMinistry,
-} from "./controllers/ministry.controller.js";
+} from "../controllers/ministry.controller.js";
 
 const router = express.Router();
 

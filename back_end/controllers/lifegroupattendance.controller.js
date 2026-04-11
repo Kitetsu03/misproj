@@ -1,7 +1,6 @@
-import {
-  LifeGroupSession,
-  LifeGroupAttendance,
-} from "../models/lifegroupAttendance.model.js";
+import { LifeGroupAttendance } from "../models/lifegroupattendance.model.js";
+import { LifeGroupSession } from "../models/lifeGroupSession.model.js";
+
 const createSession = async (req, res) => {
   try {
     const session = await LifeGroupSession.create(req.body);

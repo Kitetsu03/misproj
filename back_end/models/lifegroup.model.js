@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 const lifeGroupSchema = new mongoose.Schema({
   lifegroup_name: String,
 
@@ -7,7 +9,7 @@ const lifeGroupSchema = new mongoose.Schema({
   },
 });
 
-const LifeGroup = mongoose.model("LifeGroup", lifeGroupSchema);
+export const LifeGroup = mongoose.model("LifeGroup", lifeGroupSchema);
 
 // junction
 const lifeGroupMemberSchema = new mongoose.Schema({
@@ -21,8 +23,7 @@ const lifeGroupMemberSchema = new mongoose.Schema({
   },
 });
 
-const LifeGroupMember = mongoose.model(
+export const LifeGroupMember = mongoose.model(
   "LifeGroupMember",
   lifeGroupMemberSchema,
 );
-export default { LifeGroupMember, LifeGroup };

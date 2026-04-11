@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import memberRoutes from "./routes/member.routes.js";
@@ -9,7 +10,8 @@ import attendanceRoutes from "./routes/attendance.routes.js";
 import lgAttendanceRoutes from "./routes/lifegroupAttendance.routes.js";
 import contributionRoutes from "./routes/contribution.routes.js";
 import expenseRoutes from "./routes/expense.routes.js";
-import productRoute from "./back_end/routes/product.route.js";
+
+import productRoute from "./routes/product.route.js";
 
 const app = express();
 

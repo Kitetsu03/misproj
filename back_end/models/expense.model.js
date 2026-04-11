@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 const expenseSchema = new mongoose.Schema({
   description: String,
   amount: Number,

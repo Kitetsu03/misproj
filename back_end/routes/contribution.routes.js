@@ -2,7 +2,7 @@ import express from "express";
 import {
   addContribution,
   getContributions,
-} from "./controllers/contribution.controller.js";
+} from "../controllers/contribution.controller.js";
 
 const router = express.Router();
 

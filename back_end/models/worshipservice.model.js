@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 const worshipServiceSchema = new mongoose.Schema({
   service_date: Date,
 });

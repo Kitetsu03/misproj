@@ -1,8 +1,10 @@
+import mongoose from "mongoose";
+
 const ministrySchema = new mongoose.Schema({
   ministry_name: String,
 });
 
-const Ministry = mongoose.model("Ministry", ministrySchema);
+export const Ministry = mongoose.model("Ministry", ministrySchema);
 
 const ministryMemberSchema = new mongoose.Schema({
   ministry_id: {
@@ -15,5 +17,7 @@ const ministryMemberSchema = new mongoose.Schema({
   },
 });
 
-const MinistryMember = mongoose.model("MinistryMember", ministryMemberSchema);
-export default { Ministry, MinistryMember };
+export const MinistryMember = mongoose.model(
+  "MinistryMember",
+  ministryMemberSchema,
+);

@@ -1,4 +1,4 @@
-import LoginLog from "../models/log.model.js";
+import LoginLog from "../models/loginlogs.model.js";
 
 export const logLogin = async (user_id) => {
   try {

@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 const contributionSchema = new mongoose.Schema({
   member_id: {
     type: mongoose.Schema.Types.ObjectId,

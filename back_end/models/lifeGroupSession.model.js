@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 const lifeGroupSessionSchema = new mongoose.Schema(
   {
     lifegroup_id: {
@@ -18,8 +20,7 @@ const lifeGroupSessionSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const LifeGroupSession = mongoose.model(
+export const LifeGroupSession = mongoose.model(
   "LifeGroupSession",
   lifeGroupSessionSchema,
 );
-export default LifeGroupSession;
