@@ -1,4 +1,7 @@
 import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+dotenv.config();
 import mongoose from "mongoose";
 
 import authRoutes from "./routes/auth.routes.js";
@@ -20,6 +23,14 @@ app.use(express.json());
 // Middleware to parse URL-encoded bodies
 app.use(express.urlencoded({ extended: false }));
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
+
 // routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
@@ -39,16 +50,13 @@ app.get("/", (req, res) => {
 });
 
 // Database connection and server start
-mongoose
-  .connect(
-    "mongodb+srv://marcnarvelortegoza_db_user:Jkp5l6TAjy6lsUKX@backenddb.4iwccoc.mongodb.net/Node-API?appName=BackendDB",
-  )
-  .then(() => {
-    console.log("Connected to MongoDB");
-    app.listen(3000, () => {
-      console.log("Server is running on port 3000");
-    });
-  })
-  .catch(() => {
-    console.log("Error connecting to MongoDB");
+mongoose.connect(process.env.CONNECTION_STRING);
+try {
+  console.log("Connected to MongoDB");
+  app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
   });
+} catch (error) {
+  console.error(process.env.PORT);
+  console.log("Error connecting to MongoDB");
+}

@@ -1,6 +1,6 @@
 export const loginPatterns = [
   {
-    id: "email",
+    id: "username",
     required: true,
     pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     message: {
@@ -16,7 +16,7 @@ export const loginPatterns = [
     message: {
       required: "Password is required.",
       pattern:
-        "Password must have at least 8 characters, one uppercase, one lowercase, one digit,one special character.",
+        "Password must have at least 8 characters, one uppercase, one lowercase, one digit, one special character.",
     },
   },
 ];

@@ -3,6 +3,7 @@ import Member from "../models/member.model.js";
 const createMember = async (req, res) => {
   try {
     const member = await Member.create(req.body);
+    console.log("Created member:", member);
     res.status(201).json(member);
   } catch (error) {
     res.status(500).json({ message: error.message });

@@ -1,6 +1,6 @@
 export class User {
-  constructor({ email, password, fullName, isRemembered = false }) {
-    this.email = email;
+  constructor({ username, password, fullName, isRemembered = false }) {
+    this.username = username;
     this.password = password;
     this.fullName = fullName;
     this.isRemembered = isRemembered;
@@ -18,7 +18,7 @@ export class User {
   authenticate(users) {
     users.forEach((user) => {
       if (
-        user.email === email &&
+        user.username === username &&
         user.password === password &&
         user.role === role
       ) {

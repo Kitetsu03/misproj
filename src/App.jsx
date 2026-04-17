@@ -14,7 +14,7 @@ import Settings from "./pages/admin/Settings";
 import ReportsGate from "./pages/gatekeeper/ReportsGate";
 import { Attendance } from "./pages/gatekeeper/Attendance";
 import { Finance } from "./pages/gatekeeper/Finance";
-import ProtectedRoute from "./layout/protectedRoute.jsx";
+// import ProtectedRoute from "./layout/protectedRoute.jsx";
 
 function App() {
   return (

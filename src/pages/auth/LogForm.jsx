@@ -5,21 +5,21 @@ import {
   startSession,
   getCurrentUser,
 } from "../auth/js/module/Session.js";
-import { Authenticate } from "../auth/js/module/Authentication.js";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import axios from "axios";
 
 function LogForm({ currentSession, setLoaderVisible }) {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [isRemember, setIsRemember] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+  const [formData, setFormData] = useState({ username: "", password: "" });
+  const { username, password } = formData;
 
   function SessionGate() {
     const [loading, setLoading] = useState(true);
@@ -50,10 +50,10 @@ function LogForm({ currentSession, setLoaderVisible }) {
     );
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = { email, password };
-    const validated = validateAll(formData, loginPatterns);
+    const values = { username, password };
+    const validated = validateAll(values, loginPatterns);
 
     if (validated.length > 0) {
       setErrors(validated);
@@ -61,47 +61,64 @@ function LogForm({ currentSession, setLoaderVisible }) {
       setSnackbarSeverity("warning");
       setOpenSnackbar(true);
       console.log(validated);
-    } else {
-      const cleanEmail = email.trim();
+      return;
+    }
+
+    try {
+      const cleanUsername = username.trim();
       const cleanPassword = password.trim();
 
-      let authUser = Authenticate({ cleanEmail, cleanPassword });
-      let role = authUser.role;
+      const response = await axios.post(
+        "http://localhost:3000/api/auth/login",
+        {
+          username: cleanUsername,
+          passkey: cleanPassword,
+        },
+      );
 
-      if (authUser && authUser !== null) {
-        authUser.password = null;
-        setSnackbarMessage("Logged-in Successfully!");
-        setSnackbarSeverity("success");
-        setOpenSnackbar(true);
-        startSession(authUser);
-        setTimeout(() => {
-          if (role === undefined || role === null) {
-            setSnackbarMessage("Unknown user role. Please contact support.");
-            setSnackbarSeverity("error");
-            setOpenSnackbar(true);
-            navigate("/");
-          } else if (role === "admin") {
-            setSnackbarMessage("Welcome to Dashboard Admin!");
-            setSnackbarSeverity("success");
-            setOpenSnackbar(true);
-            navigate("/admin");
-          } else if (role === "gatekeeper") {
-            setSnackbarMessage("Welcome to Dashboard Gatekeeper!");
-            setSnackbarSeverity("success");
-            setOpenSnackbar(true);
-            navigate("/gatekeeper");
-          } else if (role === "member") {
-            setSnackbarMessage("Welcome to members portal!");
-            setSnackbarSeverity("success");
-            setOpenSnackbar(true);
-            navigate("/member");
-          }
-        }, 1500);
-      } else {
-        setSnackbarMessage("Invalid email or password. Please try again.");
-        setSnackbarSeverity("error");
-        setOpenSnackbar(true);
-      }
+      const authUser = response.data.user;
+      const role = authUser?.role;
+      authUser.passkey = null;
+
+      setSnackbarMessage("Logged in successfully!");
+      setSnackbarSeverity("success");
+      setOpenSnackbar(true);
+      startSession(authUser);
+
+      setTimeout(() => {
+        console.log("User role:", role);
+        if (!role) {
+          setSnackbarMessage("Unknown user role. Please contact support.");
+          setSnackbarSeverity("error");
+          setOpenSnackbar(true);
+          navigate("/");
+        } else if (role === "admin") {
+          setSnackbarMessage("Welcome to Dashboard Admin!");
+          setSnackbarSeverity("success");
+          setOpenSnackbar(true);
+          navigate("/admin");
+        } else if (role === "gatekeeper") {
+          setSnackbarMessage("Welcome to Dashboard Gatekeeper!");
+          setSnackbarSeverity("success");
+          setOpenSnackbar(true);
+          navigate("/gatekeeper");
+        } else if (role === "member") {
+          setSnackbarMessage("Welcome to members portal!");
+          setSnackbarSeverity("success");
+          setOpenSnackbar(true);
+          navigate("/member");
+        }
+      }, 1500);
+    } catch (error) {
+      const backendMessage =
+        error.response?.data?.errors?.join("\n") ||
+        error.response?.data?.message ||
+        "Login failed. Please try again.";
+
+      setSnackbarMessage(backendMessage);
+      setSnackbarSeverity("error");
+      setOpenSnackbar(true);
+      console.error("Login error:", error.response || error);
     }
   };
 
@@ -141,13 +158,15 @@ function LogForm({ currentSession, setLoaderVisible }) {
           >
             <div className="form-group">
               <input
-                id="email"
+                id="username"
                 className="form-control"
-                name="email"
-                type="email"
+                name="username"
+                type="text"
                 placeholder=" "
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={username}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, username: e.target.value }))
+                }
               />
               <label htmlFor="email">Email address</label>
             </div>
@@ -159,7 +178,9 @@ function LogForm({ currentSession, setLoaderVisible }) {
                 type="password"
                 placeholder=" "
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, password: e.target.value }))
+                }
               />
               <label htmlFor="password">Password</label>
             </div>

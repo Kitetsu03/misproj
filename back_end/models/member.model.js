@@ -35,7 +35,7 @@ const memberSchema = new mongoose.Schema(
 
     is_enabled: {
       type: Boolean,
-      default: true,
+      default: false,
     },
 
     created_by: {
