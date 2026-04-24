@@ -10,7 +10,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import axios from "axios";
 
 function LogForm({ currentSession, setLoaderVisible }) {
   const navigate = useNavigate();
@@ -53,7 +52,6 @@ function LogForm({ currentSession, setLoaderVisible }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting login form with:", { username, password });
     const values = { username, password };
     const validated = validateAll(values, loginPatterns);
 
