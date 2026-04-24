@@ -5,7 +5,7 @@ import {
   startSession,
   getCurrentUser,
 } from "../auth/js/module/Session.js";
-import { loginUser } from "../../services/authService.js";
+import { loginUser } from "../../../back_end/services/authService.js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Snackbar from "@mui/material/Snackbar";
