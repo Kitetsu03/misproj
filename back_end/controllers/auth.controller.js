@@ -5,14 +5,20 @@ import Member from "../models/member.model.js";
 
 const validateLoginPayload = ({ username, passkey }) => {
   const errors = [];
+
+  // Username must be valid email
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!username || typeof username !== "string" || !username.trim()) {
     errors.push("Username is required.");
+  } else if (!emailPattern.test(username)) {
+    errors.push("Please enter a valid email address.");
   }
+
+  // Password: 8+ chars, uppercase, lowercase, digit, special char
   if (!passkey || typeof passkey !== "string" || !passkey.trim()) {
     errors.push("Password is required.");
-  } else if (passkey.trim().length < 6) {
-    errors.push("Password must be at least 6 characters.");
   }
+
   return errors;
 };
 
@@ -21,46 +27,67 @@ const validateLoginPayload = ({ username, passkey }) => {
 // ======================
 const register = async (req, res) => {
   try {
-    const { username, passkey, role, member_id } = req.body;
+    let { username, passkey, role, member_id } = req.body;
 
-    // check if user exists
-    const existingUser = await User.findOne({ username });
-    if (existingUser) {
-      return res.status(400).json({ message: "Username already exists" });
-    }
-
-    // hash password
-    const hashedPassword = await bcrypt.hash(passkey, 10);
-
-    const user = await User.create({
-      username,
-      passkey: hashedPassword,
-      role,
-      member_id,
-    });
-
-    res.status(201).json({
-      message: "User registered successfully",
-      user,
-    });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
-
-// # ======================
-// # LOGIN USER
-// # ======================
-const login = async (req, res) => {
-  try {
-    const { username, passkey } = req.body;
+    username = username?.trim();
+    passkey = passkey?.trim();
 
     const validationErrors = validateLoginPayload({ username, passkey });
     if (validationErrors.length > 0) {
       return res.status(400).json({ errors: validationErrors });
     }
 
+    const allowedRoles = ["admin", "gatekeeper", "member"];
+    if (!allowedRoles.includes(role)) {
+      return res.status(400).json({ message: "Invalid role provided" });
+    }
+
+    // Check if user exists
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ message: "Username already exists" });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(passkey, 10);
+
+    // Create user
+    const user = await User.create({
+      username,
+      passkey: hashedPassword,
+      role,
+      member_id: member_id || null,
+    });
+
+    // Remove password before sending response
+    const userSafe = user.toObject();
+    delete userSafe.passkey;
+
+    res.status(201).json({
+      message: "User registered successfully",
+      user: userSafe,
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+// # ======================
+// # LOGIN USER
+// # ======================
+const login = async (req, res) => {
+  try {
+    const { username, passkey } = req.body;
+    console.log("LOGIN BODY:", req.body);
+
+    const validationErrors = validateLoginPayload({ username, passkey });
+
+    if (validationErrors.length > 0) {
+      return res.status(400).json({ errors: validationErrors });
+      console.log("VALIDATION ERRORS:", validationErrors);
+    }
+
     const user = await User.findOne({ username }).populate("member_id");
+    console.log("FOUND USER:", user);
     if (!user) {
       return res
         .status(400)

@@ -14,7 +14,7 @@ import Settings from "./pages/admin/Settings";
 import ReportsGate from "./pages/gatekeeper/ReportsGate";
 import { Attendance } from "./pages/gatekeeper/Attendance";
 import { Finance } from "./pages/gatekeeper/Finance";
-// import ProtectedRoute from "./layout/protectedRoute.jsx";
+import ProtectedRoute from "./layout/ProtectedRoute.jsx";
 
 function App() {
   return (
@@ -25,26 +25,30 @@ function App() {
         <Route path="/register" element={<RegForm />} />
 
         {/* Admin */}
+        <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+          <Route path="/admin" element={<AdminDashboard />} />
 
-        <Route path="/admin" element={<AdminDashboard />} />
-
-        <Route path="/admin/useraccess" element={<UserAccess />} />
-        <Route path="/admin/members" element={<MembersData />} />
-        <Route path="/admin/reports" element={<Reports />} />
-        <Route path="/admin/settings" element={<Settings />} />
-        <Route path="/admin/finance" element={<Finance />} />
-
+          <Route path="/admin/useraccess" element={<UserAccess />} />
+          <Route path="/admin/members" element={<MembersData />} />
+          <Route path="/admin/reports" element={<Reports />} />
+          <Route path="/admin/settings" element={<Settings />} />
+          <Route path="/admin/finance" element={<Finance />} />
+        </Route>
         {/* Gatekeeper */}
-        <Route path="/gatekeeper" element={<GatekeeperDashboard />} />
-        <Route path="/gatekeeper/members" element={<MembersDataGate />} />
-        <Route path="/gatekeeper/attendance" element={<Attendance />} />
-        <Route path="/gatekeeper/finance" element={<Finance />} />
-        <Route path="/gatekeeper/reports" element={<ReportsGate />} />
+        <Route element={<ProtectedRoute allowedRoles={["gatekeeper"]} />}>
+          <Route path="/gatekeeper" element={<GatekeeperDashboard />} />
+          <Route path="/gatekeeper/members" element={<MembersDataGate />} />
+          <Route path="/gatekeeper/attendance" element={<Attendance />} />
+          <Route path="/gatekeeper/finance" element={<Finance />} />
+          <Route path="/gatekeeper/reports" element={<ReportsGate />} />
+        </Route>
 
         {/* Member */}
-        <Route path="/member" element={<MemberPortal />} />
-        <Route path="/member/profile" element={<Profile />} />
-        <Route path="/member/giving" element={<Giving />} />
+        <Route element={<ProtectedRoute allowedRoles={["member"]} />}>
+          <Route path="/member" element={<MemberPortal />} />
+          <Route path="/member/profile" element={<Profile />} />
+          <Route path="/member/giving" element={<Giving />} />
+        </Route>
 
         {/* Fallback */}
         <Route path="*" element={<h2>Page Not Found</h2>} />

@@ -10,6 +10,7 @@ function AdminNav() {
   const showNavbar = () => {
     setIsOpen((s) => !s);
   };
+
   return (
     <>
       <div className="">

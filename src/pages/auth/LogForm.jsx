@@ -5,6 +5,7 @@ import {
   startSession,
   getCurrentUser,
 } from "../auth/js/module/Session.js";
+import { loginUser } from "../../services/authService.js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Snackbar from "@mui/material/Snackbar";
@@ -52,63 +53,65 @@ function LogForm({ currentSession, setLoaderVisible }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Submitting login form with:", { username, password });
     const values = { username, password };
     const validated = validateAll(values, loginPatterns);
 
     if (validated.length > 0) {
-      setErrors(validated);
       setSnackbarMessage(validated.join("\n"));
       setSnackbarSeverity("warning");
       setOpenSnackbar(true);
-      console.log(validated);
       return;
     }
 
     try {
-      const cleanUsername = username.trim();
-      const cleanPassword = password.trim();
+      const response = await loginUser({
+        username: username,
+        passkey: password,
+      });
 
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/login",
-        {
-          username: cleanUsername,
-          passkey: cleanPassword,
-        },
-      );
+      const { token, user } = response;
 
-      const authUser = response.data.user;
-      const role = authUser?.role;
-      authUser.passkey = null;
+      // STORE AUTH DATA
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
 
       setSnackbarMessage("Logged in successfully!");
       setSnackbarSeverity("success");
       setOpenSnackbar(true);
-      startSession(authUser);
 
       setTimeout(() => {
-        console.log("User role:", role);
-        if (!role) {
-          setSnackbarMessage("Unknown user role. Please contact support.");
-          setSnackbarSeverity("error");
-          setOpenSnackbar(true);
-          navigate("/");
-        } else if (role === "admin") {
-          setSnackbarMessage("Welcome to Dashboard Admin!");
-          setSnackbarSeverity("success");
-          setOpenSnackbar(true);
-          navigate("/admin");
-        } else if (role === "gatekeeper") {
-          setSnackbarMessage("Welcome to Dashboard Gatekeeper!");
-          setSnackbarSeverity("success");
-          setOpenSnackbar(true);
-          navigate("/gatekeeper");
-        } else if (role === "member") {
-          setSnackbarMessage("Welcome to members portal!");
-          setSnackbarSeverity("success");
-          setOpenSnackbar(true);
-          navigate("/member");
+        const role = user?.role;
+
+        switch (role) {
+          case "admin":
+            setSnackbarMessage("Welcome to Dashboard Admin!");
+            setSnackbarSeverity("success");
+            setOpenSnackbar(true);
+            navigate("/admin");
+            break;
+
+          case "gatekeeper":
+            setSnackbarMessage("Welcome to Dashboard Gatekeeper!");
+            setSnackbarSeverity("success");
+            setOpenSnackbar(true);
+            navigate("/gatekeeper");
+            break;
+
+          case "member":
+            setSnackbarMessage("Welcome to members portal!");
+            setSnackbarSeverity("success");
+            setOpenSnackbar(true);
+            navigate("/member");
+            break;
+
+          default:
+            setSnackbarMessage("Unknown role. Contact admin.");
+            setSnackbarSeverity("error");
+            setOpenSnackbar(true);
+            navigate("/");
         }
-      }, 1500);
+      }, 800);
     } catch (error) {
       const backendMessage =
         error.response?.data?.errors?.join("\n") ||
@@ -118,7 +121,6 @@ function LogForm({ currentSession, setLoaderVisible }) {
       setSnackbarMessage(backendMessage);
       setSnackbarSeverity("error");
       setOpenSnackbar(true);
-      console.error("Login error:", error.response || error);
     }
   };
 

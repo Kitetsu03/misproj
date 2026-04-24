@@ -1,6 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { registerUser } from "../../services/authService";
 
 function RegForm() {
+  const navigate = useNavigate();
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    try {
+      await registerUser({ username, passkey: password });
+      alert("Registration successful!");
+      navigate("/");
+    } catch (error) {
+      alert(error.response?.data?.message || "Registration failed!");
+    }
+  };
+
   return (
     <>
       <div className="container absolute top-[50%] left-[50%] w-100 md:w-120 xl:w-150 -translate-[50%] flex justify-center content-center">
@@ -58,15 +81,14 @@ function RegForm() {
               <label htmlFor="confirm-password">Confirm password</label>
             </div>
             <div className="card-footer flex-col justify-center items-center">
-              <Link to="/">
-                <button
-                  className="submit cursor-pointer bg-blue-500 text-white p-1 mt-2"
-                  name="submit"
-                  type="submit"
-                >
-                  Confirm Register
-                </button>
-              </Link>
+              <button
+                onClick={handleRegister}
+                className="submit cursor-pointer bg-blue-500 text-white p-1 mt-2"
+                name="submit"
+                type="button"
+              >
+                Confirm Register
+              </button>
               <Link to="/">
                 <a className="login cursor-pointer flex justify-center items-center mt-4 hover:text-cyan-800 opacity-70">
                   Already have an account?

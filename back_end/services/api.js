@@ -1,18 +1,19 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "http://localhost:3000/api",
 });
 
 // Attach token automatically
-API.interceptors.request.use((config) => {
+API.interceptors.request.use((req) => {
   const token = localStorage.getItem("token");
 
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    req.headers = req.headers || {};
+    req.headers.Authorization = `Bearer ${token}`;
   }
 
-  return config;
+  return req;
 });
 
 // Handle global errors
@@ -20,9 +21,12 @@ API.interceptors.response.use(
   (res) => res,
   (err) => {
     if (err.response?.status === 401) {
-      // auto logout if unauthorized
-      localStorage.removeItem("token");
-      window.location.href = "/";
+      const message = err.response?.data?.message;
+
+      if (message === "Invalid token" || message === "No token provided") {
+        localStorage.removeItem("token");
+        window.location.href = "/";
+      }
     }
     return Promise.reject(err);
   },
