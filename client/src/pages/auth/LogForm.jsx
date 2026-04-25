@@ -1,11 +1,11 @@
-import { loginPatterns } from "../auth/js/utils/patterns.js";
-import validateAll from "../auth/js/utils/validator.js";
+import { loginPatterns } from "../../utils/patterns.js";
+import validateAll from "../../utils/validator.js";
 import {
   checkSession,
   startSession,
   getCurrentUser,
-} from "../auth/js/module/Session.js";
-import { loginUser } from "../../../../back_end/services/authService.js";
+} from "../../module/Session.js";
+import { loginUser } from "../../services/authService.js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Snackbar from "@mui/material/Snackbar";

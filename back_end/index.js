@@ -4,17 +4,18 @@ import cors from "cors";
 dotenv.config();
 import mongoose from "mongoose";
 
-import authRoutes from "./routes/auth.routes.js";
-import userRoutes from "./routes/user.routes.js";
-import memberRoutes from "./routes/member.routes.js";
-import lifegroupRoutes from "./routes/lifegroup.routes.js";
-import ministryRoutes from "./routes/ministry.routes.js";
-import attendanceRoutes from "./routes/attendance.routes.js";
-import lgAttendanceRoutes from "./routes/lifegroupAttendance.routes.js";
-import contributionRoutes from "./routes/contribution.routes.js";
-import expenseRoutes from "./routes/expense.routes.js";
+import authRoutes from "./modules/auth/auth.routes.js";
+import userRoutes from "./modules/user/user.routes.js";
+import memberRoutes from "./modules/member/member.routes.js";
+import lifegroupRoutes from "./modules/lifegroup/lifegroup.routes.js";
+import ministryRoutes from "./modules/ministry/ministry.routes.js";
+import attendanceRoutes from "./modules/attendance/attendance.routes.js";
+import lgAttendanceRoutes from "./modules/lifegroup/lifegroupAttendance.routes.js";
+import contributionRoutes from "./modules/finance/contribution.routes.js";
+import expenseRoutes from "./modules/finance/expense.routes.js";
 
-import productRoute from "./routes/product.route.js";
+// test route
+import productRoute from "./modules/product/product.route.js";
 
 const app = express();
 

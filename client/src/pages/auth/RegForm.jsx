@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { registerUser } from "../../../../back_end/services/authService.js";
+import { registerUser } from "../../services/authService.js";
 
 function RegForm() {
   const navigate = useNavigate();
