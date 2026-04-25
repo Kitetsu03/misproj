@@ -14,13 +14,3 @@ export const getProfile = async () => {
   const res = await API.get("/auth/profile");
   return res.data;
 };
-
-export const deleteUser = async (userId) => {
-  const res = await API.delete(`/users/${userId}`);
-  return res.data;
-};
-
-export const updateUser = async (userId, data) => {
-  const res = await API.put(`/users/${userId}`, data);
-  return res.data;
-};

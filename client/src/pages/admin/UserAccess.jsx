@@ -5,32 +5,99 @@ import SearchBar from "../../components/ui/input/SearchBar";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import CreateNewUser from "../../components/ui/buttons/CreateNewUser";
 import ConfigureButton from "../../components/ui/buttons/ConfigureButton";
 import ConfigurePermission from "../../components/ConfigurePermission";
-import { data } from "../../data/users_data";
+import UpdateUserModal from "../../components/ui/modals/UpdateUserModal.jsx";
+import DeleteUserModal from "../../components/ui/modals/DeleteUserModal.jsx";
+import { getUsers, deleteUser } from "../../services/userService.js";
 
 function UserAccess() {
+  const [roleFilter, setRoleFilter] = useState("");
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [userToDelete, setUserToDelete] = useState(null);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [users, setUsers] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
 
-  const users = data.map((u) => ({
-    name: u.fullName,
-    email: u.email,
-    role: u.role,
-    lastLogin: u.lastLogin,
-    color: u.color,
-  }));
+  const getRoleColor = (role) => {
+    switch (role) {
+      case "admin":
+        return "bg-red-500";
+      case "gatekeeper":
+        return "bg-yellow-500";
+      case "member":
+        return "bg-green-500";
+      default:
+        return "bg-gray-500";
+    }
+  };
+
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      setQuery(searchValue);
+    }, 300);
+    return () => clearTimeout(delay);
+  }, [searchValue]);
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const fetchUsers = async () => {
+    try {
+      const res = await getUsers();
+      const formatted = res.map((u) => ({
+        id: u._id,
+        name: u.fullName || u.username,
+        username: u.username,
+        role: u.role,
+        lastLogin: u.lastLogin || "N/A",
+        color: getRoleColor(u.role),
+      }));
+      setUsers(formatted);
+    } catch (err) {
+      console.error("Failed to fetch users:", err);
+    }
+  };
+
+  const handleDeleteClick = (user) => {
+    setUserToDelete(user);
+    setOpenDeleteModal(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setOpenDeleteModal(false);
+    setUserToDelete(null);
+  };
+
+  const handleEdit = (user) => {
+    if (!user) return;
+    setSelectedUser(user);
+    setOpenEditModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenEditModal(false);
+    setSelectedUser(null);
+  };
 
   const filteredUsers = useMemo(() => {
-    if (!query) return users;
     const q = query.toLowerCase();
-    return users.filter(
-      (u) =>
-        u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q),
-    );
-  }, [users, query]);
+
+    return users.filter((u) => {
+      const matchesSearch =
+        u.name.toLowerCase().includes(q) ||
+        u.username.toLowerCase().includes(q);
+
+      const matchesRole = !roleFilter || u.role === roleFilter;
+
+      return matchesSearch && matchesRole;
+    });
+  }, [users, query, roleFilter]);
 
   return (
     <div className="min-h-dvh grid grid-cols-[auto_1fr]">
@@ -47,19 +114,26 @@ function UserAccess() {
               Manage user accounts, roles, and permissions for your system.
             </p>
           </div>
-          <BlackButton val="+ Add User" comp={<CreateNewUser />} />
+          <BlackButton
+            val="+ Add User"
+            comp={<CreateNewUser onSuccess={fetchUsers} />}
+          />
         </div>
 
         {/* Search & Filter */}
         <div className="card p-5 rounded-xl shadow-md space-y-3">
-          <h2 className="font-semibold text-lg">Search & Filter</h2>
+          <h2 className="font-semibold text-lg">Search & Filter by Roles</h2>
+
           <div className="flex gap-2 flex-col md:flex-row">
             <SearchBar
               value={searchValue}
               onChange={(v) => setSearchValue(v)}
               onSearch={() => setQuery(searchValue)}
             />
-            <Dropdown />
+            <Dropdown
+              value={roleFilter}
+              onChange={(value) => setRoleFilter(value)}
+            />
           </div>
         </div>
 
@@ -73,6 +147,11 @@ function UserAccess() {
           </p>
 
           {/* Desktop table (hidden on small screens) */}
+          {filteredUsers.length === 0 && (
+            <span className="text-center py-6 text-gray-600">
+              No users found.
+            </span>
+          )}
           <table className="hidden md:table w-full border-collapse">
             <thead>
               <tr className="text-left border-b border-black/20">
@@ -86,9 +165,9 @@ function UserAccess() {
 
             <tbody className="space-y-4">
               {filteredUsers.map((u) => (
-                <tr key={u.email} className="border-b border-black/20 text-sm">
+                <tr key={u.id} className="border-b border-black/20 text-sm">
                   <td className="py-2">{u.name}</td>
-                  <td>{u.email}</td>
+                  <td>{u.username}</td>
 
                   {/* Roles */}
                   <td>
@@ -101,17 +180,19 @@ function UserAccess() {
 
                   <td>{u.lastLogin}</td>
 
-                  <td className="flex gap-2 py-3">
+                  <td className="flex gap-2 py-3 ">
                     <button
                       aria-label={`Edit ${u.name}`}
-                      className="text-green-900"
+                      className="text-green-900 hover:text-green-500"
+                      onClick={() => handleEdit(u)}
                     >
                       <HiOutlinePencilSquare size={26} />
                     </button>
 
                     <button
                       aria-label={`Delete ${u.name}`}
-                      className="text-green-900"
+                      className="text-green-900 hover:text-red-600"
+                      onClick={() => handleDeleteClick(u)}
                     >
                       <FaRegTrashAlt size={23} />
                     </button>
@@ -124,11 +205,11 @@ function UserAccess() {
           {/* Mobile stacked cards (visible on small screens) */}
           <div className="md:hidden space-y-3">
             {filteredUsers.map((u) => (
-              <div key={u.email} className=" p-4 rounded-lg shadow-sm border">
+              <div key={u.id} className=" p-4 rounded-lg shadow-sm border">
                 <div className="flex justify-between items-start">
                   <div>
                     <div className="font-semibold text-sm">{u.name}</div>
-                    <div className="text-xs text-gray-600">{u.email}</div>
+                    <div className="text-xs text-gray-600">{u.username}</div>
                   </div>
 
                   <div className="ml-3">
@@ -142,12 +223,22 @@ function UserAccess() {
 
                 <div className="mt-3 flex justify-between items-center text-sm">
                   <div className="text-gray-600">
-                    Last Login: <span className="text-black">2025-01-15</span>
+                    Last Login:{" "}
+                    <span className="text-black">{u.lastLogin}</span>
                   </div>
                   <div className="flex gap-2">
                     <button
+                      aria-label={`Edit ${u.name}`}
+                      className="text-green-900 hover:text-green-500"
+                      onClick={() => handleEdit(u)}
+                    >
+                      <HiOutlinePencilSquare size={26} />
+                    </button>
+
+                    <button
                       aria-label={`Delete ${u.name}`}
-                      className="text-green-900"
+                      className="text-green-900 hover:text-red-600"
+                      onClick={() => handleDeleteClick(u)}
                     >
                       <FaRegTrashAlt size={23} />
                     </button>
@@ -156,6 +247,19 @@ function UserAccess() {
               </div>
             ))}
           </div>
+
+          <UpdateUserModal
+            open={openEditModal}
+            onClose={handleCloseModal}
+            userData={selectedUser}
+            onSuccess={fetchUsers}
+          />
+          <DeleteUserModal
+            open={openDeleteModal}
+            onClose={handleCloseDeleteModal}
+            userData={userToDelete}
+            onSuccess={fetchUsers}
+          />
         </div>
 
         {/* Role Definitions

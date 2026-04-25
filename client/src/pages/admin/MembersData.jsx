@@ -12,6 +12,9 @@ import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { useState, useMemo } from "react";
 import { BlackButton } from "../../components/ui/buttons/BlackButton.jsx";
 import { AddNewMember } from "../../components/ui/buttons/AddNewMember.jsx";
+import UpdateUserModal from "../../components/ui/modals/UpdateUserModal.jsx";
+import DeleteUserModal from "../../components/ui/modals/DeleteUserModal.jsx";
+import { getUsers, deleteUser } from "../../services/userService.js";
 function MembersData() {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");

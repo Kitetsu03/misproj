@@ -43,11 +43,9 @@ export const registerService = async (data) => {
     throw { status: 400, message: "Username already exists" };
   }
 
-  const hashedPassword = await bcrypt.hash(passkey, 10);
-
   const user = await User.create({
     username,
-    passkey: hashedPassword,
+    passkey,
     role,
     member_id: member_id || null,
   });

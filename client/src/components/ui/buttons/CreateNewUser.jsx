@@ -7,7 +7,7 @@ import { registerPatterns, loginPatterns } from "../../../utils/patterns.js";
 import validateAll from "../../../utils/validator.js";
 import { registerUser } from "../../../services/authService.js";
 
-function CreateNewUser() {
+function CreateNewUser({ onSuccess }) {
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
@@ -44,6 +44,7 @@ function CreateNewUser() {
         passkey: password,
         role,
       });
+      if (onSuccess) onSuccess();
       setEmail("");
       setPassword("");
       setConfirmPassword("");
@@ -56,7 +57,6 @@ function CreateNewUser() {
         error.response?.data?.errors?.join("\n") ||
         error.response?.data?.message ||
         "Registration failed. Please try again.";
-
       setSnackbarMessage(backendMessage);
       setSnackbarSeverity("error");
       setOpenSnackbar(true);
@@ -129,7 +129,6 @@ function CreateNewUser() {
               >
                 <option value="">Select Role</option>
                 <option value="gatekeeper">Gatekeeper</option>
-                <option value="member">Member</option>
               </select>
             </div>
           </div>

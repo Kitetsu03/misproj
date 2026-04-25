@@ -32,10 +32,6 @@ function SearchBar({
     if (onSearch) onSearch("");
   };
 
-  const handleSearchClick = () => {
-    if (onSearch) onSearch(value);
-  };
-
   return (
     <div
       className={`w-full flex-1 min-w-0 flex items-center gap-2 px-3 py-2 rounded-lg border border-black bg-white/5 ${className}`}
@@ -43,7 +39,7 @@ function SearchBar({
       <CiSearch className="text-xl text-black" />
       <input
         aria-label={placeholder}
-        className="w-full h-full bg-transparent border-none outline-none"
+        className="w-full h-full bg-transparent border-none outline-none px-3 py-1"
         type="text"
         placeholder={placeholder}
         value={value}
@@ -59,13 +55,6 @@ function SearchBar({
           ✖
         </button>
       ) : null}
-      <button
-        onClick={handleSearchClick}
-        className="ml-1 px-3 py-1 bg-emerald-600 text-white rounded-md hover:bg-emerald-700"
-        aria-label="Search"
-      >
-        Search
-      </button>
     </div>
   );
 }

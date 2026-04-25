@@ -1,46 +1,57 @@
-import User from "./user.model.js";
+import {
+  createUserService,
+  getUsersService,
+  getUserByIdService,
+  updateUserService,
+  deleteUserService,
+} from "./user.service.js";
 
+// CREATE
 const createUser = async (req, res) => {
   try {
-    const user = await User.create(req.body);
+    const user = await createUserService(req.body);
     res.status(201).json(user);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
+// GET ALL
 const getUsers = async (req, res) => {
   try {
-    const users = await User.find().populate("member_id");
+    const users = await getUsersService();
     res.json(users);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
+// GET BY ID
 const getUserById = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id).populate("member_id");
+    const user = await getUserByIdService(req.params.id);
     res.json(user);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
+// UPDATE
 const updateUser = async (req, res) => {
   try {
-    const updated = await User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    }).populate("member_id");
+    console.log("UPDATE BODY:", req.body);
+    const updated = await updateUserService(req.params.id, req.body);
     res.json(updated);
   } catch (err) {
+    console.error("UPDATE ERROR:", err);
     res.status(500).json({ message: err.message });
   }
 };
 
+// DELETE
 const deleteUser = async (req, res) => {
   try {
-    await User.findByIdAndDelete(req.params.id);
+    await deleteUserService(req.params.id);
     res.json({ message: "User deleted" });
   } catch (err) {
     res.status(500).json({ message: err.message });
