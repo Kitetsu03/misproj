@@ -39,11 +39,9 @@ const getUserById = async (req, res) => {
 // UPDATE
 const updateUser = async (req, res) => {
   try {
-    console.log("UPDATE BODY:", req.body);
     const updated = await updateUserService(req.params.id, req.body);
     res.json(updated);
   } catch (err) {
-    console.error("UPDATE ERROR:", err);
     res.status(500).json({ message: err.message });
   }
 };

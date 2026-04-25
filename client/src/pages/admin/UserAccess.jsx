@@ -9,8 +9,8 @@ import { useState, useMemo, useEffect } from "react";
 import CreateNewUser from "../../components/ui/buttons/CreateNewUser";
 import ConfigureButton from "../../components/ui/buttons/ConfigureButton";
 import ConfigurePermission from "../../components/ConfigurePermission";
-import UpdateUserModal from "../../components/ui/modals/UpdateUserModal.jsx";
-import DeleteUserModal from "../../components/ui/modals/DeleteUserModal.jsx";
+import UpdateUserModal from "../../components/ui/modals/users/UpdateUserModal.jsx";
+import DeleteUserModal from "../../components/ui/modals/users/DeleteUserModal.jsx";
 import { getUsers, deleteUser } from "../../services/userService.js";
 
 function UserAccess() {
@@ -133,6 +133,13 @@ function UserAccess() {
             <Dropdown
               value={roleFilter}
               onChange={(value) => setRoleFilter(value)}
+              placeholder="Filter by Role"
+              options={[
+                { label: "All Roles", value: "" },
+                { label: "Admin", value: "admin" },
+                { label: "Gatekeeper", value: "gatekeeper" },
+                { label: "Member", value: "member" },
+              ]}
             />
           </div>
         </div>
@@ -145,13 +152,12 @@ function UserAccess() {
           <p className="text-sm mb-4">
             Manage user accounts and their access levels.
           </p>
-
-          {/* Desktop table (hidden on small screens) */}
           {filteredUsers.length === 0 && (
-            <span className="text-center py-6 text-gray-600">
+            <div className="text-center py-6 text-gray-600">
               No users found.
-            </span>
+            </div>
           )}
+          {/* Desktop table (hidden on small screens) */}
           <table className="hidden md:table w-full border-collapse">
             <thead>
               <tr className="text-left border-b border-black/20">

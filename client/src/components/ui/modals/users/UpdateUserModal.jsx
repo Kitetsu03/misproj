@@ -5,12 +5,12 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material";
-import { Input } from "../input/Input.jsx";
+import { Input } from "../../input/Input.jsx";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import { registerPatterns, loginPatterns } from "../../../utils/patterns.js";
-import validateAll from "../../../utils/validator.js";
-import { updateUser } from "../../../services/userService.js";
+import { registerPatterns, loginPatterns } from "../../../../utils/patterns.js";
+import validateAll from "../../../../utils/validator.js";
+import { updateUser } from "../../../../services/userService.js";
 
 function UpdateUserModal({ open, onClose, userData, onSuccess }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -35,7 +35,6 @@ function UpdateUserModal({ open, onClose, userData, onSuccess }) {
     e.preventDefault();
 
     if (!userData?.id) {
-      console.log("Selected user:", userData);
       return;
     }
 

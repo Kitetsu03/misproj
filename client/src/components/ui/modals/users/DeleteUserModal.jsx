@@ -7,7 +7,7 @@ import {
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useState } from "react";
-import { deleteUser } from "../../../services/userService.js";
+import { deleteUser } from "../../../../services/userService.js";
 
 function DeleteUserModal({ open, onClose, userData, onSuccess }) {
   const [loading, setLoading] = useState(false);
