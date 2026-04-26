@@ -11,7 +11,7 @@ import ConfigureButton from "../../components/ui/buttons/ConfigureButton";
 import ConfigurePermission from "../../components/ConfigurePermission";
 import UpdateUserModal from "../../components/ui/modals/users/UpdateUserModal.jsx";
 import DeleteUserModal from "../../components/ui/modals/users/DeleteUserModal.jsx";
-import { getUsers, deleteUser } from "../../services/userService.js";
+import { getUsers } from "../../services/userService.js";
 
 function UserAccess() {
   const [roleFilter, setRoleFilter] = useState("");
@@ -22,6 +22,8 @@ function UserAccess() {
   const [users, setUsers] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const getRoleColor = (role) => {
     switch (role) {
@@ -49,6 +51,7 @@ function UserAccess() {
 
   const fetchUsers = async () => {
     try {
+      setLoading(true);
       const res = await getUsers();
       const formatted = res.map((u) => ({
         id: u._id,
@@ -59,8 +62,9 @@ function UserAccess() {
         color: getRoleColor(u.role),
       }));
       setUsers(formatted);
+      setLoading(false);
     } catch (err) {
-      console.error("Failed to fetch users:", err);
+      setError("Failed to load users");
     }
   };
 

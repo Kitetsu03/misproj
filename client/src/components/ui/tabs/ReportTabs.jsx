@@ -63,14 +63,38 @@ export const ReportTabs = () => {
 
   return (
     <>
-      <div className="card w-full rounded-2xl mx-2">
-        <Box>
+      <div className=" card w-full rounded-2xl mx-2">
+        <Box sx={{ maxWidth: { xs: 510, sm: 1800 } }}>
           <Tabs
             value={value}
             onChange={handleChange}
-            centered
+            variant="scrollable"
+            scrollButtons
+            allowScrollButtonsMobile
             indicatorColor="primary"
-            textColor="primary"
+            textColor="bg-black"
+            sx={{
+              width: "100%",
+              "& .MuiTabs-flexContainer": {
+                justifyContent: {
+                  xs: "flex-start",
+                  md: "center",
+                },
+              },
+              "& .MuiTab-root": {
+                minWidth: "unset",
+                px: 2,
+                flexShrink: 0,
+                fontWeight: 700,
+                fontSize: {
+                  xs: "0.85rem",
+                  sm: "0.95rem",
+                  md: "1rem",
+                  lg: "1.05rem",
+                },
+                whiteSpace: "nowrap",
+              },
+            }}
           >
             <Tab label="Overview" {...a11yProps(0)} />
             <Tab label="Demographics" {...a11yProps(1)} />

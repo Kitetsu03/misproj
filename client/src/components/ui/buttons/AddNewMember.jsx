@@ -3,7 +3,7 @@ import { CenteredTabs } from "../tabs/CenteredTabs.jsx";
 export function AddNewMember() {
   return (
     <>
-      <div className="bg-white p-3 rounded-2xl  max-w-4xl mx-auto">
+      <div className="bg-white w-full max-w-4xl mx-auto rounded-2xl p-4 sm:p-6 max-h-[90vh] overflow-y-auto overflow-x-hidden">
         {/* personal info */}
         <header className="mb-6">
           <h1 className="text-2xl font-semibold">Add New Member</h1>

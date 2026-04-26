@@ -13,11 +13,40 @@ import { useState, useMemo, useEffect } from "react";
 import { BlackButton } from "../../components/ui/buttons/BlackButton.jsx";
 import { AddNewMember } from "../../components/ui/buttons/AddNewMember.jsx";
 import { getMembers } from "../../services/memberService.js";
+import DeleteMemberModal from "../../components/ui/modals/members/DeleteMemberModal.jsx";
+import UpdateMemberModal from "../../components/ui/modals/members/UpdateMemberModal.jsx";
 function MembersData() {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [members, setMembers] = useState([]);
+  const [error, setError] = useState([]);
+
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [userToDelete, setUserToDelete] = useState(null);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  const handleDeleteClick = (user) => {
+    setUserToDelete(user);
+    setOpenDeleteModal(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setOpenDeleteModal(false);
+    setUserToDelete(null);
+  };
+
+  const handleEdit = (user) => {
+    if (!user) return;
+    setSelectedUser(user);
+    setOpenEditModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenEditModal(false);
+    setSelectedUser(null);
+  };
 
   const getRoleColor = (status) => {
     switch (status) {
@@ -42,6 +71,7 @@ function MembersData() {
   useEffect(() => {
     fetchMembers();
   }, []);
+
   const fetchMembers = async () => {
     try {
       const res = await getMembers();
@@ -49,8 +79,10 @@ function MembersData() {
 
       const formatted = res.map((u) => ({
         id: u._id,
-        name: `${u.first_name} ${u.last_name}`,
-        contact: u.contact || "N/A",
+        name: [u.first_name, u.middle_name, u.last_name]
+          .filter(Boolean)
+          .join(" "),
+        contact: u.contact_no || "N/A",
         username: u.email || "N/A",
         status: u.status?.toLowerCase(),
         category: u.category || "N/A",
@@ -61,51 +93,9 @@ function MembersData() {
 
       setMembers(formatted);
     } catch (err) {
-      console.error("Failed to fetch member:", err);
+      setError("Failed to fetch member:");
     }
   };
-  // const users = useMemo(
-  //   () => [
-  //     {
-  //       name: "John Smith",
-  //       email: "john.smith@church.org",
-  //       contact: "09109876543",
-  //       status: "Active",
-  //       category: "LGAM",
-  //       attendance: 95,
-  //       lastVisit: "2025-01-10",
-  //       color: "bg-green-500",
-  //     },
-  //     {
-  //       name: "Sarah Johnson",
-  //       email: "sarah.johnson@church.org",
-  //       status: "Active",
-  //       category: "LGAM",
-  //       attendance: 85,
-  //       lastVisit: "2025-01-10",
-  //       color: "bg-green-500",
-  //     },
-  //     {
-  //       name: "Mike Peters",
-  //       email: "mike.peters@church.org",
-  //       status: "Inactive",
-  //       category: "WSAM",
-  //       attendance: 0,
-  //       lastVisit: "2025-01-10",
-  //       color: "bg-yellow-500",
-  //     },
-  //     {
-  //       name: "Lisa Chen",
-  //       email: "lisa.chen@church.org",
-  //       status: "Visitor",
-  //       category: "Visitor",
-  //       attendance: 10,
-  //       lastVisit: "2025-01-10",
-  //       color: "bg-purple-500",
-  //     },
-  //   ],
-  //   [],
-  // );
 
   const infos = [
     {
@@ -269,14 +259,16 @@ function MembersData() {
                       <td className="flex gap-2 py-3">
                         <button
                           aria-label={`Edit ${u.name}`}
-                          className="text-green-900"
+                          className="text-green-900 hover:text-green-500"
+                          onClick={() => handleEdit(u)}
                         >
                           <HiOutlinePencilSquare size={26} />
                         </button>
 
                         <button
                           aria-label={`Delete ${u.name}`}
-                          className="text-green-900"
+                          className="text-green-900 hover:text-red-600"
+                          onClick={() => handleDeleteClick(u)}
                         >
                           <FaRegTrashAlt size={23} />
                         </button>
@@ -315,14 +307,16 @@ function MembersData() {
                       <div className="flex gap-2">
                         <button
                           aria-label={`Edit ${u.name}`}
-                          className="text-green-900"
+                          className="text-green-900 hover:text-green-500"
+                          onClick={() => handleEdit(u)}
                         >
                           <HiOutlinePencilSquare size={26} />
                         </button>
 
                         <button
                           aria-label={`Delete ${u.name}`}
-                          className="text-green-900"
+                          className="text-green-900 hover:text-red-600"
+                          onClick={() => handleDeleteClick(u)}
                         >
                           <FaRegTrashAlt size={23} />
                         </button>
@@ -331,6 +325,19 @@ function MembersData() {
                   </div>
                 ))}
               </div>
+
+              <UpdateMemberModal
+                open={openEditModal}
+                onClose={handleCloseModal}
+                userData={selectedUser}
+                onSuccess={fetchMembers}
+              />
+              <DeleteMemberModal
+                open={openDeleteModal}
+                onClose={handleCloseDeleteModal}
+                userData={userToDelete}
+                onSuccess={fetchMembers}
+              />
             </div>
           </div>
         </div>

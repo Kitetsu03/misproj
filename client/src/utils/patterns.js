@@ -42,3 +42,36 @@ export const registerPatterns = [
     },
   },
 ];
+
+export const memberPatterns = [
+  {
+    field: "firstName",
+    test: (value) => value.trim().length >= 2,
+    message: "First name must be at least 2 characters.",
+  },
+  {
+    field: "lastName",
+    test: (value) => value.trim().length >= 2,
+    message: "Last name must be at least 2 characters.",
+  },
+  {
+    field: "email",
+    test: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+    message: "Invalid email format.",
+  },
+  {
+    field: "phoneNumber",
+    test: (value) => /^09\d{9}$/.test(value),
+    message: "Phone number must be valid PH mobile format.",
+  },
+  {
+    field: "maritalStatus",
+    test: (value) => value.trim().length > 0,
+    message: "Marital status is required.",
+  },
+  {
+    field: "lifeGroup",
+    test: (value) => value.trim().length > 0,
+    message: "LifeGroup is required.",
+  },
+];
