@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import nodemailer from "nodemailer";
 
-// Create transporter (Gmail + App Password)
+// Create transporter
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Send temporary password email
+// Send temporary password to email
 export const sendTemporaryPassword = async (to, tempPassword) => {
   try {
     const mailOptions = {
