@@ -8,6 +8,7 @@ export function Input({
   value,
   onChange,
   rightElement,
+  autoComplete,
 }) {
   return (
     <div className="space-y-2">
@@ -20,6 +21,7 @@ export function Input({
           id={id}
           name={name}
           type={type}
+          autoComplete={autoComplete}
           className="w-full p-3 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:bg-gray-100"
           placeholder={placeholder}
           value={value}

@@ -184,7 +184,7 @@ function MembersData() {
                   <BlackButton
                     val="+ Add Member"
                     exc="Add Member"
-                    comp={<AddNewMember />}
+                    comp={<AddNewMember onSuccess={fetchMembers} />}
                   />
                 </div>
               </div>

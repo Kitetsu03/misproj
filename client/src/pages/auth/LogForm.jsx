@@ -1,58 +1,47 @@
 import { loginPatterns } from "../../utils/patterns.js";
 import validateAll from "../../utils/validator.js";
-import {
-  checkSession,
-  startSession,
-  getCurrentUser,
-} from "../../module/Session.js";
+import { checkSession, getCurrentUser } from "../../module/Session.js";
 import { loginUser } from "../../services/authService.js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
-function LogForm({ currentSession, setLoaderVisible }) {
+function LogForm({ setLoaderVisible }) {
   const navigate = useNavigate();
-  const [errors, setErrors] = useState([]);
-  const [isRemember, setIsRemember] = useState(false);
+
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
-  const [formData, setFormData] = useState({ username: "", password: "" });
+
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
   const { username, password } = formData;
 
-  function SessionGate() {
-    const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
+  // CHECK EXISTING SESSION
+  useEffect(() => {
+    const verifySession = async () => {
+      const currentSession = await checkSession(getCurrentUser());
 
-    useEffect(() => {
-      const verifySession = async () => {
-        const currentSession = await checkSession(getCurrentUser());
+      if (currentSession) {
+        navigate("/admin");
+      }
+    };
 
-        if (currentSession) {
-          setTimeout(() => {
-            navigate("/admin");
-          }, 1500);
-        } else {
-          setLoading(false);
-        }
-      };
-
-      verifySession();
-    }, [navigate]);
-
-    if (loading) {
-      return <div className="loader" />;
-    }
-
-    return (
-      <LogForm currentSession={false} setLoaderVisible={setLoaderVisible} />
-    );
-  }
+    verifySession();
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const values = { username, password };
+
+    const values = {
+      username: username.trim(),
+      password: password.trim(),
+    };
+
     const validated = validateAll(values, loginPatterns);
 
     if (validated.length > 0) {
@@ -64,9 +53,26 @@ function LogForm({ currentSession, setLoaderVisible }) {
 
     try {
       const response = await loginUser({
-        username: username,
-        passkey: password,
+        username: username.trim(),
+        passkey: password.trim(),
       });
+
+      // FORCE PASSWORD CHANGE
+      if (response.mustChangePassword) {
+        setSnackbarMessage("Password reset required.");
+        setSnackbarSeverity("warning");
+        setOpenSnackbar(true);
+
+        setTimeout(() => {
+          navigate("/change-password", {
+            state: {
+              userId: response.userId,
+            },
+          });
+        }, 1000);
+
+        return;
+      }
 
       const { token, user } = response;
 
@@ -79,27 +85,16 @@ function LogForm({ currentSession, setLoaderVisible }) {
       setOpenSnackbar(true);
 
       setTimeout(() => {
-        const role = user?.role;
-
-        switch (role) {
+        switch (user?.role) {
           case "admin":
-            setSnackbarMessage("Welcome to Dashboard Admin!");
-            setSnackbarSeverity("success");
-            setOpenSnackbar(true);
             navigate("/admin");
             break;
 
           case "gatekeeper":
-            setSnackbarMessage("Welcome to Dashboard Gatekeeper!");
-            setSnackbarSeverity("success");
-            setOpenSnackbar(true);
             navigate("/gatekeeper");
             break;
 
           case "member":
-            setSnackbarMessage("Welcome to members portal!");
-            setSnackbarSeverity("success");
-            setOpenSnackbar(true);
             navigate("/member");
             break;
 
@@ -140,6 +135,7 @@ function LogForm({ currentSession, setLoaderVisible }) {
           </Alert>
         </Snackbar>
       </div>
+
       <div className="container h-full w-full absolute top-[50%] left-[50%] -translate-[50%] md:h-fit md:w-120 xl:w-150 flex justify-center content-center">
         <div className="card rounded-2xl w-[95dvw] md:w-full pt-5">
           <div className="card-header">
@@ -148,6 +144,7 @@ function LogForm({ currentSession, setLoaderVisible }) {
             <h2 className="cursor-default text-center pb-2 text-[min(5vw,20px)] md:text-[min(5vw,30px)]">
               LOGIN ACCOUNT
             </h2>
+
             <hr className="p-1 border-white bg-white" />
           </div>
 
@@ -160,34 +157,43 @@ function LogForm({ currentSession, setLoaderVisible }) {
               <input
                 id="username"
                 className="form-control"
+                autoComplete="username"
                 name="username"
                 type="text"
                 placeholder=" "
                 value={username}
                 onChange={(e) =>
-                  setFormData((prev) => ({ ...prev, username: e.target.value }))
+                  setFormData((prev) => ({
+                    ...prev,
+                    username: e.target.value,
+                  }))
                 }
               />
-              <label htmlFor="email">Email address</label>
+              <label htmlFor="username">Email address</label>
             </div>
+
             <div className="form-group">
               <input
                 id="password"
                 className="form-control"
+                autoComplete="current-password"
                 name="password"
                 type="password"
                 placeholder=" "
                 value={password}
                 onChange={(e) =>
-                  setFormData((prev) => ({ ...prev, password: e.target.value }))
+                  setFormData((prev) => ({
+                    ...prev,
+                    password: e.target.value,
+                  }))
                 }
               />
               <label htmlFor="password">Password</label>
             </div>
+
             <div className="card-footer flex flex-col justify-center items-center">
               <button
                 className="submit cursor-pointer bg-blue-500 text-white p-1 mt-2"
-                name="submit"
                 type="submit"
               >
                 Login Account

@@ -1,6 +1,6 @@
 import { CenteredTabs } from "../tabs/CenteredTabs.jsx";
 
-export function AddNewMember() {
+export function AddNewMember({ onSuccess }) {
   return (
     <>
       <div className="bg-white w-full max-w-4xl mx-auto rounded-2xl p-4 sm:p-6 max-h-[90vh] overflow-y-auto overflow-x-hidden">
@@ -11,7 +11,7 @@ export function AddNewMember() {
             Create a comprehensive profile for a new church member.
           </p>
         </header>
-        <CenteredTabs />
+        <CenteredTabs onSuccess={onSuccess} />
       </div>
     </>
   );

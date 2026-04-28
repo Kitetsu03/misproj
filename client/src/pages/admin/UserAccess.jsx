@@ -90,14 +90,16 @@ function UserAccess() {
   };
 
   const filteredUsers = useMemo(() => {
-    const q = query.toLowerCase();
+    const q = (query || "").toLowerCase().trim();
 
     return users.filter((u) => {
-      const matchesSearch =
-        u.name.toLowerCase().includes(q) ||
-        u.username.toLowerCase().includes(q);
+      const name = (u.name || "").toLowerCase();
+      const username = (u.username || "").toLowerCase();
+      const role = (u.role || "").toLowerCase();
 
-      const matchesRole = !roleFilter || u.role === roleFilter;
+      const matchesSearch = name.includes(q) || username.includes(q);
+
+      const matchesRole = !roleFilter || role === roleFilter.toLowerCase();
 
       return matchesSearch && matchesRole;
     });

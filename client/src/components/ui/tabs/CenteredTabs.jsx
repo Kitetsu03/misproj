@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import DropdownAddress from "../buttons/DropdownAddress.jsx";
 import CustomTabPanel from "./CustomTabPanel.jsx";
+import { Input } from "../input/Input.jsx";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useState, useEffect, useRef } from "react";
@@ -17,7 +18,7 @@ import { createMember } from "../../../services/memberService.js";
 import validateAll from "../../../utils/validator.js";
 import { memberPatterns } from "../../../utils/patterns.js";
 
-export const CenteredTabs = () => {
+export const CenteredTabs = ({ onSuccess }) => {
   const [loadingRegions, setLoadingRegions] = useState(false);
   const [loadingProvinces, setLoadingProvinces] = useState(false);
   const [loadingCities, setLoadingCities] = useState(false);
@@ -45,7 +46,7 @@ export const CenteredTabs = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [joinDate, setJoinDate] = useState("");
   const [lifeGroup, setLifeGroup] = useState("");
-  const [role, setRole] = useState("Member");
+  const [role, setRole] = useState("member");
   const [submitting, setSubmitting] = useState(false);
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -74,12 +75,13 @@ export const CenteredTabs = () => {
         setLoadingRegions(true);
         const res = await getRegions();
 
-        setRegions(
-          res.map((r) => ({
-            label: r.name,
-            value: r.code,
-          })),
-        );
+        const formatted = res.map((r) => ({
+          label: r.name,
+          value: r.code,
+        }));
+
+        locationCache.current.regions = formatted;
+        setRegions(formatted);
       } catch (err) {
         console.error("Failed to fetch regions:", err);
         setError("Failed to load Regions");
@@ -192,17 +194,25 @@ export const CenteredTabs = () => {
     setProvince("");
     setCity("");
     setBrgy("");
+
+    setProvinces([]);
+    setCities([]);
+    setBarangays([]);
   };
 
   const handleProvinceChange = (value) => {
     setProvince(value);
     setCity("");
     setBrgy("");
+
+    setCities([]);
+    setBarangays([]);
   };
 
   const handleCityChange = (value) => {
     setCity(value);
     setBrgy("");
+    setBarangays([]);
   };
 
   const handleBrgyChange = (value) => {
@@ -280,13 +290,15 @@ export const CenteredTabs = () => {
       setProvince("");
       setCity("");
       setBrgy("");
-      setRole("Member");
+      setRole("member");
       setEmail("");
       setPhoneNumber("");
       setJoinDate("");
       setLifeGroup("");
 
-      setSnackbarMessage("Member added successfully!");
+      setSnackbarMessage(
+        "Member added successfully! User account credentials were sent via email.",
+      );
       setSnackbarSeverity("success");
       setOpenSnackbar(true);
     } catch (err) {
@@ -295,6 +307,7 @@ export const CenteredTabs = () => {
         err.response?.data?.message ||
         "Failed to add member.";
 
+      console.log(err.response?.data);
       setSnackbarMessage(backendMessage);
       setSnackbarSeverity("error");
       setOpenSnackbar(true);
@@ -352,52 +365,56 @@ export const CenteredTabs = () => {
         <CustomTabPanel value={value} index={0}>
           <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
             <div className="space-y-2">
-              <label className="font-medium">First Name</label>
-              <input
+              <Input
+                id="firstName"
+                name="firstName"
+                label="First Name"
                 type="text"
-                className="w-full p-3 sm:p-3.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 placeholder="Enter First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
             <div className="space-y-2">
-              <label className="font-medium">Middle Name</label>
-              <input
+              <Input
+                id="middleName"
+                name="middleName"
+                label="Middle Name"
                 type="text"
-                className="w-full p-3 sm:p-3.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="Enter middle name"
+                placeholder="Enter Middle Name"
                 value={middleName}
                 onChange={(e) => setMiddleName(e.target.value)}
               />
             </div>
             <div className="space-y-2">
-              <label className="font-medium">Last Name</label>
-              <input
+              <Input
+                id="lastName"
+                name="lastName"
+                label="Last Name"
                 type="text"
+                placeholder="Enter Last Name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="w-full p-3 sm:p-3.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="Enter last name"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="font-medium">Status</label>
-              <input
+              <Input
+                id="maritalStatus"
+                name="maritalStatus"
+                label="Status"
                 type="text"
-                className="w-full p-3 sm:p-3.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 placeholder="Enter Marital Status"
                 value={maritalStatus}
                 onChange={(e) => setMaritalStatus(e.target.value)}
               />
             </div>
             <div className="space-y-1">
-              <label className="font-medium">Birth Date</label>
-              <input
+              <Input
+                id="birthdate"
+                name="birthdate"
+                label="Birth Date"
                 type="date"
-                className="w-full p-3 sm:p-3.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="mm/dd/yy"
                 value={birthdate}
                 onChange={(e) => setBirthDate(e.target.value)}
               />
@@ -451,7 +468,7 @@ export const CenteredTabs = () => {
                 onChange={(e) => setRole(e.target.value)}
                 className="w-full p-3 border rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
-                <option>Member</option>
+                <option value="member">Member</option>
               </select>
             </div>
           </div>
@@ -459,20 +476,22 @@ export const CenteredTabs = () => {
         <CustomTabPanel value={value} index={1}>
           <div className="grid grid-cols-1 gap-6 ">
             <div className="space-y-2">
-              <label className="font-medium">Email</label>
-              <input
+              <Input
+                id="email"
+                name="email"
+                label="Email"
                 type="email"
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 placeholder="email@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="space-y-2">
-              <label className="font-medium">Phone Number</label>
-              <input
+              <Input
+                id="phoneNumber"
+                name="phoneNumber"
+                label="Phone Number"
                 type="text"
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 placeholder="0912 345 6789"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
@@ -483,20 +502,21 @@ export const CenteredTabs = () => {
         <CustomTabPanel value={value} index={2}>
           <div className="grid grid-cols-1 gap-6 ">
             <div className="space-y-2">
-              <label className="font-medium">Join Date</label>
-              <input
+              <Input
+                id="joinDate"
+                name="joinDate"
+                label="Join Date"
                 type="date"
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="mm/dd/yy"
                 value={joinDate}
                 onChange={(e) => setJoinDate(e.target.value)}
               />
             </div>
             <div className="space-y-2">
-              <label className="font-medium">LifeGroup</label>
-              <input
+              <Input
+                id="lifeGroup"
+                name="lifeGroup"
+                label="LifeGroup"
                 type="text"
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 placeholder="Enter LifeGroup Name"
                 value={lifeGroup}
                 onChange={(e) => setLifeGroup(e.target.value)}
@@ -510,7 +530,14 @@ export const CenteredTabs = () => {
             disabled={submitting}
             className="w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50"
           >
-            {submitting ? "Adding Member..." : "Add Member"}
+            {submitting ? (
+              <span className="flex items-center gap-2">
+                <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+                Adding Member...
+              </span>
+            ) : (
+              "Add Member"
+            )}
           </button>
         </div>
       </form>

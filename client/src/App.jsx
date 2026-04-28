@@ -14,6 +14,7 @@ import Settings from "./pages/admin/Settings";
 import ReportsGate from "./pages/gatekeeper/ReportsGate";
 import { Attendance } from "./pages/gatekeeper/Attendance";
 import { Finance } from "./pages/gatekeeper/Finance";
+import ChangePassword from "./pages/auth/ChangePassword.jsx";
 import ProtectedRoute from "./layout/ProtectedRoute.jsx";
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
 
         {/* Member */}
         <Route element={<ProtectedRoute allowedRoles={["member"]} />}>
+          <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/member" element={<MemberPortal />} />
           <Route path="/member/profile" element={<Profile />} />
           <Route path="/member/giving" element={<Giving />} />
