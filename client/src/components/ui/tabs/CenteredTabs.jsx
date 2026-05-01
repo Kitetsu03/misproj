@@ -281,6 +281,10 @@ export const CenteredTabs = ({ onSuccess }) => {
 
       await createMember(memberData);
 
+      if (onSuccess) {
+        onSuccess();
+      }
+
       setFirstName("");
       setMiddleName("");
       setLastName("");

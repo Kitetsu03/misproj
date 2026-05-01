@@ -15,6 +15,7 @@ import { AddNewMember } from "../../components/ui/buttons/AddNewMember.jsx";
 import { getMembers } from "../../services/memberService.js";
 import DeleteMemberModal from "../../components/ui/modals/members/DeleteMemberModal.jsx";
 import UpdateMemberModal from "../../components/ui/modals/members/UpdateMemberModal.jsx";
+
 function MembersData() {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
