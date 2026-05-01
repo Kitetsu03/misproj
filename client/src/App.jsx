@@ -24,6 +24,7 @@ function App() {
         {/* Public */}
         <Route path="/" element={<LogForm />} />
         <Route path="/register" element={<RegForm />} />
+        <Route path="/change-password" element={<ChangePassword />} />
 
         {/* Admin */}
         <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
@@ -46,7 +47,6 @@ function App() {
 
         {/* Member */}
         <Route element={<ProtectedRoute allowedRoles={["member"]} />}>
-          <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/member" element={<MemberPortal />} />
           <Route path="/member/profile" element={<Profile />} />
           <Route path="/member/giving" element={<Giving />} />

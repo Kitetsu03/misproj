@@ -6,7 +6,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 
 import authRoutes from "./modules/auth/auth.routes.js";
-import userRoutes from "./modules/user/user.routes.js";
+import userRoutes from "./modules/account/user.routes.js";
 import memberRoutes from "./modules/member/member.routes.js";
 import lifegroupRoutes from "./modules/lifegroup/lifegroup.routes.js";
 import ministryRoutes from "./modules/ministry/ministry.routes.js";

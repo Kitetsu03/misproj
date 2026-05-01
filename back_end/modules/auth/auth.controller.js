@@ -7,7 +7,7 @@ import {
 } from "./auth.service.js";
 
 import bcrypt from "bcryptjs";
-import User from "../user/user.model.js";
+import User from "../account/user.model.js";
 
 // CHANGE PASSWORD
 export const changePassword = async (req, res) => {
@@ -80,9 +80,18 @@ export const login = async (req, res) => {
     const { user, token, mustChangePassword } = await loginService(req.body);
 
     if (mustChangePassword) {
+      console.log("mustChangePassword user:", user);
+      console.log("mustChangePassword token:", token);
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+      });
+
       return res.status(200).json({
         mustChangePassword: true,
-        userId: user._id,
+        token,
+        user,
         message: "Password reset required.",
       });
     }

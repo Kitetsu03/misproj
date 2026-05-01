@@ -25,7 +25,7 @@ function AdminNav() {
         <nav
           ref={navRef}
           className={`bg-blue-400 backdrop-blur-[2px] text-white border-white/90 flex flex-col fixed sm:sticky right-0 top-0 h-dvh w-64 transition-transform duration-200 z-40 ${
-            isOpen ? "translate-x-0" : "-translate-x-full"
+            isOpen ? "translate-x-0" : "translate-x-full"
           } sm:relative sm:translate-x-0 sm:w-60 sm:bg-white/10`}
         >
           <div className="p-6 flex flex-col items-center justify-center w-full font-secondary">

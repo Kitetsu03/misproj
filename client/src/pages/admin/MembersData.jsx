@@ -19,6 +19,8 @@ function MembersData() {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [sortBy, setSortBy] = useState("");
   const [members, setMembers] = useState([]);
   const [error, setError] = useState([]);
 
@@ -133,18 +135,34 @@ function MembersData() {
   ];
 
   const filteredMembers = useMemo(() => {
+    let filtered = [...members];
+
     const q = query.toLowerCase();
 
-    return members.filter((u) => {
+    filtered = filtered.filter((u) => {
       const matchesSearch =
         u.name.toLowerCase().includes(q) ||
         u.username.toLowerCase().includes(q);
 
       const matchesStatus = !statusFilter || u.status === statusFilter;
+      const matchesCategory =
+        !categoryFilter ||
+        u.category.toLowerCase() === categoryFilter.toLowerCase();
 
-      return matchesSearch && matchesStatus;
+      return matchesSearch && matchesStatus && matchesCategory;
     });
-  }, [members, query, statusFilter]);
+
+    // SORTING
+    if (sortBy === "name-asc") {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    if (sortBy === "name-desc") {
+      filtered.sort((a, b) => b.name.localeCompare(a.name));
+    }
+
+    return filtered;
+  }, [members, query, statusFilter, categoryFilter, sortBy]);
   return (
     <>
       <div className="min-h-dvh grid grid-cols-[auto_1fr]">
@@ -194,17 +212,41 @@ function MembersData() {
                   onChange={(v) => setSearchValue(v)}
                   onSearch={() => setQuery(searchValue)}
                 />
-                <Dropdown
-                  value={statusFilter}
-                  placeholder="Filter by status"
-                  onChange={(value) => setStatusFilter(value)}
-                  options={[
-                    { label: "All", value: "" },
-                    { label: "Active", value: "active" },
-                    { label: "Inactive", value: "inactive" },
-                    { label: "Visitor", value: "visitor" },
-                  ]}
-                />
+                <div className="md:flex-row md:gap-2 flex md:justify-end">
+                  <Dropdown
+                    value={statusFilter}
+                    placeholder="Filter by status"
+                    onChange={(value) => setStatusFilter(value)}
+                    options={[
+                      { label: "All Status", value: "" },
+                      { label: "Active", value: "active" },
+                      { label: "Inactive", value: "inactive" },
+                      { label: "Visitor", value: "visitor" },
+                    ]}
+                  />
+
+                  <Dropdown
+                    value={categoryFilter}
+                    placeholder="Filter by category"
+                    onChange={(value) => setCategoryFilter(value)}
+                    options={[
+                      { label: "All Categories", value: "" },
+                      { label: "Category 1", value: "Category 1" },
+                      { label: "Category 2", value: "Category 2" },
+                      { label: "Category 3", value: "Category 3" },
+                    ]}
+                  />
+                  <Dropdown
+                    value={sortBy}
+                    placeholder="Sort by name"
+                    onChange={(value) => setSortBy(value)}
+                    options={[
+                      { label: "Default", value: "" },
+                      { label: "Name A-Z", value: "name-asc" },
+                      { label: "Name Z-A", value: "name-desc" },
+                    ]}
+                  />
+                </div>
               </div>
             </div>
             {/* Users Table */}

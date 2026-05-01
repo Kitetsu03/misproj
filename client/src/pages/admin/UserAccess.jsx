@@ -89,10 +89,14 @@ function UserAccess() {
     setSelectedUser(null);
   };
 
+  // state
+  const [sortOrder, setSortOrder] = useState("");
+
+  // filtered + sorted users
   const filteredUsers = useMemo(() => {
     const q = (query || "").toLowerCase().trim();
 
-    return users.filter((u) => {
+    let filtered = users.filter((u) => {
       const name = (u.name || "").toLowerCase();
       const username = (u.username || "").toLowerCase();
       const role = (u.role || "").toLowerCase();
@@ -103,7 +107,18 @@ function UserAccess() {
 
       return matchesSearch && matchesRole;
     });
-  }, [users, query, roleFilter]);
+
+    // Sorting
+    if (sortOrder === "az") {
+      filtered.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+    }
+
+    if (sortOrder === "za") {
+      filtered.sort((a, b) => (b.name || "").localeCompare(a.name || ""));
+    }
+
+    return filtered;
+  }, [users, query, roleFilter, sortOrder]);
 
   return (
     <div className="min-h-dvh grid grid-cols-[auto_1fr]">
@@ -145,6 +160,17 @@ function UserAccess() {
                 { label: "Admin", value: "admin" },
                 { label: "Gatekeeper", value: "gatekeeper" },
                 { label: "Member", value: "member" },
+              ]}
+            />
+
+            <Dropdown
+              value={sortOrder}
+              onChange={(value) => setSortOrder(value)}
+              placeholder="Sort by Name"
+              options={[
+                { label: "Default", value: "" },
+                { label: "Name A-Z", value: "az" },
+                { label: "Name Z-A", value: "za" },
               ]}
             />
           </div>

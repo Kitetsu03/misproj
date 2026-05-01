@@ -26,7 +26,7 @@ function LogForm({ setLoaderVisible }) {
     const verifySession = async () => {
       const currentSession = await checkSession(getCurrentUser());
 
-      if (currentSession) {
+      if (currentSession && !localStorage.getItem("forcePasswordChange")) {
         navigate("/admin");
       }
     };
@@ -57,8 +57,16 @@ function LogForm({ setLoaderVisible }) {
         passkey: password.trim(),
       });
 
+      console.log("Login response:", response);
+
+      const { token, user } = response;
+
       // FORCE PASSWORD CHANGE
-      if (response.mustChangePassword) {
+      if (user?.mustChangePassword) {
+        localStorage.setItem("forcePasswordChange", "true");
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("token", token);
+
         setSnackbarMessage("Password reset required.");
         setSnackbarSeverity("warning");
         setOpenSnackbar(true);
@@ -66,15 +74,13 @@ function LogForm({ setLoaderVisible }) {
         setTimeout(() => {
           navigate("/change-password", {
             state: {
-              userId: response.userId,
+              userId: user._id,
             },
           });
         }, 1000);
 
         return;
       }
-
-      const { token, user } = response;
 
       // STORE AUTH DATA
       localStorage.setItem("token", token);

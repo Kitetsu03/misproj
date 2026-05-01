@@ -1,6 +1,6 @@
 import { generateTempPassword } from "../../utils/generatePassword.js";
 import { sendTemporaryPassword } from "../../utils/sendEmail.js";
-import User from "../user/user.model.js";
+import User from "../account/user.model.js";
 import Member from "./member.model.js";
 
 const createMember = async (req, res) => {

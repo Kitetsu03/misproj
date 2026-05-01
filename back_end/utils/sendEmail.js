@@ -42,9 +42,9 @@ export const sendTemporaryPassword = async (to, tempPassword) => {
     };
 
     await transporter.sendMail(mailOptions);
-    console.log("✅ Email sent to:", to);
+    console.log("Email sent to:", to);
   } catch (error) {
-    console.error("❌ Email failed:", error.message);
+    console.error("Email failed:", error.message);
     throw error;
   }
 };
