@@ -211,7 +211,6 @@ function MembersData() {
                     }
                     submitLabel="Add Member"
                     formId="add-member-form"
-                    submitLabel={"Add Member"}
                     loading={submitting}
                   />
                 </div>
