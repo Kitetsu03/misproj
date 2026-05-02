@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 
-// =====================
 // WORSHIP SERVICE
-// =====================
 const worshipServiceSchema = new mongoose.Schema(
   {
     service_date: {
@@ -18,9 +16,7 @@ export const WorshipService = mongoose.model(
   worshipServiceSchema,
 );
 
-// =====================
 // ATTENDANCE
-// =====================
 const attendanceSchema = new mongoose.Schema(
   {
     service_id: {

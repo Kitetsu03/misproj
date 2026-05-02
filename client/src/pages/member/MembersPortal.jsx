@@ -15,8 +15,10 @@ import { ViewFullAttendace } from "../../components/ViewFullAttendance";
 import { ViewFullHistory } from "../../components/ViewFullHistory";
 import { AddToCalendar } from "../../components/ui/tabs/AddToCalendar";
 import { ViewGroupDetails } from "../../components/ui/tabs/ViewGroupDetails";
+import { useNavigate } from "react-router-dom";
 
 function MemberPortal() {
+  const navigate = useNavigate();
   const navitem = [
     {
       id: 1,
@@ -44,6 +46,12 @@ function MemberPortal() {
     { date: "September 17", type: "Pledges", amount: "150.00" },
   ];
 
+  const handleLogout = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    navigate("/", { replace: true });
+  };
+
   return (
     <>
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-complementary border-t shadow-md">
@@ -59,19 +67,29 @@ function MemberPortal() {
         </div>
       </div>
       <div className="min-h-screen pb-20">
-        <div className="card w-full md:w-full pt-5">
+        <div className="card w-full md:w-full">
           <div className="card-header">
+            <div className="flex justify-end pt-5 pr-5">
+              <button
+                onClick={handleLogout}
+                className="flex justify-end bg-black hover:bg-red-500 text-white font-bold py-2 px-4 rounded font-secondary"
+              >
+                Logout
+              </button>
+            </div>
             <div className="my-logo justify-center"></div>
+
             <h2 className="cursor-default text-center pb-2 text-[min(5vw,20px)] md:text-[min(5vw,30px)]"></h2>
             <hr className="p-1 border-white bg-white" />
           </div>
         </div>
 
         <main className="main-content px-5 space-y-5 sm:px-10 md:px-20 lg:px-40">
-          <section className="welcome-section text-center p-4  ">
+          <section className="welcome-section text-center p-4">
             <h1 className="welcome-title text-amber-50 font-extrabold text-3xl sm:text-5xl md:text-6xl p-4 font-secondary ">
               WELCOME BACK, MARC!
             </h1>
+
             <p className="welcome-subtext text-xl">
               Here's your church dashboard.
             </p>

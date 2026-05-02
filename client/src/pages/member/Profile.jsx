@@ -184,7 +184,9 @@ function Profile() {
             </div>
 
             <div className="mt-6">
-              <label className="font-semibold">House No. / Street / Sitio / Purok</label>
+              <label className="font-semibold">
+                House No. / Street / Sitio / Purok
+              </label>
               <input
                 type="email"
                 className="w-full mt-1 p-3 border border-gray-400 rounded-xl focus:ring-2 focus:ring-blue-300"

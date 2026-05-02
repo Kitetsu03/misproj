@@ -6,7 +6,7 @@ import { IoPersonOutline } from "react-icons/io5";
 
 function AdminNav() {
   const navRef = useRef();
-  const navigate = useNavigate(); // ADD THIS
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const showNavbar = () => {

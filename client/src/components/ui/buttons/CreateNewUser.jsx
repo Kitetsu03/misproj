@@ -88,7 +88,7 @@ function CreateNewUser({ onSuccess }) {
           </p>
         </header>
 
-        <form onSubmit={handleRegister}>
+        <form id="create-user-form" onSubmit={handleRegister}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Input
               id="username"
@@ -129,10 +129,11 @@ function CreateNewUser({ onSuccess }) {
               >
                 <option value="">Select Role</option>
                 <option value="gatekeeper">Gatekeeper</option>
+                <option value="member">Member</option>
               </select>
             </div>
           </div>
-          <div className="mt-6 flex justify-end gap-4">
+          {/* <div className="mt-6 flex justify-end gap-4">
             <button
               type="submit"
               disabled={!email || !password || !role}
@@ -140,7 +141,7 @@ function CreateNewUser({ onSuccess }) {
             >
               Create User
             </button>
-          </div>
+          </div> */}
         </form>
       </div>
     </>

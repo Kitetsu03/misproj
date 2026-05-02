@@ -1,4 +1,5 @@
 import User from "../account/user.model.js";
+import { logLogin } from "../logs/loginlogs.service.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -76,19 +77,28 @@ export const loginService = async ({ username, passkey }) => {
     throw { status: 400, errors: ["Invalid username or password."] };
   }
 
+  await logLogin(user._id);
+
+  // REFETCH UPDATED USER
+  const updatedUser = await User.findById(user._id).populate("member_id");
+
   const token = jwt.sign(
     {
-      userId: user._id,
-      role: user.role,
+      userId: updatedUser._id,
+      role: updatedUser.role,
     },
     process.env.JWT_SECRET || "secret",
     { expiresIn: "1d" },
   );
 
-  const userSafe = user.toObject();
+  const userSafe = updatedUser.toObject();
   delete userSafe.passkey;
 
-  return { token, user: userSafe };
+  return {
+    token,
+    user: userSafe,
+    mustChangePassword: updatedUser.mustChangePassword,
+  };
 };
 
 // PROFILE SERVICE

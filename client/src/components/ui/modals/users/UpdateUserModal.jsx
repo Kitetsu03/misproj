@@ -17,7 +17,6 @@ function UpdateUserModal({ open, onClose, userData, onSuccess }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [role, setRole] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
@@ -25,7 +24,6 @@ function UpdateUserModal({ open, onClose, userData, onSuccess }) {
   useEffect(() => {
     if (userData) {
       setEmail(userData.username || "");
-      setRole(userData.role || "");
       setPassword("");
       setConfirmPassword("");
     }
@@ -42,7 +40,6 @@ function UpdateUserModal({ open, onClose, userData, onSuccess }) {
       username: email,
       password,
       confirmPassword,
-      role,
     };
 
     // Only include password rules if user typed something
@@ -66,7 +63,6 @@ function UpdateUserModal({ open, onClose, userData, onSuccess }) {
     try {
       const payload = {
         username: email,
-        role,
       };
 
       if (password) {
@@ -173,18 +169,6 @@ function UpdateUserModal({ open, onClose, userData, onSuccess }) {
                 </span>
               }
             />
-
-            <div className="space-y-1">
-              <label className="font-medium">Role</label>
-              <select
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                className="w-full p-3 border rounded-lg"
-              >
-                <option value="">Select Role</option>
-                <option value="gatekeeper">Gatekeeper</option>
-              </select>
-            </div>
           </form>
         </DialogContent>
 
@@ -201,7 +185,7 @@ function UpdateUserModal({ open, onClose, userData, onSuccess }) {
             <button
               type="submit"
               form="update-form"
-              disabled={!email || !role}
+              disabled={!email}
               className="px-4 py-2 rounded-lg bg-black text-white disabled:opacity-50 font-secondary"
             >
               Update

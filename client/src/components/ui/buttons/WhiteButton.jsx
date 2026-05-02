@@ -9,7 +9,7 @@ export function WhiteButton({ val, exc, comp, icon }) {
   return (
     <>
       <button
-        className="bg-white text-black px-5 py-2 rounded-lg shadow-md hover:bg-gray-800 font-secondary"
+        className="bg-white text-black px-5 py-2 rounded-lg shadow-md hover:bg-gray-800 hover:text-white font-secondary"
         onClick={handleClick}
       >
         <div className="flex items-center gap-2">

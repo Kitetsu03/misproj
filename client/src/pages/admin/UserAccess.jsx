@@ -11,17 +11,26 @@ import ConfigureButton from "../../components/ui/buttons/ConfigureButton";
 import ConfigurePermission from "../../components/ConfigurePermission";
 import UpdateUserModal from "../../components/ui/modals/users/UpdateUserModal.jsx";
 import DeleteUserModal from "../../components/ui/modals/users/DeleteUserModal.jsx";
+import RoleUpdateModal from "../../components/ui/modals/users/UpdateRoleModal.jsx";
 import { getUsers } from "../../services/userService.js";
 
 function UserAccess() {
   const [roleFilter, setRoleFilter] = useState("");
+
+  const [openRoleModal, setOpenRoleModal] = useState(false);
+  const [selectedRoleUser, setSelectedRoleUser] = useState(null);
+
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
   const [userToDelete, setUserToDelete] = useState(null);
+
   const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+
   const [users, setUsers] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -59,6 +68,12 @@ function UserAccess() {
         username: u.username,
         role: u.role,
         lastLogin: u.lastLogin || "N/A",
+        createdAt: u.createdAt
+          ? new Date(u.createdAt).toLocaleString("en-PH", {
+              dateStyle: "medium",
+              timeStyle: "short",
+            })
+          : "N/A",
         color: getRoleColor(u.role),
       }));
       setUsers(formatted);
@@ -76,6 +91,17 @@ function UserAccess() {
   const handleCloseDeleteModal = () => {
     setOpenDeleteModal(false);
     setUserToDelete(null);
+  };
+
+  const handleRoleUpdate = (user) => {
+    if (!user) return;
+    setSelectedRoleUser(user);
+    setOpenRoleModal(true);
+  };
+
+  const handleCloseRoleModal = () => {
+    setOpenRoleModal(false);
+    setSelectedRoleUser(null);
   };
 
   const handleEdit = (user) => {
@@ -138,6 +164,8 @@ function UserAccess() {
           <BlackButton
             val="+ Add User"
             comp={<CreateNewUser onSuccess={fetchUsers} />}
+            submitLabel="Create User"
+            formId="create-user-form"
           />
         </div>
 
@@ -197,6 +225,7 @@ function UserAccess() {
                 <th className="pb-2">Email</th>
                 <th className="pb-2">Role</th>
                 <th className="pb-2">Last Login</th>
+                <th className="pb-2">Created At</th>
                 <th className="pb-2">Actions</th>
               </tr>
             </thead>
@@ -217,6 +246,7 @@ function UserAccess() {
                   </td>
 
                   <td>{u.lastLogin}</td>
+                  <td>{u.createdAt}</td>
 
                   <td className="flex gap-2 py-3 ">
                     <button
@@ -226,7 +256,13 @@ function UserAccess() {
                     >
                       <HiOutlinePencilSquare size={26} />
                     </button>
-
+                    <button
+                      aria-label={`Update role for ${u.name}`}
+                      className="text-green-900 hover:text-yellow-500"
+                      onClick={() => handleRoleUpdate(u)}
+                    >
+                      <FiKey size={26} />
+                    </button>
                     <button
                       aria-label={`Delete ${u.name}`}
                       className="text-green-900 hover:text-red-600"
@@ -272,6 +308,13 @@ function UserAccess() {
                     >
                       <HiOutlinePencilSquare size={26} />
                     </button>
+                    <button
+                      aria-label={`Update role for ${u.name}`}
+                      className="text-green-900 hover:text-yellow-500"
+                      onClick={() => handleRoleUpdate(u)}
+                    >
+                      <FiKey size={26} />
+                    </button>
 
                     <button
                       aria-label={`Delete ${u.name}`}
@@ -290,6 +333,12 @@ function UserAccess() {
             open={openEditModal}
             onClose={handleCloseModal}
             userData={selectedUser}
+            onSuccess={fetchUsers}
+          />
+          <RoleUpdateModal
+            open={openRoleModal}
+            onClose={handleCloseRoleModal}
+            userData={selectedRoleUser}
             onSuccess={fetchUsers}
           />
           <DeleteUserModal

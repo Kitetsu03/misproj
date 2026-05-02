@@ -128,7 +128,7 @@ function LogForm({ setLoaderVisible }) {
       <div className="h-auto">
         <Snackbar
           open={openSnackbar}
-          autoHideDuration={3000}
+          autoHideDuration={5000}
           onClose={() => setOpenSnackbar(false)}
           anchorOrigin={{ vertical: "top", horizontal: "right" }}
         >

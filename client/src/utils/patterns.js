@@ -30,17 +30,6 @@ export const registerPatterns = [
       required: "Confirm password is required.",
     },
   },
-
-  {
-    id: "role",
-    required: true,
-    custom: (value) =>
-      ["admin", "gatekeeper", "member"].includes(value) ||
-      "Invalid role selected.",
-    message: {
-      required: "Role is required.",
-    },
-  },
 ];
 
 export const memberPatterns = [

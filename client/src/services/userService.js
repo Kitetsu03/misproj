@@ -18,6 +18,12 @@ export const updateUser = async (id, data) => {
   return res.data;
 };
 
+// UPDATE USER ROLE
+export const updateUserRole = async (id, role) => {
+  const res = await API.put(`/users/${id}`, { role });
+  return res.data;
+};
+
 // DELETE USER
 export const deleteUser = async (id) => {
   const res = await API.delete(`/users/${id}`);

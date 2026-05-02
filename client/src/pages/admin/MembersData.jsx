@@ -202,8 +202,9 @@ function MembersData() {
                   <BlackButton val="Export" exc="Export Members" />
                   <BlackButton
                     val="+ Add Member"
-                    exc="Add Member"
-                    comp={<AddNewMember onSuccess={fetchMembers} />}
+                    comp={<AddNewMember />}
+                    submitLabel="Add Member"
+                    formId="add-member-form"
                   />
                 </div>
               </div>

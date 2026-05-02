@@ -44,7 +44,9 @@ export const CenteredTabs = ({ onSuccess }) => {
 
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [joinDate, setJoinDate] = useState("");
+  const [joinDate, setJoinDate] = useState(
+    new Date().toISOString().split("T")[0],
+  );
   const [lifeGroup, setLifeGroup] = useState("");
   const [role, setRole] = useState("member");
   const [submitting, setSubmitting] = useState(false);
@@ -365,7 +367,11 @@ export const CenteredTabs = ({ onSuccess }) => {
           </Tabs>
         </Box>
       </div>
-      <form onSubmit={handleSubmit} className="w-full overflow-x-hidden">
+      <form
+        id="add-member-form"
+        onSubmit={handleSubmit}
+        className="w-full overflow-x-hidden"
+      >
         <CustomTabPanel value={value} index={0}>
           <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
             <div className="space-y-2">
@@ -516,34 +522,22 @@ export const CenteredTabs = ({ onSuccess }) => {
               />
             </div>
             <div className="space-y-2">
-              <Input
-                id="lifeGroup"
-                name="lifeGroup"
-                label="LifeGroup"
+              <select
+                id="category"
+                name="category"
+                label="Category"
                 type="text"
-                placeholder="Enter LifeGroup Name"
-                value={lifeGroup}
-                onChange={(e) => setLifeGroup(e.target.value)}
-              />
+                placeholder="Enter Category Name"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <option value="">Select Category</option>
+                <option value="Category 1">Category 1</option>
+                <option value="Category 2">Category 2</option>
+              </select>
             </div>
           </div>
         </CustomTabPanel>
-        <div className="mt-6 flex flex-col sm:flex-row justify-end gap-3">
-          <button
-            type="submit"
-            disabled={submitting}
-            className="w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50"
-          >
-            {submitting ? (
-              <span className="flex items-center gap-2">
-                <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
-                Adding Member...
-              </span>
-            ) : (
-              "Add Member"
-            )}
-          </button>
-        </div>
       </form>
     </>
   );
