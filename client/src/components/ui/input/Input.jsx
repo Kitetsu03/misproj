@@ -22,7 +22,7 @@ export function Input({
           name={name}
           type={type}
           autoComplete={autoComplete}
-          className="w-full p-3 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:bg-gray-100"
+          className="w-full p-3 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
           placeholder={placeholder}
           value={value}
           disabled={disabled}

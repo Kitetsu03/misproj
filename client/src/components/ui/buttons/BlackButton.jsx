@@ -6,15 +6,20 @@ export function BlackButton({
   icon,
   submitLabel = "Submit",
   formId = "",
+  loading = false,
 }) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    if (!loading) setOpen(false); // Prevent closing while submitting
+  };
 
   return (
     <>
+      {/* Open Modal Button */}
       <button
+        type="button"
         className="bg-black text-white px-5 py-2 rounded-lg shadow-md hover:bg-gray-800 font-secondary"
         onClick={handleClick}
       >
@@ -36,10 +41,16 @@ export function BlackButton({
             {comp}
 
             {/* Footer Buttons */}
-            <div className="flex justify-end gap-3 mt-6">
+            <div className="flex justify-end gap-3">
               <button
-                className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 font-secondary"
+                type="button"
+                className={`px-4 py-2 rounded font-secondary ${
+                  loading
+                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    : "bg-gray-200 hover:bg-gray-300"
+                }`}
                 onClick={handleClose}
+                disabled={loading}
               >
                 Cancel
               </button>
@@ -47,9 +58,40 @@ export function BlackButton({
               <button
                 type="submit"
                 form={formId}
-                className="px-5 py-2 rounded-lg bg-black text-white hover:bg-gray-800 font-secondary"
+                disabled={loading}
+                className={`px-5 py-2 rounded-lg font-secondary text-white flex items-center justify-center gap-2 min-w-[140px] ${
+                  loading
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-black hover:bg-gray-800"
+                }`}
               >
-                {submitLabel}
+                {loading ? (
+                  <>
+                    <svg
+                      className="animate-spin h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8H4z"
+                      />
+                    </svg>
+                    Submitting...
+                  </>
+                ) : (
+                  submitLabel
+                )}
               </button>
             </div>
           </div>

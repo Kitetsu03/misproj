@@ -18,7 +18,7 @@ import { createMember } from "../../../services/memberService.js";
 import validateAll from "../../../utils/validator.js";
 import { memberPatterns } from "../../../utils/patterns.js";
 
-export const CenteredTabs = ({ onSuccess }) => {
+export const CenteredTabs = ({ onSuccess, setSubmitting }) => {
   const [loadingRegions, setLoadingRegions] = useState(false);
   const [loadingProvinces, setLoadingProvinces] = useState(false);
   const [loadingCities, setLoadingCities] = useState(false);
@@ -49,7 +49,6 @@ export const CenteredTabs = ({ onSuccess }) => {
   );
   const [lifeGroup, setLifeGroup] = useState("");
   const [role, setRole] = useState("member");
-  const [submitting, setSubmitting] = useState(false);
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -520,21 +519,6 @@ export const CenteredTabs = ({ onSuccess }) => {
                 value={joinDate}
                 onChange={(e) => setJoinDate(e.target.value)}
               />
-            </div>
-            <div className="space-y-2">
-              <select
-                id="category"
-                name="category"
-                label="Category"
-                type="text"
-                placeholder="Enter Category Name"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <option value="">Select Category</option>
-                <option value="Category 1">Category 1</option>
-                <option value="Category 2">Category 2</option>
-              </select>
             </div>
           </div>
         </CustomTabPanel>

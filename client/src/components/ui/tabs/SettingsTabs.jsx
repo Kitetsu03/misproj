@@ -45,19 +45,41 @@ export const SettingsTabs = () => {
   return (
     <>
       <div className="card mx-2 w-full rounded-2xl">
-        <Box>
+        <Box sx={{ maxWidth: { xs: 510, sm: 1800 } }}>
           <Tabs
             value={value}
             onChange={handleChange}
-            centered
+            variant="scrollable"
+            scrollButtons
+            allowScrollButtonsMobile
             indicatorColor="primary"
-            textColor="primary"
+            textColor="bg-black"
+            sx={{
+              width: "100%",
+              "& .MuiTabs-flexContainer": {
+                justifyContent: {
+                  xs: "flex-start",
+                  md: "center",
+                },
+              },
+              "& .MuiTab-root": {
+                minWidth: "unset",
+                px: 2,
+                flexShrink: 0,
+                fontWeight: 700,
+                fontSize: {
+                  xs: "0.85rem",
+                  sm: "0.95rem",
+                  md: "1rem",
+                  lg: "1.05rem",
+                },
+                whiteSpace: "nowrap",
+              },
+            }}
           >
             <Tab label="Church Info" {...a11yProps(0)} />
             <Tab label="Services" {...a11yProps(1)} />
             <Tab label="Ministries" {...a11yProps(2)} />
-            <Tab label="Communications" {...a11yProps(3)} />
-            <Tab label="Data and Backup" {...a11yProps(4)} />
           </Tabs>
         </Box>
       </div>
@@ -68,7 +90,11 @@ export const SettingsTabs = () => {
             Basic church details and contact information.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
-            <Input label="Church Name" />
+            <Input
+              label="Church Name"
+              value={"Jesus Is Lord Church Atimonan"}
+              disabled={true}
+            />
             <Input label="Church Address" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Input label="Phone" />
@@ -102,49 +128,6 @@ export const SettingsTabs = () => {
             <div>
               <BlackButton val="+ Add Ministry" />
             </div>
-          </div>
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={3}>
-          <div className="flex justify-between items-center mb-4">
-            <div>
-              <h2 className="font-semibold text-lg">Email Configuration</h2>
-              <p className="text-sm text-gray-600 mb-8">
-                Configure SMTP settings for system emails.
-              </p>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Input label="SMTP Server" />
-            <Input label="SMTP Port" />
-          </div>
-          <Input label="Username" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-7 pt-4">
-            <button className="rounded-2xl font-black">○ Enable SSL/TLS</button>
-            <BlackButton val="Save Email Settings" />
-          </div>
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={4}>
-          <div className="flex justify-between items-center mb-4">
-            <div>
-              <h2 className="font-semibold text-lg">Data Backup & Recovery</h2>
-              <p className="text-sm text-gray-600 mb-8">
-                Configure automatic backups and data retention policies.
-              </p>
-
-              <button className="rounded-2xl font-black">
-                ○ Enable SSL/TLS
-              </button>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Input label="Backup Frequency" />
-            <Input label="Retention Days" />
-          </div>
-
-          <div className="grid grid-cols-3 gap-4 pt-4">
-            <BlackButton val="Create Manual Backup" />
-            <BlackButton val="Download Backup" />
-            <BlackButton val="Restore from  Backup" />
           </div>
         </CustomTabPanel>
       </div>

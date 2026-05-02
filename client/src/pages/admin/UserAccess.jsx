@@ -64,7 +64,10 @@ function UserAccess() {
       const res = await getUsers();
       const formatted = res.map((u) => ({
         id: u._id,
-        name: u.fullName || u.username,
+        name:
+          [u.first_name, u.middle_name, u.last_name]
+            .filter(Boolean)
+            .join(" ") || "N/A",
         username: u.username,
         role: u.role,
         lastLogin: u.lastLogin || "N/A",

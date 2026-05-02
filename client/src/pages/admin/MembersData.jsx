@@ -29,6 +29,7 @@ function MembersData() {
   const [userToDelete, setUserToDelete] = useState(null);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleDeleteClick = (user) => {
     setUserToDelete(user);
@@ -202,9 +203,16 @@ function MembersData() {
                   <BlackButton val="Export" exc="Export Members" />
                   <BlackButton
                     val="+ Add Member"
-                    comp={<AddNewMember />}
+                    comp={
+                      <AddNewMember
+                        onSuccess={fetchMembers}
+                        setSubmitting={setSubmitting}
+                      />
+                    }
                     submitLabel="Add Member"
                     formId="add-member-form"
+                    submitLabel={"Add Member"}
+                    loading={submitting}
                   />
                 </div>
               </div>

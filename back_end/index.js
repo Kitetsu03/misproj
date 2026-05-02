@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
@@ -55,7 +55,7 @@ app.get("/", (req, res) => {
 mongoose.connect(process.env.CONNECTION_STRING);
 try {
   console.log("Connected to MongoDB");
-  app.listen(process.env.PORT, () => {
+  app.listen(process.env.PORT || 3000, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
   });
 } catch (error) {
