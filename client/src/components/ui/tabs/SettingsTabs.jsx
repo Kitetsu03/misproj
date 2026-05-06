@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { BlackButton } from "../buttons/BlackButton";
 import { Input } from "../input/Input";
+import AddServiceModal from "../modals/services/AddServiceModal";
 import { useState } from "react";
 
 export const SettingsTabs = () => {
@@ -113,7 +114,7 @@ export const SettingsTabs = () => {
               </p>
             </div>
             <div>
-              <BlackButton val="+ Add Service" />
+              <BlackButton val="Services" comp={<AddServiceModal />} />
             </div>
           </div>
         </CustomTabPanel>
