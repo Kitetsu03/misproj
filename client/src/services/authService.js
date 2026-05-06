@@ -5,11 +5,6 @@ export const loginUser = async (data) => {
   return res.data;
 };
 
-export const registerUser = async (data) => {
-  const res = await API.post("/auth/register", data);
-  return res.data;
-};
-
 export const getProfile = async () => {
   const res = await API.get("/auth/profile");
   return res.data;

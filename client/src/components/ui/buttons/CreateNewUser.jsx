@@ -5,7 +5,7 @@ import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { registerPatterns, loginPatterns } from "../../../utils/patterns.js";
 import validateAll from "../../../utils/validator.js";
-import { registerUser } from "../../../services/authService.js";
+import { createUser } from "../../../services/userService.js";
 
 //This is just a placeholder
 function CreateNewUser({ onSuccess }) {
@@ -40,7 +40,7 @@ function CreateNewUser({ onSuccess }) {
     }
 
     try {
-      await registerUser({
+      await createUser({
         email: email,
         passkey: password,
         role,

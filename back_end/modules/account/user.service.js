@@ -6,7 +6,9 @@ export const createUserService = async (data) => {
   const existingUser = await User.findOne({ email: data.email });
 
   if (existingUser) {
-    throw new Error("User already exists");
+    const error = new Error("User already exists");
+    error.status = 400;
+    throw error;
   }
 
   return await User.create(data);

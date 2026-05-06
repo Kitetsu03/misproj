@@ -2,8 +2,6 @@ import {
   registerService,
   loginService,
   getProfileService,
-  deleteUserService,
-  updateUserService,
 } from "./auth.service.js";
 
 import bcrypt from "bcryptjs";

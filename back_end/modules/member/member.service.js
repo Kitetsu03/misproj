@@ -66,6 +66,7 @@ export const findOrCreateUser = async (email) => {
 
   return user;
 };
+
 export const upsertMemberProfileService = async (userId, data) => {
   if (!userId) throw new Error("User ID is required");
 

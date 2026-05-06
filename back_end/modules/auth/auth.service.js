@@ -105,15 +105,3 @@ export const loginService = async ({ email, passkey }) => {
 export const getProfileService = async (userId) => {
   return await User.findById(userId).populate("member_id");
 };
-
-// DELETE USER SERVICE
-export const deleteUserService = async (id) => {
-  await User.findByIdAndDelete(id);
-};
-
-// UPDATE USER SERVICE
-export const updateUserService = async (id, data) => {
-  return await User.findByIdAndUpdate(id, data, {
-    new: true,
-  }).populate("member_id");
-};

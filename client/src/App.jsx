@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import RegForm from "./pages/auth/RegForm";
 import LogForm from "./pages/auth/LogForm";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import MemberPortal from "./pages/member/MembersPortal";
@@ -23,7 +22,6 @@ function App() {
       <Routes>
         {/* Public */}
         <Route path="/" element={<LogForm />} />
-        <Route path="/appregisterhidden" element={<RegForm />} />
         <Route path="/change-password" element={<ChangePassword />} />
 
         {/* Admin */}
