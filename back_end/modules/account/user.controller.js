@@ -9,7 +9,12 @@ import {
 // CREATE
 const createUser = async (req, res) => {
   try {
-    const user = await createUserService(req.body);
+    const user = await createUserService({
+      email: req.body.email,
+      passkey: req.body.passkey,
+      role: req.body.role,
+      member_id: null,
+    });
     res.status(201).json(user);
   } catch (err) {
     res.status(500).json({ message: err.message });

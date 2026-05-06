@@ -7,7 +7,6 @@ import { FaCamera } from "react-icons/fa";
 import { HiOutlineInformationCircle } from "react-icons/hi2";
 import { MdLocationPin } from "react-icons/md";
 import { MdContactEmergency } from "react-icons/md";
-import { EditButton } from "../../components/ui/buttons/EditButton";
 
 function Profile() {
   const navitem = [

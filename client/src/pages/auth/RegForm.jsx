@@ -6,7 +6,7 @@ function RegForm() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirm-password").value;
     const role = document.getElementById("role").value;
@@ -17,7 +17,7 @@ function RegForm() {
     }
 
     try {
-      await registerUser({ role, username, passkey: password });
+      await registerUser({ role, email, passkey: password });
       alert("Registration successful!");
       navigate("/");
     } catch (error) {
@@ -40,13 +40,13 @@ function RegForm() {
             <form action="post">
               <div className="form-group">
                 <input
-                  id="username"
+                  id="email"
                   className="form-control"
-                  name="username"
+                  name="email"
                   type="text"
                   placeholder=" "
                 />
-                <label htmlFor="username">Username</label>
+                <label htmlFor="email">Username</label>
               </div>
               <div className="form-group">
                 <input
@@ -70,6 +70,7 @@ function RegForm() {
               </div>
               <div className="form-group font-secondary">
                 <select name="role" id="role">
+                  <option value="admin">admin</option>
                   <option value="gatekeeper">gatekeeper</option>
                   <option value="member">member</option>
                 </select>

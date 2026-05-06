@@ -9,6 +9,7 @@ import Alert from "@mui/material/Alert";
 import { useState } from "react";
 import { deleteMember } from "../../../../services/memberService.js";
 
+//TODO dont delete just append
 function DeleteMemberModal({ open, onClose, userData, onSuccess }) {
   const [loading, setLoading] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);

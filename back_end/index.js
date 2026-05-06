@@ -52,7 +52,8 @@ app.get("/", (req, res) => {
 });
 
 // Database connection and server start
-mongoose.connect(process.env.CONNECTION_STRING);
+mongoose.connect(process.env.CONNECTION_STRING || "mongodb://localhost:27017/");
+
 try {
   console.log("Connected to MongoDB");
   app.listen(process.env.PORT || 3000, () => {

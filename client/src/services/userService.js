@@ -24,7 +24,7 @@ export const updateUserRole = async (id, role) => {
   return res.data;
 };
 
-// DELETE USER
+//TODO Append do not delete
 export const deleteUser = async (id) => {
   const res = await API.delete(`/users/${id}`);
   return res.data;

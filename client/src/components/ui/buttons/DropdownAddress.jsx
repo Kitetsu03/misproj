@@ -15,7 +15,11 @@ function DropdownAddress({
     opt.label.toLowerCase().includes(search.toLowerCase()),
   );
 
-  const selectedLabel = options.find((o) => o.value === value)?.label || "";
+  const selectedOption = options.find(
+    (o) => o.value === value || o.label === value,
+  );
+
+  const selectedLabel = selectedOption?.label || value || "";
 
   return (
     <div className="w-full space-y-1">
@@ -28,7 +32,7 @@ function DropdownAddress({
           value={open ? search : selectedLabel}
           onFocus={() => setOpen(true)}
           onChange={(e) => setSearch(e.target.value)}
-          onBlur={() => setTimeout(() => setOpen(false), 150)} // 👈 prevents click issue
+          onBlur={() => setTimeout(() => setOpen(false), 150)}
           placeholder={placeholder}
           disabled={disabled}
           className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500"
@@ -45,7 +49,6 @@ function DropdownAddress({
               <div
                 key={opt.value}
                 onMouseDown={() => {
-                  // 👈 use onMouseDown instead of onClick (fix blur issue)
                   onChange(opt.value);
                   setSearch("");
                   setOpen(false);

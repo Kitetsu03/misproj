@@ -80,8 +80,6 @@ export const login = async (req, res) => {
     const { user, token, mustChangePassword } = await loginService(req.body);
 
     if (mustChangePassword) {
-      console.log("mustChangePassword user:", user);
-      console.log("mustChangePassword token:", token);
       res.cookie("token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",

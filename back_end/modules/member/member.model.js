@@ -2,29 +2,42 @@ import mongoose from "mongoose";
 
 const memberSchema = new mongoose.Schema(
   {
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+
     // personal info
     first_name: String,
     last_name: String,
     middle_name: String,
     suffix: String,
     birth_date: Date,
+    marital_status: {
+      type: String,
+      enum: ["single", "married", "divorced"],
+    },
+
     sex: {
       type: String,
-      enum: ["Female", "Male"],
+      enum: ["female", "male"],
     },
 
     // contact
     contact_no: String,
-    email: String,
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+    },
 
     // address
     address: {
       province: String,
       city: String,
       barangay: String,
-      sitio: String,
-      house_no: String,
-      postal_code: String,
+      region: String,
     },
 
     status: {

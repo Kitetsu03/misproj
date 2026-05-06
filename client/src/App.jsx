@@ -23,7 +23,7 @@ function App() {
       <Routes>
         {/* Public */}
         <Route path="/" element={<LogForm />} />
-        <Route path="/register" element={<RegForm />} />
+        <Route path="/appregisterhidden" element={<RegForm />} />
         <Route path="/change-password" element={<ChangePassword />} />
 
         {/* Admin */}

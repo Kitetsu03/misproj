@@ -23,7 +23,7 @@ function UpdateUserModal({ open, onClose, userData, onSuccess }) {
 
   useEffect(() => {
     if (userData) {
-      setEmail(userData.username || "");
+      setEmail(userData.email || "");
       setPassword("");
       setConfirmPassword("");
     }
@@ -37,7 +37,7 @@ function UpdateUserModal({ open, onClose, userData, onSuccess }) {
     }
 
     const values = {
-      username: email,
+      email: email,
       password,
       confirmPassword,
     };
@@ -62,7 +62,7 @@ function UpdateUserModal({ open, onClose, userData, onSuccess }) {
 
     try {
       const payload = {
-        username: email,
+        email: email,
       };
 
       if (password) {
@@ -125,12 +125,12 @@ function UpdateUserModal({ open, onClose, userData, onSuccess }) {
 
         <DialogContent>
           <form
-            id="update-form"
+            id="update-member-form"
             onSubmit={handleUpdate}
             className="space-y-4 mt-2 font-secondary p-3"
           >
             <Input
-              id="username"
+              id="email"
               type="text"
               label="Email (cannot be changed)"
               value={email}

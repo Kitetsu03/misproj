@@ -65,10 +65,14 @@ function UserAccess() {
       const formatted = res.map((u) => ({
         id: u._id,
         name:
-          [u.first_name, u.middle_name, u.last_name]
+          [
+            u.member_id?.first_name,
+            u.member_id?.middle_name,
+            u.member_id?.last_name,
+          ]
             .filter(Boolean)
             .join(" ") || "N/A",
-        username: u.username,
+        email: u.email,
         role: u.role,
         lastLogin: u.lastLogin || "N/A",
         createdAt: u.createdAt
@@ -127,10 +131,10 @@ function UserAccess() {
 
     let filtered = users.filter((u) => {
       const name = (u.name || "").toLowerCase();
-      const username = (u.username || "").toLowerCase();
+      const email = (u.email || "").toLowerCase();
       const role = (u.role || "").toLowerCase();
 
-      const matchesSearch = name.includes(q) || username.includes(q);
+      const matchesSearch = name.includes(q) || email.includes(q);
 
       const matchesRole = !roleFilter || role === roleFilter.toLowerCase();
 
@@ -237,7 +241,7 @@ function UserAccess() {
               {filteredUsers.map((u) => (
                 <tr key={u.id} className="border-b border-black/20 text-sm">
                   <td className="py-2">{u.name}</td>
-                  <td>{u.username}</td>
+                  <td>{u.email}</td>
 
                   {/* Roles */}
                   <td>
@@ -286,7 +290,7 @@ function UserAccess() {
                 <div className="flex justify-between items-start">
                   <div>
                     <div className="font-semibold text-sm">{u.name}</div>
-                    <div className="text-xs text-gray-600">{u.username}</div>
+                    <div className="text-xs text-gray-600">{u.email}</div>
                   </div>
 
                   <div className="ml-3">

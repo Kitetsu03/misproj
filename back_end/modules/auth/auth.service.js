@@ -4,14 +4,14 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 // VALIDATION
-const validateLoginPayload = ({ username, passkey }) => {
+const validateLoginPayload = ({ email, passkey }) => {
   const errors = [];
 
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  if (!username || typeof username !== "string" || !username.trim()) {
-    errors.push("Username is required.");
-  } else if (!emailPattern.test(username)) {
+  if (!email || typeof email !== "string" || !email.trim()) {
+    errors.push("email is required.");
+  } else if (!emailPattern.test(email)) {
     errors.push("Please enter a valid email address.");
   }
 
@@ -24,12 +24,12 @@ const validateLoginPayload = ({ username, passkey }) => {
 
 // REGISTER SERVICE
 export const registerService = async (data) => {
-  let { username, passkey, role, member_id } = data;
+  let { email, passkey, role, member_id } = data;
 
-  username = username?.trim();
+  email = email?.trim();
   passkey = passkey?.trim();
 
-  const validationErrors = validateLoginPayload({ username, passkey });
+  const validationErrors = validateLoginPayload({ email, passkey });
   if (validationErrors.length > 0) {
     throw { status: 400, errors: validationErrors };
   }
@@ -39,13 +39,13 @@ export const registerService = async (data) => {
     throw { status: 400, message: "Invalid role provided" };
   }
 
-  const existingUser = await User.findOne({ username });
+  const existingUser = await User.findOne({ email });
   if (existingUser) {
-    throw { status: 400, message: "Username already exists" };
+    throw { status: 400, message: "Email already exists" };
   }
 
   const user = await User.create({
-    username,
+    email,
     passkey,
     role,
     member_id: member_id || null,
@@ -58,23 +58,23 @@ export const registerService = async (data) => {
 };
 
 // LOGIN SERVICE
-export const loginService = async ({ username, passkey }) => {
-  const validationErrors = validateLoginPayload({ username, passkey });
+export const loginService = async ({ email, passkey }) => {
+  const validationErrors = validateLoginPayload({ email, passkey });
 
   if (validationErrors.length > 0) {
     throw { status: 400, errors: validationErrors };
   }
 
-  const user = await User.findOne({ username }).populate("member_id");
+  const user = await User.findOne({ email }).populate("member_id");
 
   if (!user) {
-    throw { status: 400, errors: ["Invalid username or password."] };
+    throw { status: 400, errors: ["Invalid email or password."] };
   }
 
   const isMatch = await bcrypt.compare(passkey, user.passkey);
 
   if (!isMatch) {
-    throw { status: 400, errors: ["Invalid username or password."] };
+    throw { status: 400, errors: ["Invalid email or password."] };
   }
 
   await logLogin(user._id);
