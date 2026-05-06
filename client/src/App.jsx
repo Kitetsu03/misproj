@@ -22,6 +22,10 @@ function App() {
       <Routes>
         {/* Public */}
         <Route path="/" element={<LogForm />} />
+<<<<<<< HEAD
+=======
+        <Route path="/register" element={<RegForm />} />
+>>>>>>> 5a8ce6ecd206792f81f18555316a0b698640ca35
         <Route path="/change-password" element={<ChangePassword />} />
 
         {/* Admin */}

@@ -1,9 +1,8 @@
 import User from "./user.model.js";
-import Member from "../member/member.model.js";
 
 // CREATE
 export const createUserService = async (data) => {
-  const existingUser = await User.findOne({ email: data.email });
+  const existingUser = await User.findOne({ username: data.username });
 
   if (existingUser) {
     const error = new Error("User already exists");
@@ -17,13 +16,12 @@ export const createUserService = async (data) => {
 // GET ALL
 export const getUsersService = async () => {
   const users = await User.find()
-    .select("-passkey")
-    .populate("member_id")
-    .lean();
+    .select("-passkey") // Hide password hash
+    .populate("member_id");
 
   return users.map((user) => ({
     _id: user._id,
-    email: user.email,
+    username: user.username,
     role: user.role,
     member_id: user.member_id,
     mustChangePassword: user.mustChangePassword,
@@ -53,7 +51,7 @@ export const getUserByIdService = async (id) => {
 
   return {
     _id: user._id,
-    email: user.email,
+    username: user.username,
     role: user.role,
     member_id: user.member_id,
     mustChangePassword: user.mustChangePassword,
@@ -99,7 +97,7 @@ export const updateUserService = async (id, data) => {
     message: "User updated successfully",
     user: {
       _id: updatedUser._id,
-      email: updatedUser.email,
+      username: updatedUser.username,
       role: updatedUser.role,
       member_id: updatedUser.member_id,
       mustChangePassword: updatedUser.mustChangePassword,
@@ -120,7 +118,7 @@ export const updateUserService = async (id, data) => {
   };
 };
 
-//TODO Just Append do not DELETE
+// DELETE
 export const deleteUserService = async (id) => {
   const deletedUser = await User.findByIdAndDelete(id);
 

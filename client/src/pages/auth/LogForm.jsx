@@ -15,11 +15,11 @@ function LogForm({ setLoaderVisible }) {
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
-  const { email, password } = formData;
+  const { username, password } = formData;
 
   // CHECK EXISTING SESSION
   useEffect(() => {
@@ -38,27 +38,26 @@ function LogForm({ setLoaderVisible }) {
     e.preventDefault();
 
     const values = {
-      email: email.trim(),
+      username: username.trim(),
       password: password.trim(),
     };
 
     const validated = validateAll(values, loginPatterns);
 
-    //TODO I need to stack
     if (validated.length > 0) {
-      validated.forEach((val) => {
-        setSnackbarMessage(val);
-        setSnackbarSeverity("warning");
-        setOpenSnackbar(true);
-      });
+      setSnackbarMessage(validated.join("\n"));
+      setSnackbarSeverity("warning");
+      setOpenSnackbar(true);
       return;
     }
 
     try {
       const response = await loginUser({
-        email: email.trim(),
+        username: username.trim(),
         passkey: password.trim(),
       });
+
+      console.log("Login response:", response);
 
       const { token, user } = response;
 
@@ -78,7 +77,7 @@ function LogForm({ setLoaderVisible }) {
               userId: user._id,
             },
           });
-        }, 3000);
+        }, 1000);
 
         return;
       }
@@ -111,12 +110,12 @@ function LogForm({ setLoaderVisible }) {
             setOpenSnackbar(true);
             navigate("/");
         }
-      }, 3000);
+      }, 800);
     } catch (error) {
       const backendMessage =
         error.response?.data?.errors?.join("\n") ||
         error.response?.data?.message ||
-        "Invalid email or password. Please try again.";
+        "Login failed. Please try again.";
 
       setSnackbarMessage(backendMessage);
       setSnackbarSeverity("error");
@@ -162,21 +161,21 @@ function LogForm({ setLoaderVisible }) {
           >
             <div className="form-group">
               <input
-                id="email"
+                id="username"
                 className="form-control"
-                autoComplete="email"
-                name="email"
+                autoComplete="username"
+                name="username"
                 type="text"
                 placeholder=" "
-                value={email}
+                value={username}
                 onChange={(e) =>
                   setFormData((prev) => ({
                     ...prev,
-                    email: e.target.value,
+                    username: e.target.value,
                   }))
                 }
               />
-              <label htmlFor="email">Email address</label>
+              <label htmlFor="username">Email address</label>
             </div>
 
             <div className="form-group">

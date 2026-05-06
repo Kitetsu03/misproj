@@ -18,7 +18,7 @@ import { createMember } from "../../../services/memberService.js";
 import validateAll from "../../../utils/validator.js";
 import { memberPatterns } from "../../../utils/patterns.js";
 
-export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
+export const CenteredTabs = ({ onSuccess, setSubmitting }) => {
   const [loadingRegions, setLoadingRegions] = useState(false);
   const [loadingProvinces, setLoadingProvinces] = useState(false);
   const [loadingCities, setLoadingCities] = useState(false);
@@ -35,12 +35,9 @@ export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
   const [cities, setCities] = useState([]);
   const [barangays, setBarangays] = useState([]);
 
-  const [suffix, setSuffix] = useState("");
-
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [sex, setSex] = useState("");
 
   const [maritalStatus, setMaritalStatus] = useState("");
   const [birthdate, setBirthDate] = useState("");
@@ -87,6 +84,7 @@ export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
         locationCache.current.regions = formatted;
         setRegions(formatted);
       } catch (err) {
+        console.error("Failed to fetch regions:", err);
         setError("Failed to load Regions");
       } finally {
         setLoadingRegions(false);
@@ -118,6 +116,7 @@ export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
         locationCache.current.provinces[region] = formatted;
         setProvinces(formatted);
       } catch (err) {
+        console.error("Failed to fetch provinces:", err);
         setError("Failed to load Provinces");
       } finally {
         setLoadingProvinces(false);
@@ -149,6 +148,7 @@ export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
 
         setCities(formatted);
       } catch (err) {
+        console.error("Failed to fetch cities:", err);
         setError("Failed to load Cities");
       } finally {
         setLoadingCities(false);
@@ -179,6 +179,7 @@ export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
 
         setBarangays(formatted);
       } catch (err) {
+        console.error("Failed to fetch barangays:", err);
         setError("Failed to load Barangays");
       } finally {
         setLoadingBarangays(false);
@@ -225,79 +226,25 @@ export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
       "aria-controls": `simple-tabpanel-${index}`,
     };
   }
-
   const sanitizeInput = (value) => {
-    if (typeof value !== "string") return value;
-
-    return value
-      .replace(/<[^>]*>?/gm, "") // remove HTML tags
-      .replace(/[<>]/g, "") // extra safety
-      .replace(/javascript:/gi, "") // prevent JS injection
-      .trim();
-  };
-
-  const handleTextOnly = (setter) => (e) => {
-    const value = e.target.value.replace(/[0-9]/g, "");
-    setter(value);
-  };
-
-  const handleNameInput = (setter) => (e) => {
-    let value = e.target.value;
-
-    value = sanitizeInput(value);
-    value = value.replace(/[0-9]/g, "");
-
-    setter(value);
-  };
-
-  const handlePhoneInput = (setter) => (e) => {
-    let value = e.target.value;
-
-    value = sanitizeInput(value);
-    value = value.replace(/[^0-9]/g, "");
-
-    setter(value);
-  };
-
-  const resetForm = () => {
-    setSex("");
-    setSuffix("");
-    setFirstName("");
-    setMiddleName("");
-    setLastName("");
-    setMaritalStatus("");
-    setBirthDate("");
-    setRegion("");
-    setProvince("");
-    setCity("");
-    setBrgy("");
-    setEmail("");
-    setPhoneNumber("");
-    setJoinDate("");
-    setLifeGroup("");
+    return value.replace(/[<>/"'`;(){}]/g, "").trim();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const values = {
-      suffix: suffix.trim(),
       firstName: sanitizeInput(firstName),
       middleName: sanitizeInput(middleName),
       lastName: sanitizeInput(lastName),
-      sex: sex,
       maritalStatus: sanitizeInput(maritalStatus),
       email: email.trim(),
       phoneNumber: phoneNumber.trim(),
+      lifeGroup: sanitizeInput(lifeGroup),
     };
 
     const validationErrors = validateAll(values, memberPatterns);
 
-    if (!firstName) validationErrors.push("First Name is required.");
-    if (!lastName) validationErrors.push("Last Name is required.");
-    if (!sex) validationErrors.push("Sex is required.");
-    if (!maritalStatus) validationErrors.push("Marital Status is required.");
-    if (!email) validationErrors.push("Email is required.");
     if (!birthdate) validationErrors.push("Birthdate is required.");
     if (!joinDate) validationErrors.push("Join date is required.");
     if (!region) validationErrors.push("Region is required.");
@@ -306,11 +253,9 @@ export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
     if (!brgy) validationErrors.push("Barangay is required.");
 
     if (validationErrors.length > 0) {
-      validationErrors.forEach((message) => {
-        setSnackbarMessage(message);
-        setSnackbarSeverity("warning");
-        setOpenSnackbar(true);
-      });
+      setSnackbarMessage(validationErrors.join("\n"));
+      setSnackbarSeverity("warning");
+      setOpenSnackbar(true);
       return;
     }
 
@@ -318,15 +263,13 @@ export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
       first_name: sanitizeInput(firstName),
       middle_name: sanitizeInput(middleName),
       last_name: sanitizeInput(lastName),
-      sex: sex,
       marital_status: sanitizeInput(maritalStatus),
-      suffix: sanitizeInput(suffix),
-      birth_date: birthdate,
+      birthdate,
       region,
       province,
       city,
       barangay: brgy,
-      role: "member",
+      role,
       email: email.trim(),
       contact_no: phoneNumber.trim(),
       join_date: joinDate,
@@ -343,7 +286,20 @@ export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
         onSuccess();
       }
 
-      resetForm();
+      setFirstName("");
+      setMiddleName("");
+      setLastName("");
+      setMaritalStatus("");
+      setBirthDate("");
+      setRegion("");
+      setProvince("");
+      setCity("");
+      setBrgy("");
+      setRole("member");
+      setEmail("");
+      setPhoneNumber("");
+      setJoinDate("");
+      setLifeGroup("");
 
       setSnackbarMessage(
         "Member added successfully! User account credentials were sent via email.",
@@ -355,6 +311,8 @@ export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
         err.response?.data?.errors?.join("\n") ||
         err.response?.data?.message ||
         "Failed to add member.";
+
+      console.log(err.response?.data);
       setSnackbarMessage(backendMessage);
       setSnackbarSeverity("error");
       setOpenSnackbar(true);
@@ -417,35 +375,24 @@ export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
           <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
             <div className="space-y-2">
               <Input
-                id="suffix"
-                name="suffix"
-                label="Suffix (Leave blank if none)"
-                type="text"
-                placeholder="Enter Suffix (ex. JR, SR, etc.)"
-                value={suffix}
-                onChange={handleNameInput(setSuffix)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Input
                 id="firstName"
                 name="firstName"
                 label="First Name"
                 type="text"
                 placeholder="Enter First Name"
                 value={firstName}
-                onChange={handleNameInput(setFirstName)}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
             <div className="space-y-2">
               <Input
                 id="middleName"
                 name="middleName"
-                label="Middle Name (Leave blank if none)"
+                label="Middle Name"
                 type="text"
                 placeholder="Enter Middle Name"
                 value={middleName}
-                onChange={handleNameInput(setMiddleName)}
+                onChange={(e) => setMiddleName(e.target.value)}
               />
             </div>
             <div className="space-y-2">
@@ -456,47 +403,20 @@ export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
                 type="text"
                 placeholder="Enter Last Name"
                 value={lastName}
-                onChange={handleNameInput(setLastName)}
+                onChange={(e) => setLastName(e.target.value)}
               />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="Status" className="font-medium">
-                Sex
-              </label>
-              <select
-                id="sex"
-                name="sex"
-                label="Sex"
-                type="text"
-                value={sex}
-                onChange={(e) => setSex(e.target.value)}
-                className="w-full p-3 border rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 hover:bg-indigo-100 cursor-pointer"
-              >
-                <option value="">Select Sex</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="Status" className="font-medium">
-                Civil Status
-              </label>
-              <select
+              <Input
                 id="maritalStatus"
                 name="maritalStatus"
                 label="Status"
                 type="text"
+                placeholder="Enter Marital Status"
                 value={maritalStatus}
                 onChange={(e) => setMaritalStatus(e.target.value)}
-                className="w-full p-3 border rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              >
-                <option value="">Select Civil Status</option>
-                <option value="single">Single</option>
-                <option value="married">Married</option>
-                <option value="widowed">Widowed</option>
-                <option value="separated">Separated</option>
-              </select>
+              />
             </div>
             <div className="space-y-1">
               <Input
@@ -549,6 +469,17 @@ export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
               options={barangays}
               disabled={!city}
             />
+
+            <div className="md:col-span-1 space-y-1">
+              <label className="font-medium">Role</label>
+              <select
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="w-full p-3 border rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <option value="member">Member</option>
+              </select>
+            </div>
           </div>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
@@ -572,7 +503,7 @@ export const AddMemberTab = ({ onSuccess, setSubmitting }) => {
                 type="text"
                 placeholder="0912 345 6789"
                 value={phoneNumber}
-                onChange={handlePhoneInput(setPhoneNumber)}
+                onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
           </div>

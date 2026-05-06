@@ -18,7 +18,7 @@ const Authenticate = async ({ cleanUsername, cleanPassword }) => {
   if (!Array.isArray(users)) return { user: authUser, role: role };
 
   // users.forEach((user) => {
-  //   if (user.email == cleanUsername && user.password == cleanPassword) {
+  //   if (user.username == cleanUsername && user.password == cleanPassword) {
   //     role = user.role;
   //     authUser = new User(user);
   //     return;

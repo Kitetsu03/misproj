@@ -1,10 +1,10 @@
 export const loginPatterns = [
   {
-    id: "email",
+    id: "username",
     required: true,
     pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     message: {
-      required: "Email is required.",
+      required: "Username is required.",
       pattern: "Please enter a valid email address.",
     },
   },
@@ -37,20 +37,11 @@ export const memberPatterns = [
     field: "firstName",
     test: (value) => value.trim().length >= 2,
     message: "First name must be at least 2 characters.",
-    test: (value) => typeof email !== "string",
-    message: "Invalid First Name.",
   },
   {
     field: "lastName",
     test: (value) => value.trim().length >= 2,
     message: "Last name must be at least 2 characters.",
-    test: (value) => typeof email !== "string",
-    message: "Invalid Last Name.",
-  },
-  {
-    field: "middleName",
-    test: (value) => typeof email !== "string",
-    message: "Invalid Middle Name.",
   },
   {
     field: "email",

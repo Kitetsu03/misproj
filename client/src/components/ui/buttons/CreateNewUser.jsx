@@ -7,7 +7,6 @@ import { registerPatterns, loginPatterns } from "../../../utils/patterns.js";
 import validateAll from "../../../utils/validator.js";
 import { createUser } from "../../../services/userService.js";
 
-//This is just a placeholder
 function CreateNewUser({ onSuccess }) {
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
@@ -23,7 +22,7 @@ function CreateNewUser({ onSuccess }) {
     e.preventDefault();
 
     const values = {
-      email: email,
+      username: email,
       password,
       confirmPassword,
       role,
@@ -40,8 +39,13 @@ function CreateNewUser({ onSuccess }) {
     }
 
     try {
+<<<<<<< HEAD
       await createUser({
         email: email,
+=======
+      await registerUser({
+        username: email,
+>>>>>>> 5a8ce6ecd206792f81f18555316a0b698640ca35
         passkey: password,
         role,
       });
@@ -92,10 +96,10 @@ function CreateNewUser({ onSuccess }) {
         <form id="create-user-form" onSubmit={handleRegister}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Input
-              id="email"
+              id="username"
               type="text"
               label="Email"
-              name="email"
+              name="username"
               value={email}
               placeholder="Enter email address"
               onChange={(e) => setEmail(e.target.value)}

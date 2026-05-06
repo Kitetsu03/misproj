@@ -1,6 +1,3 @@
-import Papa from "papaparse";
-import * as XLSX from "xlsx";
-import { importMembers } from "../../services/memberService.js";
 import AdminNav from "../../components/AdminNav";
 import Card from "../../components/ui/Card.jsx";
 import { ImStack } from "react-icons/im";
@@ -44,104 +41,9 @@ function MembersData() {
     setUserToDelete(null);
   };
 
-  //Import Logic
-  const handleCSVImport = (file) => {
-    Papa.parse(file, {
-      header: true,
-      skipEmptyLines: true,
-      complete: async (results) => {
-        await processImportedData(results.data);
-      },
-    });
-  };
-
-  const handleExcelImport = (file) => {
-    const reader = new FileReader();
-
-    reader.onload = async (e) => {
-      const data = new Uint8Array(e.target.result);
-      const workbook = XLSX.read(data, { type: "array" });
-
-      const sheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[sheetName];
-
-      const jsonData = XLSX.utils.sheet_to_json(worksheet);
-
-      await processImportedData(jsonData);
-    };
-
-    reader.readAsArrayBuffer(file);
-  };
-
-  const processImportedData = async (rows) => {
-    try {
-      const formattedMembers = rows.map((row) => ({
-        first_name: row.first_name || "",
-        middle_name: row.middle_name || "",
-        last_name: row.last_name || "",
-        email: row.email || "",
-        contact_no: row.contact_no || "",
-        status: (row.status || "active").toLowerCase(),
-        category: row.category || "Category 1",
-        attendance: Number(row.attendance) || 0,
-        last_visit: row.last_visit || null,
-      }));
-
-      await importMembers(formattedMembers);
-      fetchMembers();
-      alert("Import successful!");
-    } catch (err) {
-      console.error(err);
-      alert("Import failed.");
-    }
-  };
-
-  const handleFileImport = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const fileName = file.name.toLowerCase();
-
-    if (fileName.endsWith(".csv")) {
-      handleCSVImport(file);
-    } else {
-      handleExcelImport(file);
-    }
-  };
-
   const handleEdit = (user) => {
-    if (!user?.raw) return;
-    console.log("EDIT USER:", user);
-    console.log("CLICKED EDIT", user);
-
-    const { member, member_id, user: userInfo, user_id } = user.raw;
-
-    const formattedData = {
-      user_id,
-      member_id: member_id || null,
-      email: userInfo?.email || "",
-
-      // member fields if exists
-
-      first_name: member?.first_name || "",
-      middle_name: member?.middle_name || "",
-      last_name: member?.last_name || "",
-      suffix: member?.suffix || "",
-
-      birth_date: member?.birth_date || "",
-      marital_status: member?.marital_status || "",
-      sex: member?.sex || "",
-
-      contact_no: member?.contact_no || "",
-
-      // address for form
-      region: member?.address?.region || "",
-      province: member?.address?.province || "",
-      city: member?.address?.city || "",
-      barangay: member?.address?.barangay || "",
-    };
-
-    setSelectedUser(formattedData);
+    if (!user) return;
+    setSelectedUser(user);
     setOpenEditModal(true);
   };
 
@@ -174,49 +76,28 @@ function MembersData() {
     fetchMembers();
   }, []);
 
-  const mapMemberToRow = (u) => {
-    const member = u.member;
-    const user = u.user;
-
-    const fullName = member
-      ? [member.first_name, member.middle_name, member.last_name]
-          .filter(Boolean)
-          .join(" ")
-      : "Incomplete Profile";
-
-    const status = (member?.status || "incomplete").toLowerCase();
-
-    return {
-      id: member?._id || u.user_id,
-      raw: u,
-
-      name: fullName,
-      role: user?.role || "N/A",
-      contact: member?.contact_no || "N/A",
-      email: user?.email || "N/A",
-
-      status,
-      category: u.category || "N/A",
-      attendance: u.attendance ?? 0,
-      lastVisit: u.lastLogin || "N/A",
-
-      color: getRoleColor(status),
-    };
-  };
-
   const fetchMembers = async () => {
     try {
-      setError(null);
-
       const res = await getMembers();
       console.log("MEMBERS FROM API:", res);
 
-      const formatted = res.map(mapMemberToRow);
+      const formatted = res.map((u) => ({
+        id: u._id,
+        name: [u.first_name, u.middle_name, u.last_name]
+          .filter(Boolean)
+          .join(" "),
+        contact: u.contact_no || "N/A",
+        username: u.email || "N/A",
+        status: u.status?.toLowerCase(),
+        category: u.category || "N/A",
+        attendance: u.attendance || 0,
+        lastVisit: u.last_visit || "N/A",
+        color: getRoleColor(u.status?.toLowerCase()),
+      }));
 
       setMembers(formatted);
     } catch (err) {
-      console.error("Fetch members error:", err);
-      setError("Failed to fetch members");
+      setError("Failed to fetch member:");
     }
   };
 
@@ -262,7 +143,8 @@ function MembersData() {
 
     filtered = filtered.filter((u) => {
       const matchesSearch =
-        u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q);
+        u.name.toLowerCase().includes(q) ||
+        u.username.toLowerCase().includes(q);
 
       const matchesStatus = !statusFilter || u.status === statusFilter;
       const matchesCategory =
@@ -283,84 +165,6 @@ function MembersData() {
 
     return filtered;
   }, [members, query, statusFilter, categoryFilter, sortBy]);
-
-  const downloadCSVTemplate = () => {
-    const headers = [
-      "first_name",
-      "middle_name",
-      "last_name",
-      "suffix",
-      "birth_date",
-      "marital_status",
-      "sex",
-      "contact_no",
-      "email",
-      "province",
-      "city",
-      "barangay",
-      "region",
-      "status",
-      "is_enabled",
-    ];
-
-    const sample = [
-      "John",
-      "A",
-      "Doe",
-      "Jr",
-      "1995-06-15",
-      "single",
-      "male",
-      "09123456789",
-      "john@example.com",
-      "Laguna",
-      "San Pablo",
-      "Barangay 1",
-      "Region IV-A",
-      "active",
-      "true",
-    ];
-
-    const csv = [headers, sample].map((r) => r.join(",")).join("\n");
-
-    const blob = new Blob([csv], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "members_template.csv";
-    a.click();
-  };
-
-  const downloadExcelTemplate = () => {
-    const data = [
-      {
-        first_name: "John",
-        middle_name: "A",
-        last_name: "Doe",
-        suffix: "Jr",
-        birth_date: "1995-06-15",
-        marital_status: "single",
-        sex: "male",
-        contact_no: "09123456789",
-        email: "john@example.com",
-        province: "Laguna",
-        city: "San Pablo",
-        barangay: "Barangay 1",
-        region: "Region IV-A",
-        status: "active",
-        is_enabled: true,
-      },
-    ];
-
-    const worksheet = XLSX.utils.json_to_sheet(data);
-    const workbook = XLSX.utils.book_new();
-
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Members");
-
-    XLSX.writeFile(workbook, "members_template.xlsx");
-  };
-
   return (
     <>
       <div className="min-h-dvh grid grid-cols-[auto_1fr]">
@@ -389,40 +193,13 @@ function MembersData() {
               <div className="flex gap-2 ">
                 <h2 className="font-semibold text-lg p-2">Search & Filter</h2>
                 <div className="flex flex-1 gap-2 justify-end">
-                  <p className="text-sm text-muted-foreground self-center">
-                    Use the template to avoid import errors.
-                  </p>
-                  <button
-                    onClick={downloadCSVTemplate}
-                    className="bg-black text-white px-5 py-2 rounded-lg shadow-md hover:bg-gray-800 font-secondary"
-                  >
-                    CSV Template
-                  </button>
-
-                  <button
-                    onClick={downloadExcelTemplate}
-                    className="bg-black text-white px-5 py-2 rounded-lg shadow-md hover:bg-gray-800 font-secondary"
-                  >
-                    Excel Template
-                  </button>
-
-                  <button
-                    className="bg-black text-white px-5 py-2 rounded-lg"
-                    onClick={() =>
-                      document.getElementById("file-upload").click()
+                  <BlackButton
+                    val="Import"
+                    exc="Import Members"
+                    comp={
+                      <input type="file" id="file-input" text="Click here" />
                     }
-                  >
-                    Import
-                  </button>
-
-                  <input
-                    type="file"
-                    accept=".csv, .xlsx, .xls"
-                    onChange={handleFileImport}
-                    className="hidden"
-                    id="file-upload"
                   />
-
                   <BlackButton val="Export" exc="Export Members" />
                   <BlackButton
                     val="+ Add Member"
@@ -515,7 +292,7 @@ function MembersData() {
                     <tr key={u.id} className="border-b border-black/20 text-sm">
                       <td className="py-2">{u.name}</td>
                       <td>{u.contact}</td>
-                      <td>{u.email}</td>
+                      <td>{u.username}</td>
                       <td>{u.status}</td>
 
                       {/* status */}
@@ -559,7 +336,9 @@ function MembersData() {
                     <div className="flex justify-between items-start">
                       <div>
                         <div className="font-semibold text-sm">{u.name}</div>
-                        <div className="text-xs text-gray-600">{u.email}</div>
+                        <div className="text-xs text-gray-600">
+                          {u.username}
+                        </div>
                       </div>
 
                       <div className="ml-3">
@@ -597,20 +376,20 @@ function MembersData() {
                   </div>
                 ))}
               </div>
-            </div>
 
-            <UpdateMemberModal
-              open={openEditModal}
-              onClose={handleCloseModal}
-              userData={selectedUser}
-              onSuccess={fetchMembers}
-            />
-            <DeleteMemberModal
-              open={openDeleteModal}
-              onClose={handleCloseDeleteModal}
-              userData={userToDelete}
-              onSuccess={fetchMembers}
-            />
+              <UpdateMemberModal
+                open={openEditModal}
+                onClose={handleCloseModal}
+                userData={selectedUser}
+                onSuccess={fetchMembers}
+              />
+              <DeleteMemberModal
+                open={openDeleteModal}
+                onClose={handleCloseDeleteModal}
+                userData={userToDelete}
+                onSuccess={fetchMembers}
+              />
+            </div>
           </div>
         </div>
       </div>

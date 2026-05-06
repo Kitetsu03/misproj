@@ -9,7 +9,6 @@ import Alert from "@mui/material/Alert";
 import { useState } from "react";
 import { deleteUser } from "../../../../services/userService.js";
 
-//TODO do not delete just append
 function DeleteUserModal({ open, onClose, userData, onSuccess }) {
   const [loading, setLoading] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);

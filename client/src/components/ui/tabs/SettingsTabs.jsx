@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { BlackButton } from "../buttons/BlackButton";
 import { Input } from "../input/Input";
+import AddServiceModal from "../modals/services/AddServiceModal";
 import { useState } from "react";
 
 export const SettingsTabs = () => {
@@ -95,13 +96,14 @@ export const SettingsTabs = () => {
               value={"Jesus Is Lord Church Atimonan"}
               disabled={true}
             />
-            <Input
-              label="Church Address"
-              value={"Iskong Bantay St. Brgy. Zone IV Poblacion"}
-              disabled={true}
-            />
+            <Input label="Church Address" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Input label="Phone" />
+              <Input label="Email" />
+              <Input label="Website" />
+              <BlackButton val="Save Changes" />
+            </div>
           </div>
-          <h2 className="font-semibold text-lg pt-8">About Us</h2>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           <div className="flex justify-between items-center mb-4">
@@ -112,7 +114,7 @@ export const SettingsTabs = () => {
               </p>
             </div>
             <div>
-              <BlackButton val="+ Add Event" />
+              <BlackButton val="Services" comp={<AddServiceModal />} />
             </div>
           </div>
         </CustomTabPanel>

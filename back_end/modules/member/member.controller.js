@@ -1,118 +1,93 @@
-import {
-  getMembersService,
-  getMemberByIdService,
-  deleteMemberService,
-  upsertMemberProfileService,
-  findOrCreateUser,
-} from "./member.service.js";
+import { generateTempPassword } from "../../utils/generatePassword.js";
+import { sendTemporaryPassword } from "../../utils/sendEmail.js";
+import User from "../account/user.model.js";
+import Member from "./member.model.js";
 
-const createMemberForUser = async (req, res) => {
+const createMember = async (req, res) => {
   try {
-    const data = req.body;
+    const existingUser = await User.findOne({
+      username: req.body.email,
+    });
 
-    const user = await findOrCreateUser(data.email);
-
-    const result = await upsertMemberProfileService(user._id, data);
-
-    res.status(201).json(result);
-  } catch (err) {
-    if (
-      err.message === "User not found" ||
-      err.message === "Member already exists for this email" ||
-      err.message === "User already has a member profile"
-    ) {
-      return res.status(400).json({ message: err.message });
+    if (existingUser) {
+      return res.status(400).json({
+        message: "User already exists.",
+      });
     }
 
-    res.status(500).json({ message: err.message });
-  }
-};
+    const member = await Member.create(req.body);
 
-const updateMemberByUserId = async (req, res) => {
-  try {
-    const result = await upsertMemberProfileService(
-      req.params.userId,
-      req.body,
-    );
+    const tempPassword = generateTempPassword();
 
-    res.json(result);
+    await User.create({
+      member_id: member._id,
+      username: req.body.email,
+      passkey: tempPassword,
+      role: "member",
+      mustChangePassword: true,
+    });
+
+    let emailStatus = "sent";
+
+    try {
+      await sendTemporaryPassword(req.body.email, tempPassword);
+    } catch (emailError) {
+      console.error("Email failed:", emailError.message);
+      emailStatus = "failed";
+    }
+
+    res.status(201).json({
+      message: `Member added successfully. Email ${emailStatus}.`,
+      member,
+    });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      message: "Failed to create member.",
+      error: error.message,
+    });
   }
 };
 
-// CREATE or COMPLETE PROFILE
-const upsertMemberProfile = async (req, res) => {
-  try {
-    const result = await upsertMemberProfileService(
-      req.params.userId,
-      req.body,
-    );
-
-    res.json(result);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
-
-// GET ALL
 const getMembers = async (req, res) => {
   try {
-    const members = await getMembersService();
+    const members = await Member.find();
     res.json(members);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-// GET BY ID
 const getMemberById = async (req, res) => {
   try {
-    const member = await getMemberByIdService(req.params.id);
+    const member = await Member.findById(req.params.id);
     res.json(member);
   } catch (error) {
-    if (error.message === "Member not found") {
-      return res.status(404).json({ message: error.message });
-    }
-
     res.status(500).json({ message: error.message });
   }
 };
 
-// UPDATE
 const updateMember = async (req, res) => {
   try {
-    const updated = await updateMemberService(req.params.id, req.body);
+    const updated = await Member.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
     res.json(updated);
   } catch (error) {
-    if (error.message === "Member not found") {
-      return res.status(404).json({ message: error.message });
-    }
-
     res.status(500).json({ message: error.message });
   }
 };
 
-// DELETE
 const deleteMember = async (req, res) => {
   try {
-    const result = await deleteMemberService(req.params.id);
-    res.json(result);
-  } catch (error) {
-    if (error.message === "Member not found") {
-      return res.status(404).json({ message: error.message });
+    const member = await Member.findByIdAndDelete(req.params.id);
+
+    if (member) {
+      await User.findOneAndDelete({ member_id: member._id });
     }
 
+    res.json({ message: "Member and user deleted" });
+  } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
-
-export {
-  createMemberForUser,
-  getMembers,
-  getMemberById,
-  updateMember,
-  deleteMember,
-  upsertMemberProfile,
-  updateMemberByUserId,
-};
+export { createMember, getMembers, getMemberById, updateMember, deleteMember };

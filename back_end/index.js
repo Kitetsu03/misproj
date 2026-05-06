@@ -52,17 +52,13 @@ app.get("/", (req, res) => {
 });
 
 // Database connection and server start
-const startServer = async () => {
-  try {
-    await mongoose.connect(process.env.CONNECTION_STRING);
-    console.log("Connected to MongoDB");
-
-    app.listen(process.env.PORT || 3000, () => {
-      console.log(`Server running`);
-    });
-  } catch (err) {
-    console.error("Startup error:", err);
-  }
-};
-
-startServer();
+mongoose.connect(process.env.CONNECTION_STRING);
+try {
+  console.log("Connected to MongoDB");
+  app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
+  });
+} catch (error) {
+  console.error(process.env.PORT);
+  console.log("Error connecting to MongoDB");
+}

@@ -1,12 +1,14 @@
-// import dotenv from "dotenv";
-// dotenv.config();
 import axios from "axios";
 
 const API = axios.create({
+<<<<<<< HEAD
   baseURL:
     "http://localhost:3000/api" ||
     import.meta.env.VITE_API_URL ||
     "http://localhost:3000/api",
+=======
+  baseURL: import.meta.env.VITE_API_URL,
+>>>>>>> 5a8ce6ecd206792f81f18555316a0b698640ca35
 });
 
 // Attach token automatically
